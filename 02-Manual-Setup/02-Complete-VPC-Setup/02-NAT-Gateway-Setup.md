@@ -68,10 +68,10 @@ This ensures **zonal redundancy** and minimizes single points of failure.
 
 | Resource           | CIDR Block      | AZ         | Notes                     |
 |--------------------|-----------------|------------|---------------------------|
-| Public Subnet 1    | `10.0.1.0/24`   | us-east-1a | NAT Gateway lives here    |
-| Public Subnet 2    | `10.0.2.0/24`   | us-east-1b | Optional NAT Gateway here |
-| Private Subnet 1   | `10.0.3.0/24`   | us-east-1a | Routes via NAT GW in AZ-a |
-| Private Subnet 2   | `10.0.4.0/24`   | us-east-1b | Routes via NAT GW in AZ-b |
+| Public Subnet 1    | `10.55.0.0/20`   | us-east-1a | NAT Gateway lives here    |
+| Public Subnet 2    | `10.55.16.0/20`   | us-east-1b | Optional NAT Gateway here |
+| Private Subnet 1   | `10.55.128.0/20`   | us-east-1a | Routes via NAT GW in AZ-a |
+| Private Subnet 2   | `10.55.144.0/20`   | us-east-1b | Routes via NAT GW in AZ-b |
 
 
 ## ✅ Summary
