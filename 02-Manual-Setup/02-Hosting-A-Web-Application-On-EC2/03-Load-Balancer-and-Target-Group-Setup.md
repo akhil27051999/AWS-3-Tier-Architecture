@@ -14,7 +14,7 @@ https://github.com/user-attachments/assets/eda1352c-1e56-4cab-b21c-d5801d660a9c
   - ALB security group should allow port `80` or `443`
   - EC2 security group should allow traffic from ALB security group on app port (e.g., `80`, `3000`)
 
-## ✅ Step-by-Step Load Balancer and Target Group Setup
+## ✅ Steps to Setup Load Balancer and Target Group 
 
 ### Step 1: Create a Target Group
 
