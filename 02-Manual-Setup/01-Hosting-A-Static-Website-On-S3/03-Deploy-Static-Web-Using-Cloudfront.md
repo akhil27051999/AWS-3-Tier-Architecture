@@ -36,7 +36,6 @@ This guide explains how to deploy a secure, fast, and scalable static website us
    - Set **error document**: `error.html` (optional)
 5. (Optional) Make your bucket public (if not using CloudFront OAC)
 
----
 
 ### Step 2. Request an SSL Certificate (ACM)
 
@@ -48,7 +47,6 @@ This guide explains how to deploy a secure, fast, and scalable static website us
    - ACM will create DNS records in Route 53 if your domain is hosted there
 4. Wait for the certificate to be issued
 
----
 
 ### Step 3. Set Up CloudFront
 
@@ -63,7 +61,6 @@ This guide explains how to deploy a secure, fast, and scalable static website us
 3. (Optional but recommended): Set up **Origin Access Control (OAC)** to keep the S3 bucket private
 4. Wait ~15 minutes for CloudFront distribution to deploy
 
----
 
 ### Step 4. Configure Route 53 (DNS)
 
@@ -75,7 +72,6 @@ This guide explains how to deploy a secure, fast, and scalable static website us
    - **Alias Target**: Choose your CloudFront distribution
 4. Repeat for `www` subdomain if needed
 
----
 
 ### Step 5. Test Your Site
 
