@@ -16,7 +16,7 @@ https://github.com/user-attachments/assets/dc8f7823-42b9-43d1-90c9-6d36bc46d438
 - (Optional) ALB with listener on port 80 forwarding to port 3000
 
 
-## ✅ Steps to Launch EC2 Server
+## ✅ Steps to Launch EC2 Server with IAM Role
 
 ### 1. Create IAM Role
 
