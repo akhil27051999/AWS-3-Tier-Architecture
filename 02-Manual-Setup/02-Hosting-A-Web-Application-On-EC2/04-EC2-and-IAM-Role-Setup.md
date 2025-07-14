@@ -18,7 +18,7 @@ https://github.com/user-attachments/assets/dc8f7823-42b9-43d1-90c9-6d36bc46d438
 
 ## ✅ Steps to Launch EC2 Server with IAM Role
 
-### 1. Create IAM Role
+### Step 1. Create IAM Role
 
 - Go to IAM → Roles → Create Role
 - Trusted Entity: EC2
@@ -27,7 +27,7 @@ https://github.com/user-attachments/assets/dc8f7823-42b9-43d1-90c9-6d36bc46d438
 - Name: `GrafanaRole`
 
 
-### 2. Create Security Group
+### Step 2. Create Security Group
 
 - Inbound rule:
   - Type: **HTTP**
@@ -35,7 +35,7 @@ https://github.com/user-attachments/assets/dc8f7823-42b9-43d1-90c9-6d36bc46d438
 - Outbound: Allow all
 
 
-### 3. Launch EC2 Instance
+### Step 3. Launch EC2 Instance
 
 - **AMI**: Amazon Linux 2 / Ubuntu
 - **Type**: `t2.micro` or higher
