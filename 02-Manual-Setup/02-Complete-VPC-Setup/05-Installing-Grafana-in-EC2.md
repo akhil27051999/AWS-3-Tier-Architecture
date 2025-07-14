@@ -67,7 +67,7 @@ You will be prompted to change the default password on first login.
 
 ### Step 9: Basic Configuration
 
-### Update Server Settings (Optional)
+Update Server Settings (Optional)
 
 ```bash
 sudo nano /etc/grafana/grafana.ini
