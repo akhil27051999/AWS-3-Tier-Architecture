@@ -18,6 +18,7 @@ This document outlines the necessary steps to configure an AWS account and IAM u
 - Go to **AWS Account Settings**.
 - Add **Billing**, **Operations**, and **Security** contacts for the account.
 
+---
 ## 2. 👤 IAM User and Group Setup
 
 ### Step 4: Create IAM Groups
@@ -52,6 +53,7 @@ Create individual IAM users for team members:
   - IAM → Account settings → Set minimum password length, complexity, expiration
 - Rotate **access keys** every 90 days or use roles with temporary credentials
 
+---
 ## 3. 🗂️ Organizing for Multi-Environment Deployment
 
 If our product requires **multiple environments** (e.g., dev, staging, prod), organize resources using one of these approaches:
