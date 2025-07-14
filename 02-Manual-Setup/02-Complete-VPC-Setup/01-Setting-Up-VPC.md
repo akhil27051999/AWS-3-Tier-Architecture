@@ -66,17 +66,22 @@ Once the VPC is created, go to:
 - **NAT Gateway** – for private subnet access to the internet
 
 
-## Example Configuration
+## 📌 Example Configuration
 
-| Resource            | Value                |
-|---------------------|----------------------|
-| VPC Name            | `my-vpc`             |
-| CIDR Block          | `10.0.0.0/16`        |
-| Public Subnet       | `10.0.1.0/24`        |
-| Private Subnet      | `10.0.2.0/24`        |
-| Internet Gateway    | `my-vpc-igw`         |
-| NAT Gateway         | `my-vpc-nat`         |
-| Availability Zones  | 2+                   |
+| Resource            | Value                        |
+|---------------------|------------------------------|
+| VPC Name            | `my-vpc`                     |
+| CIDR Block          | `10.55.0.0/16`                |
+| Public Subnet 1     | `10.55.0.0/20` (e.g., AZ-a)   |
+| Public Subnet 2     | `10.55.16.0/20` (e.g., AZ-b)   |
+| Private Subnet 1    | `10.55.128.0/20` (e.g., AZ-a)   |
+| Private Subnet 2    | `10.55.144.0/20` (e.g., AZ-b)   |
+| Private Subnet 3    | `10.55.160.0/20` (e.g., AZ-c)   |
+| Private Subnet 4    | `10.55.176.0/20` (e.g., AZ-d)   |
+| Internet Gateway    | `my-vpc-igw`                 |
+| NAT Gateway(s)      | 2 (for high availability)    |
+| Availability Zones  | 2                            |
+
 
 
 
