@@ -142,7 +142,6 @@ This document outlines a set of foundational AWS security best practices to help
 ### 🛡️ 10. Enable GuardDuty
 
 - Turn on Amazon GuardDuty, AWS’s threat detection service.
-
 - Continuously monitors for unusual activity like:
   - Unauthorized access attempts
   - Malware activity
