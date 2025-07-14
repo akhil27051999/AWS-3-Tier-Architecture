@@ -1,6 +1,6 @@
 # 📦 Deploy Grafana on EC2 in Private Subnet (with IAM Role) 
 
-This guide sets up an EC2 instance to host **Grafana** in a **private subnet** of your VPC. It includes role-based access, secure inbound connections, and auto-installation of Grafana via user data.
+This guide sets up an EC2 instance to host **Grafana** in a **private subnet** of your VPC. .
 
 ## ✅ Steps to Install Grafana in EC2 Server
 
