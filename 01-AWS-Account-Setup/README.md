@@ -1,6 +1,6 @@
-# 🏗️ AWS Account and IAM Setup for Product Deployment
+# 🏗️ AWS Account and IAM Setup and Account Security for Product Deployment
 
-This document outlines the necessary steps to configure an AWS account and IAM user/group structure in preparation for deploying a cloud-based product.
+This document outlines the necessary steps to configure an AWS account and IAM user/group structure and Account Security best practices in preparation for deploying a cloud-based product.
 
 ## 1. 🔐 Create and Configure the AWS Account
 
@@ -69,9 +69,7 @@ If our product requires **multiple environments** (e.g., dev, staging, prod), or
 
 ---
 
-# 🛡️ AWS Security Best Practices Checklist
-
-This document outlines a set of foundational AWS security best practices to help protect your cloud environment. Following these principles ensures a secure, compliant, and cost-effective AWS infrastructure.
+## 4. 🛡️ AWS Security Best Practices Checklist
 
 
 ### 🔐 1. Configure Account Alternate Contacts
