@@ -4,12 +4,6 @@ This guide provides step-by-step instructions to create a **Virtual Private Clou
 
 - A VPC is your private network in the AWS cloud, where you can launch and manage AWS resources like EC2, RDS, and more in a logically isolated environment.
 
-## 📋 Prerequisites
-
-- An AWS account
-- Access to the AWS Management Console with VPC permissions
-
-
 ## 🧭 Overview
 
 | Component         | Description                               |
@@ -20,6 +14,10 @@ This guide provides step-by-step instructions to create a **Virtual Private Clou
 | Internet Gateway | Enables internet access                    |
 | NAT Gateway      | Allows outbound access from private subnets|
 | Route Tables     | Controls traffic flow within the VPC       |
+
+### VPC Creation Video
+
+https://github.com/user-attachments/assets/cb798edd-af4c-4515-93cb-04f3e8358bc7
 
 
 ## ✅ Steps to Create a VPC in AWS Console
