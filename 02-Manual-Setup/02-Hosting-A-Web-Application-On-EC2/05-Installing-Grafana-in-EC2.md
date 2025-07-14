@@ -2,7 +2,7 @@
 
 This guide sets up an EC2 instance to host **Grafana** in a **private subnet** of your VPC. For production environments, consider implementing additional security measures and performance optimizations based on your specific requirements.
 
-## Video of Deploy Grafana on EC2 in Private Subnet
+## Video of Deploying Grafana on EC2 in Private Subnet
 
 https://github.com/user-attachments/assets/28b8bcf6-f681-47f2-9c6a-4207026c18c4
 
