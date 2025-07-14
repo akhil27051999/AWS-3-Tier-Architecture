@@ -38,7 +38,5 @@
 - Save these credentials securely (they won’t be shown again)
 - Click **Close**
 
-### Video Reference
-
 https://github.com/user-attachments/assets/00b81a64-28fb-4e9d-bded-aa48c1953009
 
