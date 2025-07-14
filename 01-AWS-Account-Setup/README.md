@@ -58,12 +58,12 @@ Create individual IAM users for team members:
 
 If our product requires **multiple environments** (e.g., dev, staging, prod), organize resources using one of these approaches:
 
-### Use AWS Organizations (preferred for large teams)
+### 1. Use AWS Organizations (preferred for large teams)
 - Create an AWS Organization.
 - Set up separate **accounts** for dev/staging/prod.
 - Apply **Service Control Policies (SCPs)** and central billing.
 
-### Use Single Account with Resource Tagging
+### 2. Use Single Account with Resource Tagging
 - Use tags like:
   - `Environment=dev`, `Environment=prod`
   - `Project=YourProductName`
