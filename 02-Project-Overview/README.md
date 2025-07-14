@@ -23,7 +23,7 @@ In this architecture, a public-facing Application Load Balancer forwards client 
 
 ## Implementation Options
 
-This project provides two implementation approaches:
+This project provides three implementation approaches:
 
 1. **Manual Setup**: Follow the step-by-step instructions in the [original walkthrough](MANUAL_SETUP.md) to manually create and configure all resources.
 2. **Infrastructure as Code**: Use the CloudFormation templates in the `/cloudformation` directory to automate the deployment.
