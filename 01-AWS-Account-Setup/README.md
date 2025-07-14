@@ -4,24 +4,24 @@ This document outlines the necessary steps to configure an AWS account and IAM u
 
 ## 1. 🔐 Create and Configure the AWS Account
 
-### Step 1: Sign Up for AWS
+### 1. Sign Up for AWS
 - Go to [https://aws.amazon.com/](https://aws.amazon.com/)
 - Sign up using an email address and payment method.
 - Choose a strong root account password.
 
-### Step 2: Secure the Root Account
+### 2. Secure the Root Account
 - Enable **MFA (Multi-Factor Authentication)** on the root account.
 - Sign in to AWS console > **IAM** > **Dashboard** > **Activate MFA on root account**.
 - Recommended: Use a virtual MFA app like Google Authenticator.
 
-### Step 3: Add Alternate Contacts
+### 3. Add Alternate Contacts
 - Go to **AWS Account Settings**.
 - Add **Billing**, **Operations**, and **Security** contacts for the account.
 
 ---
 ## 2. 👤 IAM User and Group Setup
 
-### Step 4: Create IAM Groups
+### 1. Create IAM Groups
 
 Create groups based on roles in your team or environment. Suggested group structure:
 
@@ -35,7 +35,7 @@ Create groups based on roles in your team or environment. Suggested group struct
 Use **IAM > Groups > Create Group**, then attach appropriate AWS managed or custom policies.
 
 
-### Step 5: Create IAM Users
+### 2. Create IAM Users
 
 Create individual IAM users for team members:
 
@@ -45,7 +45,7 @@ Create individual IAM users for team members:
 - Require password reset on first login
 
 
-### Step 6: Enforce Security Best Practices
+### 3. Enforce Security Best Practices
 
 - Enable **MFA for all users**
   - IAM → Users → Security credentials → Assign MFA
@@ -58,12 +58,12 @@ Create individual IAM users for team members:
 
 If our product requires **multiple environments** (e.g., dev, staging, prod), organize resources using one of these approaches:
 
-### Option A: Use AWS Organizations (preferred for large teams)
+### Use AWS Organizations (preferred for large teams)
 - Create an AWS Organization.
 - Set up separate **accounts** for dev/staging/prod.
 - Apply **Service Control Policies (SCPs)** and central billing.
 
-### Option B: Use Single Account with Resource Tagging
+### Use Single Account with Resource Tagging
 - Use tags like:
   - `Environment=dev`, `Environment=prod`
   - `Project=YourProductName`
