@@ -20,7 +20,7 @@ Ensure you have:
 - **Private subnets** (without direct internet access)
 - An **Internet Gateway** attached to your VPC
 
-## ✅ Step-by-Step: Create a NAT Gateway
+## ✅ Steps to Setup NAT Gateway and Route Table
 
 ### Step 1: Allocate an Elastic IP (EIP)
 
