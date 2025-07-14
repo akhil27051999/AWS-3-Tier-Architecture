@@ -1,4 +1,4 @@
-# 🌐 Deploying a Static Website using AWS Amplify (Manual Upload)
+# 🌐 Deploying a Static Website using AWS Amplify 
 
 This guide walks you through the steps to host a static website using **AWS Amplify Hosting** by uploading your website files (HTML, CSS, JS) directly — no Git connection required.
 
