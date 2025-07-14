@@ -53,7 +53,7 @@ Amplify will:
 ### Step 6: Access Your Live Website
 
 - Once deployment is complete, you’ll receive a URL like:
-  - https://main.d1xyzexample.amplifyapp.com
+  - https://staging.d2vu8gbyc1bpte.amplifyapp.com/
 - Share this link to access your website anywhere!
   
 <img width="1918" height="1107" alt="Screenshot 2025-07-14 173407" src="https://github.com/user-attachments/assets/a5dce200-1dd4-404c-918e-22fe78480107" />
