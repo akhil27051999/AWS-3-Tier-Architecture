@@ -54,7 +54,7 @@ Create individual IAM users for team members:
 
 ## 3. 🗂️ Organizing for Multi-Environment Deployment
 
-If your product requires **multiple environments** (e.g., dev, staging, prod), organize resources using one of these approaches:
+If our product requires **multiple environments** (e.g., dev, staging, prod), organize resources using one of these approaches:
 
 ### Option A: Use AWS Organizations (preferred for large teams)
 - Create an AWS Organization.
