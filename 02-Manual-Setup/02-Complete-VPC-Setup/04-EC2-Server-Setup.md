@@ -1,6 +1,10 @@
-# 📦 Deploy Grafana on EC2 in Private Subnet (with IAM Role)
+# 📦 EC2 Instance Setup with IAM Role
 
 This guide sets up an EC2 instance to host **Grafana** in a **private subnet** of your VPC. It includes role-based access, secure inbound connections, and auto-installation of Grafana via user data.
+
+## Video of EC2 Setup with IAM Role 
+
+https://github.com/user-attachments/assets/2caa8f35-be51-42c4-8918-67fa1307cf8b
 
 
 ## 🧱 Prerequisites
@@ -40,6 +44,10 @@ This guide sets up an EC2 instance to host **Grafana** in a **private subnet** o
 - **Auto-assign Public IP**: No
 - **Security Group**: `grafana-sg`
 - **IAM Role**: `GrafanaRole`
+
+
+
+
 
 ## ✅ Steps to Install Grafana in EC2 Server
 
