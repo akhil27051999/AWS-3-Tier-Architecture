@@ -21,7 +21,7 @@ https://github.com/user-attachments/assets/dbdee4f3-a224-4b32-b8b4-b446cfb28204
 
 
 
-## ✅ Steps to Create a VPC in AWS Console
+## ✅ Steps to Setup VPC and Subnets
 
 ### Step 1: Open the VPC Dashboard
 
