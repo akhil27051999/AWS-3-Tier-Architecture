@@ -1,4 +1,4 @@
-# 🧱 AWS VPC Setup Guide
+# 🧱 AWS VPC Setup Guide for Hosting an Application on Cloud
 
 This guide provides step-by-step instructions to create a **Virtual Private Cloud (VPC)** in AWS using the **AWS Management Console**.
 
