@@ -67,11 +67,8 @@ This prevents access issues and follows best security practices.
 Use tags to categorize buckets for billing, automation, and management.
 
 Example:
-
-| Key         | Value        |
-|-------------|--------------|
-| Environment | Production   |
-| Project     | MyProduct    |
+- `Environment` – Production/prod
+- `Project` - AWS-3-Tier-Arch
 
 
 ### Step 9: Review and Create
