@@ -1,4 +1,4 @@
-# 🌐 Static Website Hosting on AWS Using S3 + CloudFront + Route 53
+# 🌐 Static Website Hosting on AWS using S3 + CloudFront + Route 53
 
 This guide explains how to deploy a secure, fast, and scalable static website using:
 
