@@ -76,14 +76,4 @@ This ensures **zonal redundancy** and minimizes single points of failure.
 | Private Subnet 2   | `10.55.144.0/20`   | us-east-1b | Routes via NAT GW in AZ-b |
 
 
-## ✅ Summary
-
-| Task                        | Done? |
-|-----------------------------|-------|
-| Allocated Elastic IP        | ✅    |
-| Created NAT Gateway         | ✅    |
-| Updated private route table | ✅    |
-| Verified internet access    | ✅    |
-
-
 
