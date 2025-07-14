@@ -20,7 +20,7 @@ This guide explains how to deploy a secure, fast, and scalable static website us
 `User` ↔ `Route 53` ↔ `CloudFront` (HTTPS via ACM) ↔ `S3 Bucket` (Static Site)
 
 
-## ✅ Deployment Steps
+## ✅ Step by Step Deployment of Static Website
 
 ### Step 1. Upload Your Website to S3
 
