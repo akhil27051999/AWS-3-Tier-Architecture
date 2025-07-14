@@ -76,76 +76,41 @@ If your product requires **multiple environments** (e.g., dev, staging, prod), o
 This document outlines a set of foundational AWS security best practices to help protect your cloud environment. Following these principles ensures a secure, compliant, and cost-effective AWS infrastructure.
 
 
-## 🔐 1. Configure Account Alternate Contacts
+### 🔐 1. Configure Account Alternate Contacts
 
-**What**:  
-Set up billing, operations, and security contacts in your AWS account.
+- Set up billing, operations, and security contacts in your AWS account.
+- Ensures the right individuals receive critical alerts, security notifications, or billing issues from AWS.
 
-**Why**:  
-Ensures the right individuals receive critical alerts, security notifications, or billing issues from AWS.
+### 🔒 2. Secure Root Account with MFA
 
-> 📍 Navigate to: **AWS Console → Account Settings → Alternate Contacts**
-
-
-## 🔒 2. Secure Root Account with MFA
-
-**What**:  
-Enable Multi-Factor Authentication (MFA) for the AWS root user.
-
-**Why**:  
-The root account has unrestricted access to all resources. MFA protects it from unauthorized access even if credentials are compromised.
-
-> 📍 Use a virtual or hardware MFA device (e.g., Google Authenticator, YubiKey).
+- The root account has unrestricted access to all resources. MFA protects it from unauthorized access even if credentials are compromised.
+- Use a virtual or hardware MFA device (e.g., Google Authenticator, YubiKey).
 
 
+### 👤 3. Create IAM Users with Appropriate Permissions
 
-## 👤 3. Create IAM Users with Appropriate Permissions
-
-**What**:  
-Create individual IAM users with minimal required permissions.
-
-**Why**:  
-Avoid using the root account for everyday tasks. Assign fine-grained permissions using IAM policies to apply the **principle of least privilege**.
-
-> 📍 Use IAM groups and roles to manage access at scale.
+- Avoid using the root account for everyday tasks. Assign fine-grained permissions using IAM policies to apply the **principle of least privilege**.
+- Use IAM groups and roles to manage access at scale.
 
 
+### 🔐 4. Enable MFA for All IAM Users
 
-## 🔐 4. Enable MFA for All IAM Users
-
-**What**:  
-Require all IAM users to use MFA for console access.
-
-**Why**:  
-MFA significantly reduces the risk of compromised accounts by adding a second verification step.
-
-> 📍 Enforce MFA using IAM policies or AWS Organizations SCPs.
+- MFA significantly reduces the risk of compromised accounts by adding a second verification step.
+- Enforce MFA using IAM policies or AWS Organizations SCPs.
 
 
-## 🔑 5. Configure Strong Password Policy
+### 🔑 5. Configure Strong Password Policy
 
-**What**:  
-Define account-wide password rules for IAM users.
-
-**Why**:  
-Enforces complexity and rotation to protect against brute-force or credential stuffing attacks.
+- Enforces complexity and rotation to protect against brute-force or credential stuffing attacks.
 
 **Recommended Settings**:
 - Minimum length: 14 characters
 - Require uppercase, lowercase, numbers, and symbols
 - Enable password expiration and reuse prevention
 
-> 📍 AWS Console → IAM → Account Settings → Password Policy
+### 📜 6. Set Up CloudTrail Logging to Secure S3 Bucket
 
-
-
-## 📜 6. Set Up CloudTrail Logging to Secure S3 Bucket
-
-**What**:  
-Enable AWS CloudTrail to log all account activity to a secure S3 bucket.
-
-**Why**:  
-Provides a detailed audit trail of AWS API calls for security analysis, compliance, and incident response.
+- Provides a detailed audit trail of AWS API calls for security analysis, compliance, and incident response.
 
 **Best Practices**:
 - Use a dedicated S3 bucket with encryption and access controls.
@@ -153,26 +118,15 @@ Provides a detailed audit trail of AWS API calls for security analysis, complian
 - Send logs to CloudWatch for real-time monitoring.
 
 
+### 🚫 7. Enable S3 Block Public Access at Account Level
 
-## 🚫 7. Enable S3 Block Public Access at Account Level
-
-**What**:  
-Globally block all public access to S3 buckets unless explicitly allowed.
-
-**Why**:  
-Prevents accidental exposure of sensitive data to the internet.
-
-> 📍 S3 Console → Block Public Access Settings → Enable all block options at the account level.
+- Prevents accidental exposure of sensitive data to the internet.
 
 
+### 🧹 8. Clean Up Unused Network Resources
 
-## 🧹 8. Clean Up Unused Network Resources
-
-**What**:  
-Identify and remove unused VPCs, security groups, elastic IPs, NAT gateways, etc.
-
-**Why**:  
-Minimizes attack surface and reduces unnecessary costs.
+- Identify and remove unused VPCs, security groups, elastic IPs, NAT gateways, etc.
+- Minimizes attack surface and reduces unnecessary costs.
 
 **Tools**:
 - AWS Config
@@ -181,46 +135,30 @@ Minimizes attack surface and reduces unnecessary costs.
 
 
 
-## 💸 9. Configure AWS Budgets
+### 💸 9. Configure AWS Budgets
 
-**What**:  
-Set cost and usage budgets with email/SNS alerts.
-
-**Why**:  
-Avoid unexpected charges by tracking AWS spending and resource usage.
-
-> 📍 AWS Console → Billing → Budgets → Create Budget
+- Avoid unexpected charges by tracking AWS spending and resource usage.
+- Set cost and usage budgets with email/SNS alerts.
 
 
-## 🛡️ 10. Enable GuardDuty
+### 🛡️ 10. Enable GuardDuty
 
-**What**:  
-Turn on Amazon GuardDuty, AWS’s threat detection service.
+- Turn on Amazon GuardDuty, AWS’s threat detection service.
 
-**Why**:  
-Continuously monitors for unusual activity like:
-- Unauthorized access attempts
-- Malware activity
-- Suspicious API usage
-
-> 📍 GuardDuty Console → Enable → Configure S3 protection (optional)
+- Continuously monitors for unusual activity like:
+  - Unauthorized access attempts
+  - Malware activity
+  - Suspicious API usage
 
 
+### ✅ 11. Review Trusted Advisor Recommendations
 
-## ✅ 11. Review Trusted Advisor Recommendations
-
-**What**:  
-Use AWS Trusted Advisor to check for common security and cost optimization issues.
-
-**Why**:  
-Helps you detect misconfigurations like:
-- Open security groups
-- Unused access keys
-- Lack of MFA
-- Underutilized resources
-
-> 📍 Trusted Advisor → Dashboard → Security → Review and apply fixes
-
+- Use AWS Trusted Advisor to check for common security and cost optimization issues.
+- Helps you detect misconfigurations like:
+  - Open security groups
+  - Unused access keys
+  - Lack of MFA
+  - Underutilized resources
 
 
 ## 📌 Final Notes
