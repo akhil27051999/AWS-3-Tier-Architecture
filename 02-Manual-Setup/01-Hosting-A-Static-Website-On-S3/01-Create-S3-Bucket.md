@@ -6,7 +6,7 @@ An S3 bucket is a container for storing objects (files, data, backups, etc.) in 
 
 This document provides step-by-step instructions to create an S3 bucket using the AWS Management Console. Amazon S3 (Simple Storage Service) is used to store and retrieve any amount of data at any time.
 
-## S3 Bucket creation Video
+## Video of S3 Bucket Creation
 
 https://github.com/user-attachments/assets/f46cc499-f101-44ae-8e6b-4884c24b2305
 
