@@ -1,4 +1,4 @@
-# **AWS IAM User Creation Guide for Project**
+# **AWS IAM User and Group Creation Guide for Project**
 
 ## **Step-by-Step IAM User Creation**
 
