@@ -36,6 +36,8 @@
 - Log in using your email and password
 - Explore AWS services!
 
+https://www.loom.com/share/fa3dbed078604edb92d7853fdcc795e0?sid=2ec3b75a-e34c-4a4d-a091-89c6e20b242f
+
 
 ## **Common Challenges & How to Overcome Them**
 
