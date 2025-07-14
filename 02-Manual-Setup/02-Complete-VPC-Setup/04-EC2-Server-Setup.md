@@ -2,7 +2,6 @@
 
 This guide sets up an EC2 instance to host **Grafana** in a **private subnet** of your VPC. It includes role-based access, secure inbound connections, and auto-installation of Grafana via user data.
 
----
 
 ## 🧱 Prerequisites
 
@@ -13,11 +12,10 @@ This guide sets up an EC2 instance to host **Grafana** in a **private subnet** o
 - Security Group for Grafana access
 - (Optional) ALB with listener on port 80 forwarding to port 3000
 
----
 
-## ✅ Steps to Launch Grafana Server
+## ✅ Steps to Launch EC2 Server
 
-## 1. Create IAM Role
+### 1. Create IAM Role
 
 - Go to IAM → Roles → Create Role
 - Trusted Entity: EC2
@@ -26,16 +24,15 @@ This guide sets up an EC2 instance to host **Grafana** in a **private subnet** o
 - Name: `GrafanaRole`
 
 
-## 2. Create Security Group
+### 2. Create Security Group
 
 - Inbound rule:
   - Type: **HTTP**
   - Source: Anywhere IPv$
 - Outbound: Allow all
 
----
 
-## 3. Launch EC2 Instance
+### 3. Launch EC2 Instance
 
 - **AMI**: Amazon Linux 2 / Ubuntu
 - **Type**: `t2.micro` or higher
@@ -44,7 +41,7 @@ This guide sets up an EC2 instance to host **Grafana** in a **private subnet** o
 - **Security Group**: `grafana-sg`
 - **IAM Role**: `GrafanaRole`
 
-## 4. Install Grafana in EC2 Server
+## ✅ Steps to Install Grafana in EC2 Server
 
 ### Step 1: Update System Packages
 
