@@ -16,6 +16,8 @@ This guide outlines essential security controls and recommendations to keep your
    - Security contact: security-team@example.com
 5. Click "Save changes"
 
+https://www.loom.com/share/d710ae4d29534206ab23034b321ae72c?sid=026dd665-7789-4127-9930-d1fc39c42bab
+
 ### ACCT.02 Restrict use of the root user
 
 **Implementation Steps:**
