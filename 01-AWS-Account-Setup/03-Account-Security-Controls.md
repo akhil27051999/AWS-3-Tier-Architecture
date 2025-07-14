@@ -1,5 +1,4 @@
 
-https://github.com/user-attachments/assets/eabc9d63-d1bd-48e4-bc20-42cd96efbfae
 # AWS Account Security Best Practices
 
 This guide outlines essential security controls and recommendations to keep your AWS account secure, including detailed implementation steps.
