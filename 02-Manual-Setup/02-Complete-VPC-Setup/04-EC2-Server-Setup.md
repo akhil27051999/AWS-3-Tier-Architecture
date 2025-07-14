@@ -28,7 +28,7 @@ This guide sets up an EC2 instance to host **Grafana** in a **private subnet** o
 
 - Inbound rule:
   - Type: **HTTP**
-  - Source: Anywhere IPv$
+  - Source: Anywhere IPv4
 - Outbound: Allow all
 
 
