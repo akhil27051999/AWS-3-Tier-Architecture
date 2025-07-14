@@ -16,7 +16,8 @@ This demo is intended for those with technical roles, particularly Scaler Learne
 
 ## Architecture Overview
 
-![Architecture Diagram](/demos/3TierArch.png)
+<img width="2221" height="1500" alt="3TierArch" src="https://github.com/user-attachments/assets/dfff0107-b134-43a9-a231-f07c2847c086" />
+
 
 In this architecture, a public-facing Application Load Balancer forwards client traffic to our web tier EC2 instances. The web tier is running Nginx webservers that are configured to serve a React.js website and redirects our API calls to the application tier's internal facing load balancer. The internal facing load balancer then forwards that traffic to the application tier, which is written in Node.js. The application tier manipulates data in an Aurora MySQL multi-AZ database and returns it to our web tier. Load balancing, health checks and autoscaling groups are created at each layer to maintain the availability of this architecture.
 
@@ -36,22 +37,22 @@ This project provides two implementation approaches:
 - NAT Gateways for private subnet internet access
 - Route tables and security groups for network isolation and security
 
-![VPC](/demos/FillVPCSettings.png)
+<img width="1438" height="767" alt="FillVPCSettings" src="https://github.com/user-attachments/assets/c394f92f-ac80-4aa9-9fc9-2a78591d9663" />
 
 ### Database Layer
 - Aurora MySQL cluster with multi-AZ deployment
 - Private subnet placement for enhanced security
 - Database subnet group for proper subnet association
 
-![Database Configuration](/demos/DBConfig1.png)
+<img width="1457" height="767" alt="DBConfig1" src="https://github.com/user-attachments/assets/68445ac7-ecb1-46e9-a247-d1c6dd8f235f" />
 
 ### Application Layer
 - Node.js application running on EC2 instances
 - Auto Scaling Group for high availability and scalability
 - Internal Application Load Balancer for traffic distribution
 - Connection to Aurora MySQL database for data persistence
-
-![App Tier Configuration](/demos/ConfigureInstanceDetails.png)
+  
+<img width="1440" height="764" alt="ConfigureInstanceDetails" src="https://github.com/user-attachments/assets/e034cb70-2aca-49ba-9f79-3ccdeb799e2e" />
 
 ### Web Layer
 - Nginx web server serving a React.js application
@@ -59,7 +60,7 @@ This project provides two implementation approaches:
 - Public Application Load Balancer for internet traffic distribution
 - API proxying to the application layer
 
-![Web Tier](/demos/WebPage1.png)
+<img width="1553" height="918" alt="WebPage1" src="https://github.com/user-attachments/assets/a662c8c9-94f1-4878-99ee-1d1b471641d7" />
 
 ## Security Enhancements
 
@@ -71,7 +72,7 @@ The project includes several security best practices:
 4. **Least Privilege Access**: IAM roles with minimal required permissions
 5. **HTTPS Support**: Configuration options for SSL/TLS
 
-![Security Groups](/demos/WebTierSG.png)
+<img width="1438" height="767" alt="WebTierSG" src="https://github.com/user-attachments/assets/d2fe1e64-cd44-4607-9a70-7d5615a03462" />
 
 ## Modernization Options
 
@@ -91,7 +92,7 @@ Choose your preferred implementation method:
 - For automated deployment using CloudFormation, see the [CloudFormation README](cloudformation/README.md).
 - For AWS CLI deployment, follow the [AWS CLI Deployment Guide](AWS_CLI_DEPLOYMENT.md).
 
-![Final Architecture](/demos/FinalLBDNS.png)
+<img width="1391" height="909" alt="FinalLBDNS" src="https://github.com/user-attachments/assets/0db56dac-5669-4de1-8ad8-c0c85466269e" />
 
 ## License
 
