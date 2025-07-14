@@ -3,15 +3,14 @@
 This document provides step-by-step instructions to create an S3 bucket using the AWS Management Console. Amazon S3 (Simple Storage Service) is used to store and retrieve any amount of data at any time.
 
 
-## 🧭 Prerequisites
+## Prerequisites
 
 - An active [AWS account](https://aws.amazon.com/)
 - Console access to the AWS Management Console
 - IAM permissions to create S3 buckets if you are a user (e.g., `s3:CreateBucket`)
 
----
 
-## 🚀 Steps to Create an S3 Bucket
+## Steps to Create an S3 Bucket
 
 ### Step 1: Sign in to AWS Console
 
@@ -54,7 +53,6 @@ This prevents access issues and follows best security practices.
 - Recommended for backup and audit purposes
 
 
-
 ### Step 7: Configure Default Encryption *(Optional but Recommended)*
 
 - Enable **Server-Side Encryption (SSE)**
@@ -83,7 +81,6 @@ Example:
 
 You’ll be redirected to the S3 bucket list, where you’ll see your new bucket.
 
----
 
 ## Best Practices
 
