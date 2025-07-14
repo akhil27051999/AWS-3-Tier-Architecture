@@ -2,8 +2,6 @@
 
 This document outlines the necessary steps to configure an AWS account and IAM user/group structure in preparation for deploying a cloud-based product.
 
----
-
 ## 1. 🔐 Create and Configure the AWS Account
 
 ### ✅ Step 1: Sign Up for AWS
@@ -20,8 +18,6 @@ This document outlines the necessary steps to configure an AWS account and IAM u
 - Go to **AWS Account Settings**.
 - Add **Billing**, **Operations**, and **Security** contacts for the account.
 
----
-
 ## 2. 👤 IAM User and Group Setup
 
 ### ✅ Step 4: Create IAM Groups
@@ -37,7 +33,6 @@ Create groups based on roles in your team or environment. Suggested group struct
 
 Use **IAM > Groups > Create Group**, then attach appropriate AWS managed or custom policies.
 
----
 
 ### ✅ Step 5: Create IAM Users
 
@@ -50,7 +45,6 @@ Create individual IAM users for team members:
 
 > 🔒 Best practice: Do not share user accounts. Each person gets their own login and access key.
 
----
 
 ### ✅ Step 6: Enforce Security Best Practices
 
@@ -59,8 +53,6 @@ Create individual IAM users for team members:
 - Set a **strong password policy**:
   - IAM → Account settings → Set minimum password length, complexity, expiration
 - Rotate **access keys** every 90 days or use roles with temporary credentials
-
----
 
 ## 3. 🗂️ Organizing for Multi-Environment Deployment
 
@@ -83,7 +75,6 @@ If your product requires **multiple environments** (e.g., dev, staging, prod), o
 
 This document outlines a set of foundational AWS security best practices to help protect your cloud environment. Following these principles ensures a secure, compliant, and cost-effective AWS infrastructure.
 
----
 
 ## 🔐 1. Configure Account Alternate Contacts
 
@@ -95,7 +86,6 @@ Ensures the right individuals receive critical alerts, security notifications, o
 
 > 📍 Navigate to: **AWS Console → Account Settings → Alternate Contacts**
 
----
 
 ## 🔒 2. Secure Root Account with MFA
 
@@ -107,7 +97,7 @@ The root account has unrestricted access to all resources. MFA protects it from 
 
 > 📍 Use a virtual or hardware MFA device (e.g., Google Authenticator, YubiKey).
 
----
+
 
 ## 👤 3. Create IAM Users with Appropriate Permissions
 
@@ -119,7 +109,7 @@ Avoid using the root account for everyday tasks. Assign fine-grained permissions
 
 > 📍 Use IAM groups and roles to manage access at scale.
 
----
+
 
 ## 🔐 4. Enable MFA for All IAM Users
 
@@ -131,7 +121,6 @@ MFA significantly reduces the risk of compromised accounts by adding a second ve
 
 > 📍 Enforce MFA using IAM policies or AWS Organizations SCPs.
 
----
 
 ## 🔑 5. Configure Strong Password Policy
 
@@ -148,7 +137,7 @@ Enforces complexity and rotation to protect against brute-force or credential st
 
 > 📍 AWS Console → IAM → Account Settings → Password Policy
 
----
+
 
 ## 📜 6. Set Up CloudTrail Logging to Secure S3 Bucket
 
@@ -163,7 +152,7 @@ Provides a detailed audit trail of AWS API calls for security analysis, complian
 - Enable log file validation.
 - Send logs to CloudWatch for real-time monitoring.
 
----
+
 
 ## 🚫 7. Enable S3 Block Public Access at Account Level
 
@@ -175,7 +164,7 @@ Prevents accidental exposure of sensitive data to the internet.
 
 > 📍 S3 Console → Block Public Access Settings → Enable all block options at the account level.
 
----
+
 
 ## 🧹 8. Clean Up Unused Network Resources
 
@@ -190,7 +179,7 @@ Minimizes attack surface and reduces unnecessary costs.
 - VPC Flow Logs
 - Trusted Advisor (for unused security groups)
 
----
+
 
 ## 💸 9. Configure AWS Budgets
 
@@ -202,7 +191,6 @@ Avoid unexpected charges by tracking AWS spending and resource usage.
 
 > 📍 AWS Console → Billing → Budgets → Create Budget
 
----
 
 ## 🛡️ 10. Enable GuardDuty
 
@@ -217,7 +205,7 @@ Continuously monitors for unusual activity like:
 
 > 📍 GuardDuty Console → Enable → Configure S3 protection (optional)
 
----
+
 
 ## ✅ 11. Review Trusted Advisor Recommendations
 
@@ -233,7 +221,7 @@ Helps you detect misconfigurations like:
 
 > 📍 Trusted Advisor → Dashboard → Security → Review and apply fixes
 
----
+
 
 ## 📌 Final Notes
 
