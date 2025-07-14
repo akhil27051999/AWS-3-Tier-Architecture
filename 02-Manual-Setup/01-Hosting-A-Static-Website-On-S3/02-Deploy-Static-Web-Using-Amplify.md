@@ -13,7 +13,7 @@ https://github.com/user-attachments/assets/d6ab6d25-1fb3-4419-8175-0de73abcc9be
 - Optional: A domain name for custom URL
 
 
-## ✅ Steps to Deploy Your Static Website
+## ✅ Steps for Deployment of Static Website using AWS Amplify 
 
 ###  Step 1: Sign in to AWS Console
 
