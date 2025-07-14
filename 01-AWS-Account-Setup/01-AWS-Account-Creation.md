@@ -36,8 +36,6 @@
 - Log in using your email and password
 - Explore AWS services!
 
-### Video Reference
-
 ## **Common Challenges & How to Overcome Them**
 
 ### **1. Credit/Debit Card Issues**
