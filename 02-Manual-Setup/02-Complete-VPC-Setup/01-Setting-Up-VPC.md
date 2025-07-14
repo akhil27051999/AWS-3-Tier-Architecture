@@ -17,7 +17,8 @@ This guide provides step-by-step instructions to create a **Virtual Private Clou
 
 ### VPC Creation Video
 
-https://github.com/user-attachments/assets/cb798edd-af4c-4515-93cb-04f3e8358bc7
+https://github.com/user-attachments/assets/dbdee4f3-a224-4b32-b8b4-b446cfb28204
+
 
 
 ## ✅ Steps to Create a VPC in AWS Console
