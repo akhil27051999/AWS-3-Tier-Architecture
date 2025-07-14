@@ -4,23 +4,23 @@ This document outlines the necessary steps to configure an AWS account and IAM u
 
 ## 1. 🔐 Create and Configure the AWS Account
 
-### ✅ Step 1: Sign Up for AWS
+### Step 1: Sign Up for AWS
 - Go to [https://aws.amazon.com/](https://aws.amazon.com/)
 - Sign up using an email address and payment method.
 - Choose a strong root account password.
 
-### ✅ Step 2: Secure the Root Account
+### Step 2: Secure the Root Account
 - Enable **MFA (Multi-Factor Authentication)** on the root account.
 - Sign in to AWS console > **IAM** > **Dashboard** > **Activate MFA on root account**.
 - Recommended: Use a virtual MFA app like Google Authenticator.
 
-### ✅ Step 3: Add Alternate Contacts
+### Step 3: Add Alternate Contacts
 - Go to **AWS Account Settings**.
 - Add **Billing**, **Operations**, and **Security** contacts for the account.
 
 ## 2. 👤 IAM User and Group Setup
 
-### ✅ Step 4: Create IAM Groups
+### Step 4: Create IAM Groups
 
 Create groups based on roles in your team or environment. Suggested group structure:
 
@@ -34,7 +34,7 @@ Create groups based on roles in your team or environment. Suggested group struct
 Use **IAM > Groups > Create Group**, then attach appropriate AWS managed or custom policies.
 
 
-### ✅ Step 5: Create IAM Users
+### Step 5: Create IAM Users
 
 Create individual IAM users for team members:
 
@@ -42,11 +42,10 @@ Create individual IAM users for team members:
 - Enable **programmatic access** (for CLI/SDK) and/or **console access**
 - Assign the user to the appropriate IAM group
 - Require password reset on first login
+- 🔒 Best practice: Do not share user accounts. Each person gets their own login and access key.
 
-> 🔒 Best practice: Do not share user accounts. Each person gets their own login and access key.
 
-
-### ✅ Step 6: Enforce Security Best Practices
+### Step 6: Enforce Security Best Practices
 
 - Enable **MFA for all users**
   - IAM → Users → Security credentials → Assign MFA
@@ -71,7 +70,7 @@ If your product requires **multiple environments** (e.g., dev, staging, prod), o
 
 ---
 
-# AWS Security Best Practices Checklist
+# 🛡️ AWS Security Best Practices Checklist
 
 This document outlines a set of foundational AWS security best practices to help protect your cloud environment. Following these principles ensures a secure, compliant, and cost-effective AWS infrastructure.
 
