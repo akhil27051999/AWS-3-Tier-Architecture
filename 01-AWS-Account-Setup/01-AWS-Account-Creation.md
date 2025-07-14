@@ -36,7 +36,6 @@
 - Log in using your email and password
 - Explore AWS services!
 
----
 
 ## **Common Challenges & How to Overcome Them**
 
@@ -60,11 +59,9 @@
 - If delayed, check your email for verification requests
 - Contact AWS Support if activation exceeds 24 hours
 
----
-
 ## **Next Steps After AWS Account Creation**
 - Set up **MFA (Multi-Factor Authentication)** for better security
 - Learn about **IAM roles and policies** for access control
 - Start with free-tier AWS services like **EC2, S3, Lambda**
 
-By following this guide, you can successfully create your AWS account and avoid common pitfalls. Happy learning! 🚀
+By following this guide, you can successfully create your AWS account and avoid common pitfalls. 
