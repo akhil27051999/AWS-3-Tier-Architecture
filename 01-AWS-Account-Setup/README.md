@@ -1,4 +1,4 @@
-# 🏗️ AWS Account and IAM Setup and Account Security for Product Deployment
+# 🏗️ AWS Account, IAM Setup and Account Security for Product Deployment
 
 This document outlines the necessary steps to configure an AWS account and IAM user/group structure and Account Security best practices in preparation for deploying a cloud-based product.
 
