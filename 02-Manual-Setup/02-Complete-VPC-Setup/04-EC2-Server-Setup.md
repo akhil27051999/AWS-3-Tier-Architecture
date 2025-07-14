@@ -4,8 +4,7 @@ This guide sets up an EC2 instance to host **Grafana** in a **private subnet** o
 
 ## Video of EC2 Setup with IAM Role 
 
-https://github.com/user-attachments/assets/2caa8f35-be51-42c4-8918-67fa1307cf8b
-
+https://github.com/user-attachments/assets/61178e43-167b-4271-acd3-9c744049198f
 
 ## 🧱 Prerequisites
 
