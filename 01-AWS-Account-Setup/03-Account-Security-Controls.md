@@ -266,6 +266,8 @@ https://github.com/user-attachments/assets/2aa0ee85-2036-4fdb-889d-4ff75fd0c5cd
    - Follow same steps but filter by service (e.g., EC2, S3)
    - Set appropriate thresholds based on expected usage
 
+https://github.com/user-attachments/assets/f03822e9-6755-4d44-a26a-7055132f7629
+
 ### ACCT.11 Enable and respond to GuardDuty notifications
 
 **Implementation Steps:**
