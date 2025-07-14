@@ -15,7 +15,7 @@ This guide provides step-by-step instructions to create a **Virtual Private Clou
 | NAT Gateway      | Allows outbound access from private subnets|
 | Route Tables     | Controls traffic flow within the VPC       |
 
-### VPC Creation Video
+## Video of VPC Creation 
 
 https://github.com/user-attachments/assets/dbdee4f3-a224-4b32-b8b4-b446cfb28204
 
