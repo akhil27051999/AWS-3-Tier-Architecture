@@ -10,14 +10,14 @@ This document provides step-by-step instructions to create an S3 bucket using th
 
 https://github.com/user-attachments/assets/f46cc499-f101-44ae-8e6b-4884c24b2305
 
-## Prerequisites
+## 📋 Prerequisites
 
 - An active [AWS account](https://aws.amazon.com/)
 - Console access to the AWS Management Console
 - IAM permissions to create S3 buckets if you are a user (e.g., `s3:CreateBucket`)
 
 
-## Steps to Create an S3 Bucket
+## ✅ Steps to Create an S3 Bucket
 
 ### Step 1: Sign in to AWS Console
 
