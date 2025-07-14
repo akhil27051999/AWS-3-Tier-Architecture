@@ -8,7 +8,7 @@ This guide walks you through setting up a **NAT Gateway** to enable outbound int
 - NAT Gateway allows **only outbound access** from private subnets
 - Useful for: OS updates, package downloads, external API access
 
-## NAT-Gateway Setup Video
+## Video of NAT-Gateway Setup
 
 https://github.com/user-attachments/assets/6bafc469-915d-466e-86e0-845111d79def
 
