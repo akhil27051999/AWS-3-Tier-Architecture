@@ -62,7 +62,7 @@ This prevents access issues and follows best security practices.
 
 
 
-### Step 8: Add Tags *(Optional)*
+### Step 8: Add Tags
 
 Use tags to categorize buckets for billing, automation, and management.
 
