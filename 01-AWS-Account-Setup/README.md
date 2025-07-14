@@ -42,7 +42,7 @@ Create individual IAM users for team members:
 - Enable **programmatic access** (for CLI/SDK) and/or **console access**
 - Assign the user to the appropriate IAM group
 - Require password reset on first login
-- 🔒 Best practice: Do not share user accounts. Each person gets their own login and access key.
+- 🔒 `Best practice`: Do not share user accounts. Each person gets their own login and access key.
 
 
 ### Step 6: Enforce Security Best Practices
