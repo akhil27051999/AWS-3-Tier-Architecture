@@ -123,6 +123,9 @@ https://github.com/user-attachments/assets/14ee3aa8-3501-4633-a6b2-f1fe07677afd
    ```
 3. Apply this policy to all users or groups
 
+
+https://github.com/user-attachments/assets/2aa0ee85-2036-4fdb-889d-4ff75fd0c5cd
+
 ### ACCT.06 Enforce a password policy
 
 **Implementation Steps:**
