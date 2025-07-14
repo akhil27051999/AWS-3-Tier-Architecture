@@ -7,8 +7,6 @@ This guide explains how to deploy a secure, fast, and scalable static website us
 - **Amazon Route 53** – manages your custom domain (DNS)
 - **AWS Certificate Manager (ACM)** – provides free SSL certificates
 
----
-
 ## 📋 Prerequisites
 
 - An AWS account
