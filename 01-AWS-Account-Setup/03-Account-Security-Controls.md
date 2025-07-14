@@ -1,3 +1,5 @@
+
+https://github.com/user-attachments/assets/eabc9d63-d1bd-48e4-bc20-42cd96efbfae
 # AWS Account Security Best Practices
 
 This guide outlines essential security controls and recommendations to keep your AWS account secure, including detailed implementation steps.
@@ -36,6 +38,9 @@ https://github.com/user-attachments/assets/daf12f0d-4f5b-41be-b702-2970fdaacc7d
    - Use a password manager with strong encryption
    - Consider splitting knowledge of credentials among trusted individuals
    - Document recovery procedures
+  
+
+https://github.com/user-attachments/assets/f64f8693-3680-4b76-a907-adec2fd528ae   
 
 ### ACCT.03 Configure console access for each user
 
@@ -62,6 +67,8 @@ https://github.com/user-attachments/assets/daf12f0d-4f5b-41be-b702-2970fdaacc7d
    4. Document access removal in user registry
    5. Delete user after review period
    ```
+
+https://github.com/user-attachments/assets/14ee3aa8-3501-4633-a6b2-f1fe07677afd
 
 ### ACCT.04 Assign permissions
 
