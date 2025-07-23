@@ -281,7 +281,7 @@ https://github.com/user-attachments/assets/f03822e9-6755-4d44-a26a-7055132f7629
    - Target: SNS topic
    - Create SNS topic and subscribe email addresses
 3. Create response procedures document:
-   ```
+   
    GuardDuty Finding Response Procedures:
    
    1. High severity findings:
@@ -299,7 +299,7 @@ https://github.com/user-attachments/assets/f03822e9-6755-4d44-a26a-7055132f7629
       - Weekly review
       - Document patterns
       - Update security controls as needed
-   ```
+   
 
 ### ACCT.12 Monitor for and resolve high-risk issues by using Trusted Advisor
 
