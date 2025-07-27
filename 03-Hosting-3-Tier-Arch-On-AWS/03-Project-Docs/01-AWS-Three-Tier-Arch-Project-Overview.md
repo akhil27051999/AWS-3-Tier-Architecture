@@ -2,6 +2,10 @@
 
 This document provides a comprehensive overview of the AWS three-tier web architecture implementation using CloudFormation.
 
+## Architecture Diagram
+
+<img width="1553" height="918" alt="WebPage1" src="https://github.com/user-attachments/assets/eff252d3-ebcf-4b30-a8c9-5ff2b172b078" />
+
 ## Architecture Goal
 
 Build a highly available, secure 3-tier web application with:
