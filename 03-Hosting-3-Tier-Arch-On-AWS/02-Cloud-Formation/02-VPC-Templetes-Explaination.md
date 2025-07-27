@@ -64,5 +64,3 @@ The template exports key resource IDs for use by other stacks:
 ## Dependencies
 
 This template has no dependencies and should be deployed first in the three-tier architecture.
-
----
