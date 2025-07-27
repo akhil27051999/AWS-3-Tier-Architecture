@@ -1,4 +1,4 @@
-# AWS CloudFormation – Core Concepts
+# AWS CloudFormation
 
 AWS CloudFormation is an Infrastructure as Code (IaC) service that allows you to define and manage AWS infrastructure using YAML or JSON templates. This ensures safe, repeatable, and automated deployments of cloud resources.
 
