@@ -2,6 +2,8 @@
 
 This guide covers deploying the React frontend application on EC2 instances with Nginx, proxying API calls to the app tier.
 
+https://github.com/user-attachments/assets/3f14d8c8-bec2-4229-890a-594ac7af0fa7
+
 ## Architecture Overview
 
 The web tier consists of:
