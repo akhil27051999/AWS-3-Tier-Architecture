@@ -2,6 +2,8 @@
 
 This CloudFormation template creates the foundational network infrastructure for a three-tier web architecture on AWS.
 
+https://github.com/user-attachments/assets/08d84885-8089-4fb1-8390-54b58016633c
+
 ## Architecture Overview
 
 Creates a highly available VPC with:
