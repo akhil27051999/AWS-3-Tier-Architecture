@@ -1,4 +1,4 @@
-# Generating a README.md in VS Code using Amazon Q / CodeWhisperer
+# Generating a README.md in VS Code using Amazon Q 
 
 This guide explains how to use **Amazon Q** or **CodeWhisperer** in **Visual Studio Code** to auto-generate a `README.md` file for your AWS-based project.
 
