@@ -13,6 +13,8 @@ Creates a highly available Aurora MySQL cluster with:
 
 ## Resources Created
 
+ <img width="1742" height="1254" alt="infrastructure-composer-three-tier-arch-db yaml" src="https://github.com/user-attachments/assets/07d00d96-07b8-46cb-9d8d-3561ed6ae20c" />
+
 ### Database Infrastructure
 - Aurora MySQL cluster (v8.0) with encryption enabled
 - Primary DB instance
