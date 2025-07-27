@@ -1,85 +1,220 @@
-# AWS Three Tier Web Architecture
+# AWS Hosted Apps and Websites Summary
 
-## Description
+This repository contains three distinct AWS hosting solutions, each demonstrating different levels of complexity and infrastructure management approaches.
 
-This project is a hands-on walkthrough of a three-tier web architecture in AWS. We will be creating the necessary network, security, app, and database components and configurations to run this architecture in an available and scalable manner. The project includes both manual setup instructions and Infrastructure as Code (IaC) options.
+## Project 1: Static Website Hosting
 
-## Pre-requisites
-
-1. An AWS account. If you don't have an AWS account, follow the instructions [here](https://aws.amazon.com/console/) and click on "Create an AWS Account" button in the top right corner to create one.
-2. IDE or text editor of your choice.
-3. Basic understanding of web applications and databases.
-
-## Architecture Overview
-
-<img width="2221" height="1500" alt="3TierArch" src="https://github.com/user-attachments/assets/dfff0107-b134-43a9-a231-f07c2847c086" />
+### Method-1: AWS Amplify Static Website Deployment Overview
 
 
-In this architecture, a public-facing Application Load Balancer forwards client traffic to our web tier EC2 instances. The web tier is running Nginx webservers that are configured to serve a React.js website and redirects our API calls to the application tier's internal facing load balancer. The internal facing load balancer then forwards that traffic to the application tier, which is written in Node.js. The application tier manipulates data in an Aurora MySQL multi-AZ database and returns it to our web tier. Load balancing, health checks and autoscaling groups are created at each layer to maintain the availability of this architecture.
+#### 1. Git Repository Integration (Recommended)
+- Connect GitHub/GitLab/Bitbucket repository
+- Automatic CI/CD pipeline with branch deployments
+- Real-time updates on code commits
 
-## Implementation Options
+#### 2. Manual Upload
+- Drag-and-drop files in Amplify Console
+- No Git integration required
 
-This project provides three implementation approaches:
+### Key Features
+- Built-in SSL certificates
+- Global CDN distribution
+- Custom domain support
+- Branch-based environments
+- Atomic deployments with rollback
+- Performance monitoring
 
-1. **Manual Setup**: Follow the step-by-step instructions in the [original walkthrough](MANUAL_SETUP.md) to manually create and configure all resources.
-2. **Infrastructure as Code**: Use the CloudFormation templates in the `/cloudformation` directory to automate the deployment.
-3. **AWS CLI Deployment**: Use the AWS CLI commands in the [AWS CLI Deployment Guide](AWS_CLI_DEPLOYMENT.md) for a scripted deployment.
+### Use Cases
+- React/Vue/Angular SPAs
+- Static HTML/CSS/JS websites
+- Documentation sites
+- Portfolio websites
 
-## Key Components
+### Benefits
+- Zero server management
+- Automatic scaling
+- Fast global delivery
+- Integrated CI/CD
+- Cost-effective for static content
 
-### Network Layer
-- VPC with public and private subnets across two availability zones
-- Internet Gateway for public internet access
-- NAT Gateways for private subnet internet access
-- Route tables and security groups for network isolation and security
+### Method-2: AWS CloudFront Static Website Deployment Overview
 
-### Database Layer
-- Aurora MySQL cluster with multi-AZ deployment
-- Private subnet placement for enhanced security
-- Database subnet group for proper subnet association
+### S3 + CloudFront (Recommended)
+- Create S3 bucket for static website hosting
+- Configure CloudFront distribution with S3 as origin
+- Enable Origin Access Control (OAC) for security
 
-### Application Layer
-- Node.js application running on EC2 instances
-- Auto Scaling Group for high availability and scalability
+### Architecture Components
+
+#### S3 Bucket
+- Static website hosting enabled
+- Public read access via bucket policy
+- Versioning for file management
+
+#### CloudFront Distribution
+- Global edge locations for low latency
+- SSL/TLS certificate integration
+- Custom error pages and caching rules
+- Origin Access Control for S3 security
+
+#### Route 53 (Optional)
+- Custom domain configuration
+- DNS management and routing
+- Health checks and failover
+
+### Key Features
+- Global content delivery network
+- SSL certificates via AWS Certificate Manager
+- Custom domain support
+- Cache invalidation capabilities
+- Real-time metrics and logging
+- DDoS protection via AWS Shield
+
+### Use Cases
+- Corporate websites
+- Marketing landing pages
+- Documentation sites
+- Single Page Applications (SPAs)
+- Media and asset distribution
+
+### Benefits
+- High performance with edge caching
+- Cost-effective for high traffic
+- Scalable to global audience
+- Integrated with AWS ecosystem
+- Advanced security features
+- Detailed analytics and monitoring
+
+
+## Project 2: Manual Web Application Infrastructure
+
+**Objective**: Deploy a web application with manually configured AWS networking and security components
+
+### Architecture Components
+- **VPC**: Custom virtual private cloud with public/private subnets
+- **Subnets**: Multi-AZ deployment across 2 availability zones
+- **NAT Gateway**: Outbound internet access for private subnets
+- **Route Tables**: Traffic routing configuration
+- **Security Groups**: Firewall rules for EC2 instances
+- **Application Load Balancer**: Traffic distribution and health checks
+- **Target Groups**: Backend server registration
+- **EC2 Instances**: Application servers with Auto Scaling
+- **IAM Roles**: Secure access permissions
+
+### How It Works
+
+**Network Setup**
+- Create VPC with public/private subnets across multiple AZs
+- Configure Internet Gateway for public access and NAT Gateway for private subnet internet access
+- Set up route tables to direct traffic flow
+
+**Security Configuration**
+- Create security groups acting as virtual firewalls for each tier
+- Configure IAM roles for secure AWS service access
+- Implement network isolation between tiers
+
+**Application Deployment**
+- Launch EC2 instances in private subnets with application code
+- Set up Application Load Balancer in public subnets to distribute traffic
+- Configure Auto Scaling Group for high availability and scaling
+
+**Database Setup**
+- Deploy RDS database in isolated database subnets
+- Configure Multi-AZ deployment for redundancy
+- Set up automated backups and security
+
+**Traffic Flow**
+```
+Internet → Load Balancer → EC2 Instances → Database
+```
+
+### Key Steps
+1. Build network infrastructure (VPC, subnets, gateways)
+2. Configure security (security groups, IAM roles)
+3. Deploy compute resources (EC2, Auto Scaling)
+4. Set up load balancing and routing
+5. Configure database and storage
+6. Enable monitoring and logging
+
+### Result
+- Scalable, highly available web application
+- Secure multi-tier architecture
+- Manual control over all infrastructure components
+- Time-intensive setup requiring AWS expertise
+
+## Project 3: Three-Tier Architecture with CloudFormation
+
+**Objective**: Deploy a scalable three-tier web architecture using Infrastructure as Code
+
+### How It Works
+
+**Infrastructure as Code Approach**
+- Define AWS resources in YAML/JSON templates
+- Automated deployment and management of infrastructure
+- Version-controlled and repeatable deployments
+
+**Template Structure**
+- VPC template creates network foundation (subnets, gateways, security groups)
+- Database template deploys Aurora MySQL cluster with Secrets Manager
+- Application and web tier templates deploy compute resources
+
+**Deployment Process**
+- Templates deployed in sequence with dependencies
+- CloudFormation manages resource creation and updates
+- Stack outputs provide resource references between templates
+
+### Architecture Components
+
+**VPC Template (three-tier-vpc.yaml)**
+- Creates VPC with public/private/database subnets across 2 AZs
+- Configures Internet Gateway and NAT Gateways
+- Sets up route tables and security groups for each tier
+- Outputs VPC and subnet IDs for other templates
+
+**Database Template (database.yaml)**
+- Deploys Aurora MySQL cluster in database subnets
+- Integrates with AWS Secrets Manager for credentials
+- Configures Multi-AZ deployment for high availability
+- Sets up database security groups and parameter groups
+
+**Application Tier (Planned)**
+- Auto Scaling Group with EC2 instances in private subnets
 - Internal Application Load Balancer for traffic distribution
-- Connection to Aurora MySQL database for data persistence
-  
-### Web Layer
-- Nginx web server serving a React.js application
-- Auto Scaling Group for high availability and scalability
-- Public Application Load Balancer for internet traffic distribution
-- API proxying to the application layer
+- IAM roles for secure AWS service access
 
-## Security Enhancements
+**Web Tier (Planned)**
+- Auto Scaling Group with web servers in private subnets
+- External Application Load Balancer in public subnets
+- SSL certificate integration and custom domain support
 
-The project includes several security best practices:
+### Traffic Flow
+```
+Internet → Web Load Balancer → Web Servers → App Load Balancer → App Servers → Database
+```
 
-1. **Secure Credential Management**: Using AWS Secrets Manager for database credentials
-2. **Network Isolation**: Proper subnet configuration and security groups
-3. **SQL Injection Prevention**: Parameterized queries in the application code
-4. **Least Privilege Access**: IAM roles with minimal required permissions
-5. **HTTPS Support**: Configuration options for SSL/TLS
+### Deployment Sequence
+1. Deploy VPC and network infrastructure
+2. Deploy database cluster
+3. Deploy application tier
+4. Deploy web tier
 
-## Modernization Options
+### Key Benefits
+- **Consistency**: Same infrastructure across environments
+- **Automation**: Reduces manual errors and deployment time
+- **Version Control**: Infrastructure changes tracked in Git
+- **Rollback**: Easy to revert to previous versions
+- **Documentation**: Templates serve as infrastructure documentation
 
-The project can be extended with these modern AWS services:
+### CloudFormation Features Used
+- Parameters for customizable deployments
+- Outputs for cross-stack references
+- Conditions for environment-specific resources
+- Mappings for region-specific configurations
+- Stack dependencies and nested stacks
 
-1. **Containerization**: Deploy using Amazon ECS or EKS
-2. **Serverless**: Migrate the application tier to AWS Lambda and API Gateway
-3. **CI/CD**: Implement automated deployment with AWS CodePipeline
-4. **Monitoring**: Add observability with CloudWatch and X-Ray
-5. **Edge Optimization**: Integrate with CloudFront for content delivery
-
-## Getting Started
-
-Choose your preferred implementation method:
-
-- For manual setup, follow the detailed instructions in the [original walkthrough](MANUAL_SETUP.md).
-- For automated deployment using CloudFormation, see the [CloudFormation README](cloudformation/README.md).
-- For AWS CLI deployment, follow the [AWS CLI Deployment Guide](AWS_CLI_DEPLOYMENT.md).
-
-<img width="1391" height="909" alt="FinalLBDNS" src="https://github.com/user-attachments/assets/0db56dac-5669-4de1-8ad8-c0c85466269e" />
-
-## License
-
-This library is licensed under the MIT-0 License. See the LICENSE file.
+### Result
+- Fully automated 3-tier architecture deployment
+- Scalable and highly available infrastructure
+- Secure network isolation between tiers
+- Consistent deployments across environments
+- Infrastructure managed as code with version controlry and backup strategies
