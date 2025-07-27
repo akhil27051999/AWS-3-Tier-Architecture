@@ -11,7 +11,10 @@ Creates a highly available VPC with:
 - **Private App Subnets**: For application servers
 - **Private DB Subnets**: For database instances
 
+
 ## Resources Created
+
+<img width="3470" height="1750" alt="infrastructure-composer-three-tier-arch-vpc yaml" src="https://github.com/user-attachments/assets/9b1c53e7-6830-4d70-8351-b36480fbd851" />
 
 <img width="1917" height="1059" alt="Screenshot 2025-07-15 175753" src="https://github.com/user-attachments/assets/b1bf5040-d068-4291-9b76-d786e3cf1a19" />
 
