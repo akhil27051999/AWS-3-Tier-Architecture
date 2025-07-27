@@ -66,9 +66,6 @@ App EC2 Instances (Private Subnet)
     ↓
 Aurora MySQL Database (Private Subnet)
 ```
-## Resource Diagram
-
-<img width="1592" height="859" alt="Screenshot 2025-07-27 111749" src="https://github.com/user-attachments/assets/4051a41f-3ede-4a96-b175-adeeb164aaa0" />
 
 ## Resource Summary
 
