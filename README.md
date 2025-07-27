@@ -2,7 +2,7 @@
 
 This repository contains three distinct AWS hosting solutions, each demonstrating different levels of complexity and infrastructure management approaches.
 
-# Project 1: Static Website Hosting on S3
+# Project 1: Hosting Static Website on AWS
 
 ## How It Works
 
@@ -78,7 +78,7 @@ User → Route 53 (DNS) → CloudFront (CDN) → S3 Bucket (Origin)
 
 ---
 
-# Project 2: Manual Web Application Infrastructure
+# Project 2: Manually Hosting Web Application on AWS
 
 **Objective**: Deploy a web application with manually configured AWS networking and security components
 
@@ -136,7 +136,7 @@ Internet → Load Balancer → EC2 Instances → Database
   
 ---
 
-## Project 3: Three-Tier Architecture with CloudFormation
+## Project 3: Deployment of Three-Tier Architecture with CloudFormation on AWS
 
 **Objective**: Deploy a scalable three-tier web architecture using Infrastructure as Code
 
