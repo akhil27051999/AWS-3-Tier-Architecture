@@ -2,89 +2,81 @@
 
 This repository contains three distinct AWS hosting solutions, each demonstrating different levels of complexity and infrastructure management approaches.
 
-## Project 1: Static Website Hosting
+## Project 1: Static Website Hosting on AWS 
 
-### Method-1: AWS Amplify Static Website Deployment Overview
+### How It Works
 
+**S3 + CloudFront Approach**
+- S3 bucket stores static files (HTML, CSS, JS, images)
+- CloudFront CDN distributes content globally from edge locations
+- Route 53 provides custom domain and DNS management
 
-#### 1. Git Repository Integration (Recommended)
-- Connect GitHub/GitLab/Bitbucket repository
-- Automatic CI/CD pipeline with branch deployments
-- Real-time updates on code commits
-
-#### 2. Manual Upload
-- Drag-and-drop files in Amplify Console
-- No Git integration required
-
-### Key Features
-- Built-in SSL certificates
-- Global CDN distribution
-- Custom domain support
-- Branch-based environments
-- Atomic deployments with rollback
-- Performance monitoring
-
-### Use Cases
-- React/Vue/Angular SPAs
-- Static HTML/CSS/JS websites
-- Documentation sites
-- Portfolio websites
-
-### Benefits
-- Zero server management
-- Automatic scaling
-- Fast global delivery
-- Integrated CI/CD
-- Cost-effective for static content
-
-### Method-2: AWS CloudFront Static Website Deployment Overview
-
-### S3 + CloudFront (Recommended)
-- Create S3 bucket for static website hosting
-- Configure CloudFront distribution with S3 as origin
-- Enable Origin Access Control (OAC) for security
+**AWS Amplify Approach**
+- Managed hosting service with built-in CI/CD pipeline
+- Git integration for automatic deployments on code commits
+- Global CDN and SSL certificates included
 
 ### Architecture Components
 
-#### S3 Bucket
-- Static website hosting enabled
-- Public read access via bucket policy
-- Versioning for file management
+**S3 Static Website Hosting**
+- Bucket configured for static website hosting
+- Public read access via bucket policy or Origin Access Control
+- Index and error document configuration
 
-#### CloudFront Distribution
-- Global edge locations for low latency
-- SSL/TLS certificate integration
-- Custom error pages and caching rules
-- Origin Access Control for S3 security
+**CloudFront Distribution**
+- Global edge locations for low latency content delivery
+- SSL/TLS certificates via AWS Certificate Manager
+- Custom caching behaviors and compression
+- Origin Access Control for secure S3 access
 
-#### Route 53 (Optional)
-- Custom domain configuration
-- DNS management and routing
-- Health checks and failover
+**Route 53 (Optional)**
+- Custom domain configuration and DNS routing
+- Health checks and failover capabilities
+- Integration with CloudFront distributions
 
-### Key Features
-- Global content delivery network
-- SSL certificates via AWS Certificate Manager
-- Custom domain support
-- Cache invalidation capabilities
-- Real-time metrics and logging
-- DDoS protection via AWS Shield
+### Deployment Methods
+
+**Manual Upload**
+- Upload files directly to S3 bucket via console or CLI
+- Configure CloudFront distribution manually
+- Set up custom domain through Route 53
+
+**CI/CD Pipeline**
+- Git repository triggers automated builds
+- Deploy to S3 and invalidate CloudFront cache
+- Environment-specific deployments
+
+**AWS Amplify**
+- Connect Git repository for automatic deployments
+- Built-in build process and hosting
+- Branch-based environments for testing
+
+### Traffic Flow
+```
+User → Route 53 (DNS) → CloudFront (CDN) → S3 Bucket (Origin)
+```
+
+### Key Benefits
+- **Global Performance**: Content served from nearest edge location
+- **Cost Effective**: Pay only for storage and data transfer
+- **Scalable**: Handles traffic spikes automatically
+- **Secure**: SSL certificates and DDoS protection included
+- **Simple**: No server management required
 
 ### Use Cases
-- Corporate websites
-- Marketing landing pages
-- Documentation sites
+- Corporate websites and landing pages
+- Documentation sites and blogs
 - Single Page Applications (SPAs)
-- Media and asset distribution
+- Portfolio and marketing websites
+- Static API documentation
 
-### Benefits
-- High performance with edge caching
-- Cost-effective for high traffic
-- Scalable to global audience
-- Integrated with AWS ecosystem
-- Advanced security features
-- Detailed analytics and monitoring
+### Result
+- Fast, globally distributed static website
+- Automatic scaling for any traffic volume
+- Secure HTTPS delivery with custom domains
+- Minimal operational overhead and cost-effective hosting
 
+---
 
 ## Project 2: Manual Web Application Infrastructure
 
@@ -141,6 +133,8 @@ Internet → Load Balancer → EC2 Instances → Database
 - Secure multi-tier architecture
 - Manual control over all infrastructure components
 - Time-intensive setup requiring AWS expertise
+  
+---
 
 ## Project 3: Three-Tier Architecture with CloudFormation
 
