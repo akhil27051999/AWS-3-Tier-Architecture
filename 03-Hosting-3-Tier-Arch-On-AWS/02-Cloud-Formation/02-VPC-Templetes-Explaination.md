@@ -13,6 +13,8 @@ Creates a highly available VPC with:
 
 ## Resources Created
 
+<img width="1917" height="1059" alt="Screenshot 2025-07-15 175753" src="https://github.com/user-attachments/assets/b1bf5040-d068-4291-9b76-d786e3cf1a19" />
+
 ### Network Infrastructure
 - VPC with DNS support enabled
 - Internet Gateway
