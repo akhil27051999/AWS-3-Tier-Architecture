@@ -38,65 +38,46 @@ You can update resources by modifying the template and submitting a **Change Set
 | Reusability       | Use **nested stacks** and **modules** for DRY templates    |
 | AWS Integration   | Works natively with IAM, CloudTrail, CodePipeline, etc.   |
 
+# AWS Infrastructure Composer – Visual Tool for IaC
 
-# Three-Tier VPC CloudFormation Template
+**AWS Infrastructure Composer** is a **visual design tool** for creating and managing AWS CloudFormation templates. It is part of **AWS Application Composer**, accessible directly from the AWS Management Console.
 
-This CloudFormation template creates the foundational network infrastructure for a three-tier web architecture on AWS.
+Ideal for quickly prototyping, visualizing, and building infrastructure as code — without manually writing YAML/JSON.
 
-## Architecture Overview
 
-Creates a highly available VPC with:
-- **Public Subnets**: For load balancers and NAT gateways
-- **Private App Subnets**: For application servers
-- **Private DB Subnets**: For database instances
+## How It Works
 
-## Resources Created
+### 1. Drag and Drop AWS Resources
+- Choose from common AWS services like:
+  - EC2, Lambda, S3, API Gateway, DynamoDB, SNS, etc.
+- Arrange them visually on the canvas.
+- Create logical connections between services (e.g., API Gateway → Lambda → DynamoDB).
 
-### Network Infrastructure
-- VPC with DNS support enabled
-- Internet Gateway
-- 2 Public subnets (across 2 AZs)
-- 2 Private application subnets (across 2 AZs)
-- 2 Private database subnets (across 2 AZs)
-- 2 NAT Gateways with Elastic IPs
-- Route tables and associations
 
-### Security Groups
-- **WebTierSG**: HTTP/HTTPS access from internet
-- **AppTierSG**: Port 4000 access from web tier only
-- **DBTierSG**: MySQL access from app tier only
-- **ExternalALBSG**: HTTP/HTTPS for external load balancer
-- **InternalALBSG**: HTTP access from web tier
+### 2. Behind the Scenes
+- Composer automatically **generates a CloudFormation YAML template** based on the visual layout.
+- You can:
+  - Download the generated template
+  - Deploy directly from the Composer interface
+  - Copy-paste into your CI/CD pipeline or IaC project
 
-## Parameters
 
-| Parameter | Default | Description |
-|-----------|---------|-------------|
-| EnvironmentName | ThreeTierDemo | Prefix for resource names |
-| VpcCIDR | 10.0.0.0/16 | VPC CIDR block |
-| PublicSubnet1CIDR | 10.0.1.0/24 | Public subnet 1 CIDR |
-| PublicSubnet2CIDR | 10.0.2.0/24 | Public subnet 2 CIDR |
-| PrivateAppSubnet1CIDR | 10.0.3.0/24 | App subnet 1 CIDR |
-| PrivateAppSubnet2CIDR | 10.0.4.0/24 | App subnet 2 CIDR |
-| PrivateDBSubnet1CIDR | 10.0.5.0/24 | DB subnet 1 CIDR |
-| PrivateDBSubnet2CIDR | 10.0.6.0/24 | DB subnet 2 CIDR |
+### 3. Bidirectional Editing
+- Modify the infrastructure **visually or via code editor**.
+- Both views stay **synchronized** in real time.
+- Visual edits reflect in YAML, and code edits reflect in the UI instantly.
 
-## Deployment
 
-```bash
-aws cloudformation create-stack \
-  --stack-name three-tier-vpc \
-  --template-body file://three-tier-vpc.yaml \
-  --parameters ParameterKey=EnvironmentName,ParameterValue=MyApp
-```
+## Benefits
 
-## Outputs
+| Feature                    | Description                                               |
+|----------------------------|-----------------------------------------------------------|
+| No YAML Expertise Needed | Great for beginners or teams starting with IaC            |
+| Rapid Prototyping        | Visually design and validate infrastructure quickly       |
+| Sync with Code          | Visual & YAML editors are always in sync                  |
+| CloudFormation Export   | Fully compatible with standard CloudFormation workflows   |
+| Learning Tool          | Helps developers understand relationships between services |
 
-The template exports key resource IDs for use by other stacks:
-- VPC ID
-- Subnet IDs
-- Security Group IDs
 
-## Dependencies
 
-This template has no dependencies and should be deployed first in the three-tier architecture.
+
