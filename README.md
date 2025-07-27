@@ -2,7 +2,7 @@
 
 This repository contains three distinct AWS hosting solutions, each demonstrating different levels of complexity and infrastructure management approaches.
 
-# Project 1: Static Website Hosting on AWS 
+# Project 1: Static Website Hosting on S3
 
 ## How It Works
 
