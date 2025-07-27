@@ -1,10 +1,10 @@
 # AWS Three Tier Web Architecture
 
-## Description:
+## Description
 
 This project is a hands-on walkthrough of a three-tier web architecture in AWS. We will be creating the necessary network, security, app, and database components and configurations to run this architecture in an available and scalable manner. The project includes both manual setup instructions and Infrastructure as Code (IaC) options.
 
-## Pre-requisites:
+## Pre-requisites
 
 1. An AWS account. If you don't have an AWS account, follow the instructions [here](https://aws.amazon.com/console/) and click on "Create an AWS Account" button in the top right corner to create one.
 2. IDE or text editor of your choice.
