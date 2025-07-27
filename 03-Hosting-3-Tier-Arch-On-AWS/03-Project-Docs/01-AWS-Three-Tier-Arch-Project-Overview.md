@@ -4,7 +4,7 @@ This document provides a comprehensive overview of the AWS three-tier web archit
 
 ## Architecture Diagram
 
-<img width="1553" height="918" alt="WebPage1" src="https://github.com/user-attachments/assets/eff252d3-ebcf-4b30-a8c9-5ff2b172b078" />
+<img width="999" height="572" alt="WebPage1" src="https://github.com/user-attachments/assets/75441d47-4b84-4c21-9c48-c8299ca7efa4" />
 
 ## Architecture Goal
 
