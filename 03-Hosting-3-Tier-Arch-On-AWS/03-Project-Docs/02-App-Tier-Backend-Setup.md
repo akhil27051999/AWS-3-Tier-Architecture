@@ -77,6 +77,10 @@ pm2 startup
 pm2 save
 ```
 
+### App Tier Video
+
+https://github.com/user-attachments/assets/41811fd3-0e97-44b3-9279-6fe79359f9a7
+
 ## Health Check
 
 Test the application:
