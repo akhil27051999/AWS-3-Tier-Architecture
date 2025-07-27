@@ -2,6 +2,8 @@
 
 This CloudFormation template creates the database tier using Amazon Aurora MySQL for a three-tier web architecture.
 
+https://github.com/user-attachments/assets/5f0d18ca-6e09-432d-b6eb-45a291e977ec
+
 ## Architecture Overview
 
 Creates a highly available Aurora MySQL cluster with:
