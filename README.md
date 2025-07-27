@@ -2,9 +2,9 @@
 
 This repository contains three distinct AWS hosting solutions, each demonstrating different levels of complexity and infrastructure management approaches.
 
-## Project 1: Static Website Hosting on AWS 
+# Project 1: Static Website Hosting on AWS 
 
-### How It Works
+## How It Works
 
 **S3 + CloudFront Approach**
 - S3 bucket stores static files (HTML, CSS, JS, images)
@@ -16,7 +16,7 @@ This repository contains three distinct AWS hosting solutions, each demonstratin
 - Git integration for automatic deployments on code commits
 - Global CDN and SSL certificates included
 
-### Architecture Components
+## Architecture Components
 
 **S3 Static Website Hosting**
 - Bucket configured for static website hosting
@@ -34,7 +34,7 @@ This repository contains three distinct AWS hosting solutions, each demonstratin
 - Health checks and failover capabilities
 - Integration with CloudFront distributions
 
-### Deployment Methods
+## Deployment Methods
 
 **Manual Upload**
 - Upload files directly to S3 bucket via console or CLI
@@ -51,26 +51,26 @@ This repository contains three distinct AWS hosting solutions, each demonstratin
 - Built-in build process and hosting
 - Branch-based environments for testing
 
-### Traffic Flow
+**Traffic Flow**
 ```
 User → Route 53 (DNS) → CloudFront (CDN) → S3 Bucket (Origin)
 ```
 
-### Key Benefits
+## Key Benefits
 - **Global Performance**: Content served from nearest edge location
 - **Cost Effective**: Pay only for storage and data transfer
 - **Scalable**: Handles traffic spikes automatically
 - **Secure**: SSL certificates and DDoS protection included
 - **Simple**: No server management required
 
-### Use Cases
+## Use Cases
 - Corporate websites and landing pages
 - Documentation sites and blogs
 - Single Page Applications (SPAs)
 - Portfolio and marketing websites
 - Static API documentation
 
-### Result
+## Result
 - Fast, globally distributed static website
 - Automatic scaling for any traffic volume
 - Secure HTTPS delivery with custom domains
@@ -78,11 +78,11 @@ User → Route 53 (DNS) → CloudFront (CDN) → S3 Bucket (Origin)
 
 ---
 
-## Project 2: Manual Web Application Infrastructure
+# Project 2: Manual Web Application Infrastructure
 
 **Objective**: Deploy a web application with manually configured AWS networking and security components
 
-### Architecture Components
+## Architecture Components
 - **VPC**: Custom virtual private cloud with public/private subnets
 - **Subnets**: Multi-AZ deployment across 2 availability zones
 - **NAT Gateway**: Outbound internet access for private subnets
@@ -93,7 +93,7 @@ User → Route 53 (DNS) → CloudFront (CDN) → S3 Bucket (Origin)
 - **EC2 Instances**: Application servers with Auto Scaling
 - **IAM Roles**: Secure access permissions
 
-### How It Works
+## How It Works
 
 **Network Setup**
 - Create VPC with public/private subnets across multiple AZs
@@ -120,7 +120,7 @@ User → Route 53 (DNS) → CloudFront (CDN) → S3 Bucket (Origin)
 Internet → Load Balancer → EC2 Instances → Database
 ```
 
-### Key Steps
+## Key Steps
 1. Build network infrastructure (VPC, subnets, gateways)
 2. Configure security (security groups, IAM roles)
 3. Deploy compute resources (EC2, Auto Scaling)
@@ -128,7 +128,7 @@ Internet → Load Balancer → EC2 Instances → Database
 5. Configure database and storage
 6. Enable monitoring and logging
 
-### Result
+## Result
 - Scalable, highly available web application
 - Secure multi-tier architecture
 - Manual control over all infrastructure components
@@ -140,7 +140,7 @@ Internet → Load Balancer → EC2 Instances → Database
 
 **Objective**: Deploy a scalable three-tier web architecture using Infrastructure as Code
 
-### How It Works
+## How It Works
 
 **Infrastructure as Code Approach**
 - Define AWS resources in YAML/JSON templates
@@ -157,7 +157,7 @@ Internet → Load Balancer → EC2 Instances → Database
 - CloudFormation manages resource creation and updates
 - Stack outputs provide resource references between templates
 
-### Architecture Components
+## Architecture Components
 
 **VPC Template (three-tier-vpc.yaml)**
 - Creates VPC with public/private/database subnets across 2 AZs
@@ -181,32 +181,32 @@ Internet → Load Balancer → EC2 Instances → Database
 - External Application Load Balancer in public subnets
 - SSL certificate integration and custom domain support
 
-### Traffic Flow
+**Traffic Flow**
 ```
 Internet → Web Load Balancer → Web Servers → App Load Balancer → App Servers → Database
 ```
 
-### Deployment Sequence
+## Deployment Sequence
 1. Deploy VPC and network infrastructure
 2. Deploy database cluster
 3. Deploy application tier
 4. Deploy web tier
 
-### Key Benefits
+## Key Benefits
 - **Consistency**: Same infrastructure across environments
 - **Automation**: Reduces manual errors and deployment time
 - **Version Control**: Infrastructure changes tracked in Git
 - **Rollback**: Easy to revert to previous versions
 - **Documentation**: Templates serve as infrastructure documentation
 
-### CloudFormation Features Used
+## CloudFormation Features Used
 - Parameters for customizable deployments
 - Outputs for cross-stack references
 - Conditions for environment-specific resources
 - Mappings for region-specific configurations
 - Stack dependencies and nested stacks
 
-### Result
+## Result
 - Fully automated 3-tier architecture deployment
 - Scalable and highly available infrastructure
 - Secure network isolation between tiers
