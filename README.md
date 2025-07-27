@@ -136,7 +136,7 @@ Internet → Load Balancer → EC2 Instances → Database
   
 ---
 
-## Project 3: Deployment of Three-Tier Architecture with CloudFormation on AWS
+# Project 3: Deployment of Three-Tier Architecture with CloudFormation on AWS
 
 **Objective**: Deploy a scalable three-tier web architecture using Infrastructure as Code
 
