@@ -28,8 +28,6 @@ You can update resources by modifying the template and submitting a **Change Set
 - Apply only if the changes look safe.
 - Avoids unexpected downtime or data loss.
 
----
-
 ## Benefits of CloudFormation
 
 | Feature             | Description                                                |
@@ -39,8 +37,6 @@ You can update resources by modifying the template and submitting a **Change Set
 | Drift Detection   | Detects if resources were changed outside CloudFormation  |
 | Reusability       | Use **nested stacks** and **modules** for DRY templates    |
 | AWS Integration   | Works natively with IAM, CloudTrail, CodePipeline, etc.   |
-
-
 
 
 # Three-Tier VPC CloudFormation Template
