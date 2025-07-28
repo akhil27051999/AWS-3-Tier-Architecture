@@ -6,7 +6,7 @@
 
 **Navigate to VPC Console:**
 
-- **AWS Console** → Search "VPC" → **VPC Dashboard**
+**AWS Console** → Search "VPC" → **VPC Dashboard**
    
 1. **Your VPCs** → **Create VPC**
 2. **Configure**:
