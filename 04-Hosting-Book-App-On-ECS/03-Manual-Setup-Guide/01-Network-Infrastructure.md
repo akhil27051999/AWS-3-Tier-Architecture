@@ -5,8 +5,7 @@
 ### Create VPC:
 
 **Navigate to VPC Console:**
-
-**AWS Console** → Search "VPC" → **VPC Dashboard**
+1. **AWS Console** → Search "VPC" → **VPC Dashboard**
    
 1. **Your VPCs** → **Create VPC**
 2. **Configure**:
@@ -17,12 +16,14 @@
    - Enable DNS resolution: ✅
    - Enable DNS hostnames: ✅
 3. **Create VPC**
+---
 
 ### Create Internet Gateway:
 1. **Internet Gateways** → **Create internet gateway**
 2. **Name tag**: `demo-igw`
 3. **Create internet gateway**
 4. **Actions** → **Attach to VPC** → Select `demo-vpc` → **Attach internet gateway**
+---
 
 ### Create Subnets:
 1. **Subnets** → **Create subnet**
@@ -50,6 +51,7 @@
    - IPv4 CIDR block: `10.0.3.0/24`
 
 4. **Create subnet**
+---
 
 ### Create NAT Gateway:
 1. **NAT Gateways** → **Create NAT gateway**
@@ -59,6 +61,7 @@
    - Connectivity type: Public
    - Elastic IP allocation: **Allocate Elastic IP**
 3. **Create NAT gateway**
+---
 
 ### Create Route Tables:
 
