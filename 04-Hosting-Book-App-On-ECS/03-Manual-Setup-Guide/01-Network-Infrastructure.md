@@ -1,4 +1,4 @@
-# Phase 1: Network Infrastructure (Foundation)
+# Phase 1: Network Infrastructure
 
 ## Step 1: Create VPC
 
