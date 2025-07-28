@@ -36,3 +36,11 @@ This guide walks you through creating a **production-ready, containerized three-
 - GitHub repository with your application code
 - Basic understanding of AWS services
 - Docker application with Dockerfile
+
+## Application Files
+
+Your project contains:
+- **Dockerfile**: `FROM public.ecr.aws/nginx/nginx` + `COPY index.html /usr/share/nginx/html`
+- **index.html**: Book recommendation website with Tailwind CSS
+- **appspec.yaml**: Blue/Green deployment configuration
+- **taskdef.json**: ECS task definition template
