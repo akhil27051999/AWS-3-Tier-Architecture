@@ -7,7 +7,7 @@ This repository contains three distinct AWS hosting solutions, each demonstratin
 
 **Objective**: Deploy a Static website on AWS using AWS Amplify / Cloudfront
 
-### Project outcome
+## Project outcome
 
 <img width="1918" height="1107" alt="466006043-a5dce200-1dd4-404c-918e-22fe78480107" src="https://github.com/user-attachments/assets/b8f5903e-525e-4b3e-ba1a-3082600a7ea3" />
 
@@ -89,7 +89,7 @@ User → Route 53 (DNS) → CloudFront (CDN) → S3 Bucket (Origin)
 
 **Objective**: Deploy a web application with manually configured AWS networking and security components
 
-### Project Outcome:
+## Project Outcome:
 
 <img width="1916" height="1104" alt="Screenshot 2025-07-14 210310" src="https://github.com/user-attachments/assets/dd9bef27-0db5-4852-a40f-92103664182c" />
 
@@ -151,7 +151,7 @@ Internet → Load Balancer → EC2 Instances → Database
 
 **Objective**: Deploy a scalable three-tier web architecture using Infrastructure as Code
 
-### Project Outcome
+## Project Outcome
 
 <img width="999" height="572" alt="WebPage1" src="https://github.com/user-attachments/assets/01a5a360-e550-4b76-82c7-8a27800ec777" />
 
