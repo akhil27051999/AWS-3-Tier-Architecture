@@ -5,7 +5,7 @@
 **Navigate to ECS Console:**
 1. **AWS Console** → Search "ECS" → **Elastic Container Service**
 
-**Create Cluster:**
+### Create Cluster:
 1. **Clusters** → **Create Cluster**
 2. **Configure**:
    - Cluster name: `demo`
@@ -15,7 +15,7 @@
 
 ## Step 5: Create Task Definition
 
-**Create Task Definition:**
+### Create Task Definition:
 1. **Task Definitions** → **Create new Task Definition**
 2. **Configure task definition**:
    - Task definition family: `book-app`
@@ -51,7 +51,8 @@
 1. **Load Balancers** → **Create Load Balancer**
 2. **Application Load Balancer** → **Create**
 
-**Configure Load Balancer:**
+### Configure Load Balancer:
+
 1. **Basic configuration**:
    - Load balancer name: `standard-alb`
    - Scheme: Internet-facing
@@ -67,7 +68,8 @@
    - Protocol: HTTP, Port: 80
    - Default action: **Create target group**
 
-**Create Target Group:**
+### Create Target Group:
+
 1. **Target type**: IP addresses
 2. **Target group name**: `standard-target-group`
 3. **Protocol**: HTTP, **Port**: 80
@@ -81,7 +83,8 @@
 
 ## Step 7: Create ECS Service
 
-**Create Service:**
+### Create Service:
+
 1. **ECS Console** → **Clusters** → `demo` → **Services** → **Create**
 
 2. **Environment**:
