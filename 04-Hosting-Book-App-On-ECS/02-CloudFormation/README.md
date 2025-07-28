@@ -33,7 +33,7 @@ The sample consists of CloudFormation templates and a simple web application. Be
 
 ## Deploy A Simple Service
 
-First, let's create a VPC by launching 1-network.yaml stack.
+First, let's create a VPC by launching 01-Network.yaml stack.
 
 ```bash
 aws cloudformation create-stack \
@@ -42,7 +42,7 @@ aws cloudformation create-stack \
  --capabilities CAPABILITY_NAMED_IAM
 ```
 
-Second, let's create an application load balancer by launching 2-load-balancer.yaml stack.
+Second, let's create an application load balancer by launching 02-Load-Balancer.yaml stack.
 
 ```bash
 aws cloudformation create-stack \
@@ -51,7 +51,7 @@ aws cloudformation create-stack \
  --capabilities CAPABILITY_NAMED_IAM
 ```
 
-Third, let's create a Amazon ECS cluster by launch 3-ecs-cluster.yaml.
+Third, let's create a Amazon ECS cluster by launch 03-ECS-Cluster.yaml.
 
 ```bash
 aws cloudformation create-stack \
@@ -61,7 +61,7 @@ aws cloudformation create-stack \
 
 ```
 
-Fourth, create a task definition for book applciation by launching 4-task-def-book.yaml stack.
+Fourth, create a task definition for book applciation by launching 04-Task-Def-Book.yaml stack.
 
 ```bash
 aws cloudformation create-stack \
@@ -70,7 +70,7 @@ aws cloudformation create-stack \
  --capabilities CAPABILITY_NAMED_IAM
 ```
 
-Finally, create the book service by launch the 5-book-service.yaml stack.
+Finally, create the book service by launch the 05-Service-Book.yaml stack.
 
 ```bash
 aws cloudformation create-stack \
@@ -81,7 +81,7 @@ aws cloudformation create-stack \
 
 ## Deploy Standard Pipeline
 
-First let's create a codecommit repository, an ecr repository and a S3 bucket for codepipeline artifacts by launching 23-codecommit-ecr.yaml.
+First let's create a codecommit repository, an ecr repository and a S3 bucket for codepipeline artifacts by launching 06-S3-ECR-Codepipeline.yaml.
 
 ```bash
 aws cloudformation create-stack \
@@ -90,7 +90,7 @@ aws cloudformation create-stack \
  --capabilities CAPABILITY_NAMED_IAM
 ```
 
-Second, let's create a CodePipeline consisting of CodeCommit, CodeBuild and CodeDeploy by lauching 6-codepipeline.yaml stack. The CodeDeploy will perform a standard Amazon ECS deployment which is rolling update.
+Second, let's create a CodePipeline consisting of CodeCommit, CodeBuild and CodeDeploy by lauching 07-Codepipeline.yaml stack. The CodeDeploy will perform a standard Amazon ECS deployment which is rolling update.
 
 ```bash
 aws cloudformation create-stack \
@@ -101,7 +101,7 @@ aws cloudformation create-stack \
 
 ## Deploy Blue Green Pipeline
 
-First, let's create another application load balancer by launching 22-load-balancer-blue-green.yaml stack.
+First, let's create another application load balancer by launching 08-Load-Balancer-Blue-Green.yaml stack.
 
 ```bash
 aws cloudformation create-stack \
@@ -110,7 +110,7 @@ aws cloudformation create-stack \
  --capabilities CAPABILITY_NAMED_IAM
 ```
 
-Second, let's create another book service by launching 25-service-book-blue-green.yaml.
+Second, let's create another book service by launching 09-Service-Book-Blue-Green.yaml.
 
 ```bash
 aws cloudformation create-stack \
@@ -119,7 +119,7 @@ aws cloudformation create-stack \
  --capabilities CAPABILITY_NAMED_IAM
 ```
 
-Third, let's create a CodePipeline with Blue/Green ECS Deployment supported by CodeDeploy by launching 26-codepipeline-blue-green.yaml
+Third, let's create a CodePipeline with Blue/Green ECS Deployment supported by CodeDeploy by launching 10-Codepipeline-Blue-Green.yaml
 
 ```bash
 aws cloudformation create-stack \
