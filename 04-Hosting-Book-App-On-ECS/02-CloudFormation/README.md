@@ -38,7 +38,7 @@ First, let's create a VPC by launching 1-network.yaml stack.
 ```bash
 aws cloudformation create-stack \
  --stack-name cfn-network \
- --template-body file://1-network.yaml \
+ --template-body file://01-Network.yaml \
  --capabilities CAPABILITY_NAMED_IAM
 ```
 
@@ -47,7 +47,7 @@ Second, let's create an application load balancer by launching 2-load-balancer.y
 ```bash
 aws cloudformation create-stack \
  --stack-name cfn-load-balancer \
- --template-body file://2-load-balancer.yaml \
+ --template-body file://02-Load-Balancer.yaml \
  --capabilities CAPABILITY_NAMED_IAM
 ```
 
@@ -56,7 +56,7 @@ Third, let's create a Amazon ECS cluster by launch 3-ecs-cluster.yaml.
 ```bash
 aws cloudformation create-stack \
  --stack-name cfn-ecs-cluster \
- --template-body file://3-ecs-cluster.yaml \
+ --template-body file://03-ECS-Cluster.yaml \
  --capabilities CAPABILITY_NAMED_IAM
 
 ```
@@ -66,7 +66,7 @@ Fourth, create a task definition for book applciation by launching 4-task-def-bo
 ```bash
 aws cloudformation create-stack \
  --stack-name cfn-task-def-book \
- --template-body file://4-task-def-book.yaml \
+ --template-body file://04-Task-Def-Book.yaml \
  --capabilities CAPABILITY_NAMED_IAM
 ```
 
@@ -75,7 +75,7 @@ Finally, create the book service by launch the 5-book-service.yaml stack.
 ```bash
 aws cloudformation create-stack \
  --stack-name cfn-service-book \
- --template-body file://5-service-book.yaml \
+ --template-body file://05-Service-Book.yaml \
  --capabilities CAPABILITY_NAMED_IAM
 ```
 
@@ -86,7 +86,7 @@ First let's create a codecommit repository, an ecr repository and a S3 bucket fo
 ```bash
 aws cloudformation create-stack \
  --stack-name cfn-codecommit-ecr-stack \
- --template-body file://23-s3-ecr.yaml \
+ --template-body file://06-S3-ECR-Codepipeline.yaml \
  --capabilities CAPABILITY_NAMED_IAM
 ```
 
@@ -95,7 +95,7 @@ Second, let's create a CodePipeline consisting of CodeCommit, CodeBuild and Code
 ```bash
 aws cloudformation create-stack \
  --stack-name cfn-codepipeline \
- --template-body file://6-codepipeline.yaml \
+ --template-body file://07-Codepipeline.yaml \
  --capabilities CAPABILITY_NAMED_IAM
 ```
 
@@ -106,7 +106,7 @@ First, let's create another application load balancer by launching 22-load-balan
 ```bash
 aws cloudformation create-stack \
  --stack-name cfn-alb-blue-green \
- --template-body file://22-load-balancer-blue-green.yaml \
+ --template-body file://08-Load-Balancer-Blue-Green.yaml \
  --capabilities CAPABILITY_NAMED_IAM
 ```
 
@@ -115,7 +115,7 @@ Second, let's create another book service by launching 25-service-book-blue-gree
 ```bash
 aws cloudformation create-stack \
  --stack-name cfn-service-book-blue-green \
- --template-body file://25-service-book-blue-green.yaml \
+ --template-body file://09-Service-Book-Blue-Green.yaml \
  --capabilities CAPABILITY_NAMED_IAM
 ```
 
@@ -124,6 +124,6 @@ Third, let's create a CodePipeline with Blue/Green ECS Deployment supported by C
 ```bash
 aws cloudformation create-stack \
  --stack-name cfn-pipeline-blue-green \
- --template-body file://26-codepipeline-blue-green.yaml \
+ --template-body file://10-Codepipeline-Blue-Green.yaml \
  --capabilities CAPABILITY_NAMED_IAM
 ```
