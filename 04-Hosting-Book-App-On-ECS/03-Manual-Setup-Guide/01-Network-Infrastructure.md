@@ -5,7 +5,7 @@
 **Navigate to VPC Console:**
 1. **AWS Console** → Search "VPC" → **VPC Dashboard**
 
-**Create VPC:**
+### Create VPC:
 1. **Your VPCs** → **Create VPC**
 2. **Configure**:
    - Name tag: `demo-vpc`
@@ -16,13 +16,13 @@
    - Enable DNS hostnames: ✅
 3. **Create VPC**
 
-**Create Internet Gateway:**
+### Create Internet Gateway:
 1. **Internet Gateways** → **Create internet gateway**
 2. **Name tag**: `demo-igw`
 3. **Create internet gateway**
 4. **Actions** → **Attach to VPC** → Select `demo-vpc` → **Attach internet gateway**
 
-**Create Subnets:**
+### Create Subnets:
 1. **Subnets** → **Create subnet**
 2. **Select VPC**: `demo-vpc`
 3. **Create 4 subnets**:
@@ -49,7 +49,7 @@
 
 4. **Create subnet**
 
-**Create NAT Gateway:**
+### Create NAT Gateway:
 1. **NAT Gateways** → **Create NAT gateway**
 2. **Configure**:
    - Name: `demo-nat-gateway`
@@ -58,7 +58,7 @@
    - Elastic IP allocation: **Allocate Elastic IP**
 3. **Create NAT gateway**
 
-**Create Route Tables:**
+### Create Route Tables:
 
 **Public Route Table:**
 1. **Route Tables** → **Create route table**
@@ -85,7 +85,7 @@
 **Navigate to EC2 Console:**
 1. **AWS Console** → Search "EC2" → **EC2 Dashboard**
 
-**ALB Security Group:**
+### ALB Security Group:
 1. **Security Groups** → **Create security group**
 2. **Configure**:
    - Security group name: `alb-security-group`
@@ -97,7 +97,7 @@
    - Source: Anywhere-IPv4 (0.0.0.0/0)
 4. **Create security group**
 
-**ECS Security Group:**
+### ECS Security Group:
 1. **Create security group**:
    - Security group name: `ecs-security-group`
    - Description: `Security group for ECS Fargate tasks`
