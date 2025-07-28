@@ -1,6 +1,6 @@
-## Phase 1: Infrastructure Setup via Console
+# Phase 1: Infrastructure Setup via Console
 
-### Step 1: Create VPC and Networking
+## Step 1: Create VPC and Networking
 
 **Navigate to VPC Console:**
 1. **AWS Console** → Search "VPC" → **VPC Dashboard**
@@ -80,7 +80,7 @@
 2. **Edit routes** → **Add route**: Destination `0.0.0.0/0`, Target: NAT Gateway `demo-nat-gateway`
 3. **Edit subnet associations** → Select: `private-subnet-1` and `private-subnet-2`
 
-### Step 2: Create Security Groups
+## Step 2: Create Security Groups
 
 **Navigate to EC2 Console:**
 1. **AWS Console** → Search "EC2" → **EC2 Dashboard**
