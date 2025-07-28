@@ -1,10 +1,4 @@
----
-title: developing on amazon ecs with cloudformation
-author: haimtran
-date: 07/07/2024
----
-
-## Introduction
+# Hosting a Sample Book-App on Amazon ECS using CloudFormation and CICD with Blue-Green Deployment
 
 This sample project shows how to getting started with developing on Amazon ECS using CloudFormation. It demonstrates the following features:
 
