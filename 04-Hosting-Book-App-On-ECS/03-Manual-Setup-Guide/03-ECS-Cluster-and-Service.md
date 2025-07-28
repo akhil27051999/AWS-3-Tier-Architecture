@@ -2,7 +2,7 @@
 
 ## Step 4: Create ECS Cluster
 
-**Navigate to ECS Console:**
+#### Navigate to ECS Console:
 1. **AWS Console** → Search "ECS" → **Elastic Container Service**
 
 ### Create Cluster:
@@ -47,7 +47,7 @@
 
 ## Step 6: Create Application Load Balancer
 
-**Navigate to EC2 Console:**
+#### Navigate to EC2 Console:
 1. **Load Balancers** → **Create Load Balancer**
 2. **Application Load Balancer** → **Create**
 
