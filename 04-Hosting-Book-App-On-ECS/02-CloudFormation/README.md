@@ -24,10 +24,10 @@ The sample consists of CloudFormation templates and a simple web application. Be
    |--4-task-def-book.yaml
    |--5-service-book.yaml
    |--6-codepipeline.yaml
-   |--22-load-balancer-blue-green.yaml
-   |--23-s3-ecr.yaml
-   |--25-service-book-blue-green.yaml
-   |--26-codepipeline-blue-green.yaml
+   |--7-load-balancer-blue-green.yaml
+   |--8-s3-ecr.yaml
+   |--9-service-book-blue-green.yaml
+   |--10-codepipeline-blue-green.yaml
 |--README.md
 ```
 
