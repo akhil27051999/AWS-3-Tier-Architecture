@@ -2,10 +2,12 @@
 
 ## Step 1: Create VPC and Networking
 
-**Navigate to VPC Console:**
-1. **AWS Console** → Search "VPC" → **VPC Dashboard**
-
 ### Create VPC:
+
+**Navigate to VPC Console:**
+
+- **AWS Console** → Search "VPC" → **VPC Dashboard**
+   
 1. **Your VPCs** → **Create VPC**
 2. **Configure**:
    - Name tag: `demo-vpc`
