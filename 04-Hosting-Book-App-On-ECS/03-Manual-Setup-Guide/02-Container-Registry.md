@@ -15,7 +15,46 @@
    - Encryption configuration: AES-256
 3. **Create repository**
 
-**Push Your Docker Image:**
+### Step 3.1: Install Required Tools in Local
+
+**Linux/macOS:**
+```bash
+# Install AWS CLI
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+
+# Install Docker
+sudo apt update
+sudo apt install docker.io
+sudo systemctl start docker
+sudo usermod -aG docker $USER
+
+# Install Session Manager Plugin
+curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_64bit/session-manager-plugin.deb" -o "session-manager-plugin.deb"
+sudo dpkg -i session-manager-plugin.deb
+```
+
+### Step 3.2: Configure AWS CLI
+```bash
+aws configure
+# AWS Access Key ID: [Your Access Key]
+# AWS Secret Access Key: [Your Secret Key]
+# Default region name: us-east-1
+# Default output format: json
+
+# Verify configuration
+aws sts get-caller-identity
+```
+
+### Step 3.3: Verify Installation
+```bash
+aws --version
+docker --version
+session-manager-plugin
+```
+## Step 3.4: Push Your Docker Image:
+
 1. **Select repository** → **View push commands**
 2. **Follow the 4 commands** in your local terminal:
    ```bash
