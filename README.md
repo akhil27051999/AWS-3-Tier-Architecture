@@ -1,6 +1,6 @@
 # AWS Projects Portfolio
 
-## Project 1: Static Website Hosting with AWS Amplify
+## Project 1: AWS Static Website Hosting
 
 **Goal**: Deploy a static website using AWS Amplify for simplified hosting
 
@@ -33,7 +33,7 @@
 
 ---
 
-## Project 3: Hosting Three-Tier Web Application on AWS
+## Project 3: AWS Three-Tier Web Application Demo
 
 **Goal**: Combine Infrastructure as Code with manual provisioning for flexible deployment of Three-Tier Application.
 
@@ -50,7 +50,7 @@
 
 ---
 
-## Project 4: ECS Book App with Automated Deployments
+## Project 4: Fully Automated ECS Deployment Pipeline for Book App on AWS
 
 **Goal**: Deploy containerized Book App using manual setup and CloudFormation-based CI/CD pipelines
 
