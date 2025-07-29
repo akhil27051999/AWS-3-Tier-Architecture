@@ -50,29 +50,34 @@
 
 ---
 
-## Project 4: ECS with CI/CD Pipelines
+## Project 4: ECS Book App with Manual and Automated Deployments
 
-**Goal**: Deploy containerized applications with automated deployment pipelines
+**Goal**: Deploy containerized Book App using manual setup and CloudFormation-based CI/CD pipelines
 
 **Implementation**:
 
 ### Manual Deployment
-- VPC setup with public/private subnets and security groups
-- Application Load Balancer with target groups
-- ECS Fargate cluster with task definitions and services
-- ECR repository for container images
+- Manual creation of VPC components (subnets, security groups, NAT gateway)
+- ECR repository setup for container image storage
+- ECS Fargate cluster and service configuration through AWS Console
+- Application Load Balancer and target groups manual setup
+- IAM roles creation for ECS task execution
+- Local Docker image build and push to ECR using AWS CLI
+- Book App deployed and accessible via ALB DNS name
 
 ### Standard CI/CD Pipeline
-- CodeCommit repository for source control
-- CodeBuild for Docker image building
-- CodeDeploy for rolling updates to ECS service
+- CloudFormation templates for automated CodePipeline setup
+- CodeCommit, CodeBuild, and CodeDeploy integration
+- Automated rolling updates to existing ECS service
+- Pipeline triggers on code commits for continuous deployment
 
 ### Blue-Green Deployment
-- Separate load balancer for zero-downtime deployments
-- CodeDeploy creates new task sets and gradually shifts traffic
-- Automated rollback on deployment failures
+- CloudFormation templates for blue-green deployment pipeline
+- Separate load balancer configuration for zero-downtime deployments
+- Automated traffic shifting between blue and green environments
+- Safe rollback capabilities on deployment failures
 
-**Outcome**: Production-ready containerized application with multiple deployment strategies
+**Outcome**: Containerized Book App with manual control and automated CI/CD options for different deployment strategies
 
 ---
 
