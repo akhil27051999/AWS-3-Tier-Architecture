@@ -16,7 +16,7 @@
 
 ---
 
-## Project 2: Grafana Hosting in Private Subnet
+## Project 2: Designing Secure AWS Infrastructure for Internet-Exposed Backend Services
 
 **Goal**: Host Grafana application in a secure private subnet with internet access
 
@@ -33,9 +33,9 @@
 
 ---
 
-## Project 3: Hybrid CloudFormation and Manual Deployment
+## Project 3: Hosting Three-Tier Application on AWS
 
-**Goal**: Combine Infrastructure as Code with manual provisioning for flexible deployment
+**Goal**: Combine Infrastructure as Code with manual provisioning for flexible deployment of Three-Tier Application.
 
 **Implementation**:
 - CloudFormation templates deployed for network infrastructure (VPC, subnets, security groups)
@@ -79,6 +79,8 @@
 
 **Outcome**: Containerized Book App with manual control and automated CI/CD options for different deployment strategies
 
----
+<img width="1911" height="1046" alt="Screenshot 2025-07-29 164220" src="https://github.com/user-attachments/assets/6371e465-3c0b-497d-b8e5-e3489413c98d" />
+
+
 
 *Each project includes detailed implementation guides, troubleshooting tips, and cleanup procedures. Explore individual project folders for complete documentation and video tutorials.*
