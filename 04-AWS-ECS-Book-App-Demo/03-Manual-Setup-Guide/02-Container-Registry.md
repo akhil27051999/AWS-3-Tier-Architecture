@@ -1,5 +1,9 @@
 # Phase 2: Container Registry Setup and Image Push to ECR
 
+## ECR Setup Video:
+
+https://github.com/user-attachments/assets/f9f92964-9148-4803-8903-46420850df3f
+
 ## Step 3: Create ECR Repository
 
 **Navigate to ECR Console:**
