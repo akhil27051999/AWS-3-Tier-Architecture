@@ -28,7 +28,6 @@ This repository contains three distinct AWS hosting solutions, each demonstratin
 - Custom VPC with public/private subnets across multiple AZs
 - Application Load Balancer for traffic distribution
 - EC2 instances with Auto Scaling for high availability
-- RDS database with Multi-AZ deployment
 
 **Outcome**: Fully functional, scalable web application with manual infrastructure control
 
