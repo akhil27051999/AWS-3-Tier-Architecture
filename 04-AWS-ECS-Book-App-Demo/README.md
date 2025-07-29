@@ -4,7 +4,8 @@
 This project demonstrates a **production-ready, containerized three-tier web architecture** on AWS with **dual CI/CD deployment strategies**. It showcases modern cloud-native practices including Infrastructure as Code, containerization, auto-scaling, and zero-downtime deployments.
 
 ## Architecture Diagram
-<img width="1170" height="801" alt="book-app drawio" src="https://github.com/user-attachments/assets/a42d1f3a-8c43-4104-9122-da84b9591f35" />
+
+<img width="1170" height="801" alt="book-app drawio (1)" src="https://github.com/user-attachments/assets/032f7d13-7b90-4ef1-a3c9-b9dfc5e7cc2c" />
 
 ## Architecture Components
 
