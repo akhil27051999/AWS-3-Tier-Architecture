@@ -1,5 +1,5 @@
 
-# AWS Three-Tier Containerized Web Architecture
+# Hosting a Book App on AWS ECS
 ## Project Overview
 This project demonstrates a **production-ready, containerized three-tier web architecture** on AWS with **dual CI/CD deployment strategies**. It showcases modern cloud-native practices including Infrastructure as Code, containerization, auto-scaling, and zero-downtime deployments.
 ## Architecture Diagram
@@ -45,7 +45,7 @@ This project demonstrates a **production-ready, containerized three-tier web arc
 │  └─────────────────────────────────────────────────────────────────────────┘    │
 └─────────────────────────────────────────────────────────────────────────────────┘
 ```
-## Three-Tier Architecture Components
+## Architecture Components
 
 ### **Tier 1: Presentation Layer (Web Tier)**
 **Purpose**: Handle incoming user requests and distribute traffic
