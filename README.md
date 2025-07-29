@@ -33,7 +33,7 @@
 
 ---
 
-## Project 3: Hosting Three-Tier Application on AWS
+## Project 3: Hosting Three-Tier Wen Application on AWS
 
 **Goal**: Combine Infrastructure as Code with manual provisioning for flexible deployment of Three-Tier Application.
 
