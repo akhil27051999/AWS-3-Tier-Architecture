@@ -19,6 +19,8 @@ https://github.com/user-attachments/assets/f9f92964-9148-4803-8903-46420850df3f
    - Encryption configuration: AES-256
 3. **Create repository**
 
+---
+
 ## Image Push to ECR
 
 https://github.com/user-attachments/assets/0212d8b1-19fc-445c-9e5c-cb659ceb5474
