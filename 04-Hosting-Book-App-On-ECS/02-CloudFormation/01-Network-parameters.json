@@ -1,0 +1,6 @@
+Parameters:
+  VpcCidr: "10.0.0.0/16"
+  Environment: "dev"
+Tags:
+  Project: "BookApp"
+  Environment: "Development"
