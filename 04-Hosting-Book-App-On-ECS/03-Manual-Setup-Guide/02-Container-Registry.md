@@ -1,4 +1,4 @@
-# Phase 2: Container Registry Setup
+# Phase 2: Container Registry Setup and Image Push to ECR
 
 ## Step 3: Create ECR Repository
 
