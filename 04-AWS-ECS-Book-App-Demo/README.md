@@ -3,6 +3,10 @@
 ## Project Overview
 This project demonstrates a **production-ready, containerized three-tier web architecture** on AWS with **dual CI/CD deployment strategies**. It showcases modern cloud-native practices including Infrastructure as Code, containerization, auto-scaling, and zero-downtime deployments.
 ## Architecture Diagram
+
+<img width="911" height="611" alt="Untitled Diagram1 drawio (6)" src="https://github.com/user-attachments/assets/b619c309-e7f9-4cbb-b5b9-64ce29ac9103" />
+
+
 ```
 ┌─────────────────────────────────────────────────────────────────────────────────┐
 │                                AWS CLOUD                                        │
