@@ -54,6 +54,7 @@ This project demonstrates a **production-ready, containerized three-tier web arc
 - **Internet Gateway**: Provides internet connectivity
 - **Security Groups**: Control inbound traffic (HTTP/HTTPS only)
 **Use Case**: Load balancing, SSL termination, health checks
+
 ### **Tier 2: Application Layer (Logic Tier)**
 **Purpose**: Process business logic and application functionality
 - **ECS Fargate Cluster**: Serverless container orchestration
@@ -61,13 +62,7 @@ This project demonstrates a **production-ready, containerized three-tier web arc
 - **Private Subnets**: Isolated from direct internet access
 - **Auto Scaling**: Automatically adjust capacity based on demand
 **Use Case**: Run containerized applications, process requests, scale dynamically
-### **Tier 3: Data Layer (Database Tier)**
-**Purpose**: Store and manage application data
-- **Aurora MySQL Cluster**: Managed database with high availability
-- **Primary & Replica Instances**: Read/write separation and failover
-- **Secrets Manager**: Secure credential storage
-- **Database Subnets**: Isolated network for database access
-**Use Case**: Data persistence, backup, disaster recovery
+
 ## Deployment Strategies
 ### **1. Standard Pipeline (Rolling Updates)**
 **Purpose**: Traditional deployment approach for development/staging
@@ -81,6 +76,7 @@ This project demonstrates a **production-ready, containerized three-tier web arc
 - ❌ Brief downtime during updates
 - ❌ Manual rollback process
 **Use Cases**: Development, testing, staging environments
+
 ### **2. Blue/Green Pipeline (Zero Downtime)**
 **Purpose**: Production-grade deployment with zero downtime
 **Flow**:
@@ -94,6 +90,7 @@ This project demonstrates a **production-ready, containerized three-tier web arc
 - ❌ More complex setup
 - ❌ Higher resource usage during deployment
 **Use Cases**: Production environments, critical applications
+
 ## Traffic Flow Journey
 ### **End-to-End Request Path**
 ```
@@ -109,19 +106,14 @@ This project demonstrates a **production-ready, containerized three-tier web arc
 4. ECS Fargate Tasks (Private Subnets)
    ├── Container Processing: Execute business logic
    ├── Auto Scaling: Add/remove tasks based on CPU
-   └── Database Connection: Query/update data
-   ↓
-5. Aurora Database (Database Subnets)
-   ├── Primary Instance: Handle writes
-   ├── Replica Instance: Handle reads
    └── Return data to application
    ↓
-6. Response Journey (Reverse path back to user)
+5. Response Journey (Reverse path back to user)
+
 ```
 ### **Security Flow**
 - **Public Subnets**: Only load balancers exposed to internet
 - **Private Subnets**: Applications isolated from direct internet access
-- **Database Subnets**: Only accessible from application tier
 - **NAT Gateway**: Enables outbound internet for private resources
 ## Project Components
 ### **Infrastructure Templates**
@@ -131,19 +123,18 @@ This project demonstrates a **production-ready, containerized three-tier web arc
 4. **4-task-def-book.yaml**: Container specification and logging
 5. **5-service-book.yaml**: ECS service with auto scaling
 ### **CI/CD Templates**
-6. **23-s3-ecr.yaml**: Container registry and artifact storage
-7. **6-codepipeline.yaml**: Standard deployment pipeline
-8. **22-load-balancer-blue-green.yaml**: Blue/Green ALB setup
-9. **25-service-book-blue-green.yaml**: Blue/Green ECS service
-10. **26-codepipeline-blue-green.yaml**: Zero-downtime pipeline
-### **Database Template**
-11. **database.yaml**: Aurora MySQL cluster with high availability
+6. **6-s3-ecr.yaml**: Container registry and artifact storage
+7. **7-codepipeline.yaml**: Standard deployment pipeline
+8. **8-load-balancer-blue-green.yaml**: Blue/Green ALB setup
+9. **9-service-book-blue-green.yaml**: Blue/Green ECS service
+10. **10-codepipeline-blue-green.yaml**: Zero-downtime pipeline
+
+    
 ## Key Features & Benefits
 ### **High Availability**
 - **Multi-AZ Deployment**: Resources distributed across availability zones
 - **Auto Scaling**: Automatic capacity adjustment (1-4 tasks)
 - **Health Checks**: Continuous monitoring and automatic recovery
-- **Database Replication**: Primary-replica setup with automatic failover
 ### **Security**
 - **Network Isolation**: Three-tier security with private subnets
 - **Security Groups**: Least privilege access controls
@@ -159,6 +150,7 @@ This project demonstrates a **production-ready, containerized three-tier web arc
 - **Container Insights**: Built-in monitoring and logging
 - **Automated Deployments**: CI/CD pipelines with GitHub integration
 - **Zero Downtime**: Blue/Green deployment capability
+  
 ## Use Cases
 ### **Development Teams**
 - **Standard Pipeline**: Quick iterations and testing
@@ -172,6 +164,7 @@ This project demonstrates a **production-ready, containerized three-tier web arc
 - **Compliance**: Infrastructure as Code for audit trails
 - **Scalability**: Automatic capacity management
 - **Monitoring**: Comprehensive logging and metrics
+  
 ## Monitoring & Observability
 ### **Application Monitoring**
 - **Container Insights**: ECS cluster and service metrics
@@ -182,6 +175,7 @@ This project demonstrates a **production-ready, containerized three-tier web arc
 - **Build Metrics**: Success rates and build times
 - **Deployment Tracking**: Pipeline execution history
 - **Error Alerting**: Failed deployment notifications
+  
 ## Prerequisites
 - AWS Account with appropriate permissions
 - GitHub repository with application code
