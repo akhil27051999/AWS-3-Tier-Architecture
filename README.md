@@ -50,7 +50,7 @@
 
 ---
 
-## Project 4: ECS Book App with Manual and Automated Deployments
+## Project 4: ECS Book App with Automated Deployments
 
 **Goal**: Deploy containerized Book App using manual setup and CloudFormation-based CI/CD pipelines
 
