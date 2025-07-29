@@ -1,5 +1,9 @@
 # Phase 3: ECS Cluster and Services
 
+## ECS Cluster and Service Creation Video
+
+https://github.com/user-attachments/assets/d425b4ec-db07-44b0-985d-7c5190b5d3c9
+
 ## Step 4: Create ECS Cluster
 
 ### Create Cluster:
