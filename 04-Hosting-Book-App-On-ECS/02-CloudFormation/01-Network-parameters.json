@@ -1,6 +1,3 @@
-Parameters:
-  VpcCidr: "10.0.0.0/16"
-  Environment: "dev"
-Tags:
-  Project: "BookApp"
-  Environment: "Development"
+template-file-path: 04-Hosting-Book-App-On-ECS/02-CloudFormation/01-Network.yaml
+parameters: {}
+tags: {}
