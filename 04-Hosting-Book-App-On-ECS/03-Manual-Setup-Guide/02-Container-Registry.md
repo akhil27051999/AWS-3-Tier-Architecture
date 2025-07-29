@@ -53,9 +53,9 @@ aws --version
 docker --version
 session-manager-plugin
 ```
-## Step 3.4: Push Your Docker Image:
+### Step 3.4: Push Your Docker Image to ECR:
 
-1. **Select repository** → **View push commands**
+1. **Clone the repository from Github to Local** → **Build and push to ECR from Local**
 2. **Follow the 4 commands** in your local terminal:
    ```bash
    # 1. Retrieve authentication token
