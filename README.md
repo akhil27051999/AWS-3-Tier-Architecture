@@ -1,51 +1,50 @@
-# AWS Hosted Apps and Websites Summary
-
-This repository contains three distinct AWS hosting solutions, each demonstrating different levels of complexity and infrastructure management approaches.
-
-
 # AWS Projects Portfolio
 
-## Project 1: Static Website Hosting
+## Project 1: Static Website Hosting with AWS Amplify
 
-**Goal**: Deploy a static website using AWS managed services
+**Goal**: Deploy a static website using AWS Amplify for simplified hosting
 
 **Implementation**: 
-- S3 bucket for file storage with static website hosting
-- CloudFront CDN for global content delivery
-- Route 53 for custom domain (optional)
+- Upload static website files (HTML, CSS, JS) directly to S3 bucket
+- Deploy website using AWS Amplify console
+- Amplify automatically generates DNS name for public access
+- Built-in CDN and SSL certificate provisioning
 
-**Outcome**: Fast, scalable static website with global reach and SSL support
+**Outcome**: Live static website accessible via Amplify-generated URL with automatic HTTPS
 
 ![Static Website](https://github.com/user-attachments/assets/b8f5903e-525e-4b3e-ba1a-3082600a7ea3)
 
 ---
 
-## Project 2: Manual Web Application Deployment
+## Project 2: Grafana Hosting in Private Subnet
 
-**Goal**: Build a web application infrastructure manually through AWS Console
+**Goal**: Host Grafana application in a secure private subnet with internet access
 
 **Implementation**:
-- Custom VPC with public/private subnets across multiple AZs
-- Application Load Balancer for traffic distribution
-- EC2 instances with Auto Scaling for high availability
+- Custom VPC with public and private subnets
+- NAT Gateway in public subnet for outbound internet access
+- Grafana deployed on EC2 instance in private subnet (app-tier)
+- Security groups configured for secure access
+- Internet access via NAT Gateway for downloading applications and updates
 
-**Outcome**: Fully functional, scalable web application with manual infrastructure control
+**Outcome**: Secure Grafana deployment accessible from private subnet with controlled internet connectivity
 
 ![Manual Deployment](https://github.com/user-attachments/assets/dd9bef27-0db5-4852-a40f-92103664182c)
 
 ---
 
-## Project 3: Three-Tier Architecture with CloudFormation
+## Project 3: Hybrid CloudFormation and Manual Deployment
 
-**Goal**: Automate infrastructure deployment using Infrastructure as Code
+**Goal**: Combine Infrastructure as Code with manual provisioning for flexible deployment
 
 **Implementation**:
-- CloudFormation templates for VPC, database, and application tiers
-- Aurora MySQL cluster with Secrets Manager integration
-- Automated deployment with stack dependencies
-- Version-controlled infrastructure
+- CloudFormation templates deployed for network infrastructure (VPC, subnets, security groups)
+- CloudFormation template for Aurora MySQL database setup
+- Manual EC2 instance provisioning within the CloudFormation-created VPC
+- Frontend and backend services deployed and tested on EC2 instances
+- Database connectivity verified between application and Aurora cluster
 
-**Outcome**: Repeatable, consistent three-tier architecture deployments
+**Outcome**: Hybrid approach demonstrating both automated infrastructure and manual application deployment
 
 ![CloudFormation Architecture](https://github.com/user-attachments/assets/01a5a360-e550-4b76-82c7-8a27800ec777)
 
