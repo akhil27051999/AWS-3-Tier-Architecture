@@ -2,53 +2,10 @@
 # Hosting a Book App on AWS ECS
 ## Project Overview
 This project demonstrates a **production-ready, containerized three-tier web architecture** on AWS with **dual CI/CD deployment strategies**. It showcases modern cloud-native practices including Infrastructure as Code, containerization, auto-scaling, and zero-downtime deployments.
+
 ## Architecture Diagram
+<img width="1170" height="801" alt="book-app drawio" src="https://github.com/user-attachments/assets/a42d1f3a-8c43-4104-9122-da84b9591f35" />
 
-<img width="911" height="611" alt="Untitled Diagram1 drawio (6)" src="https://github.com/user-attachments/assets/b619c309-e7f9-4cbb-b5b9-64ce29ac9103" />
-
-
-```
-┌─────────────────────────────────────────────────────────────────────────────────┐
-│                                AWS CLOUD                                        │
-│                                                                                 │
-│  ┌─────────────────────────────────────────────────────────────────────────┐    │
-│  │                         VPC (10.0.0.0/16)                               │    │
-│  │                                                                         │    │
-│  │  ┌──────────────────┐                    ┌──────────────────┐           │    │
-│  │  │   AZ-1 (us-*-1a) │                    │   AZ-2 (us-*-1b) │           │    │
-│  │  │                  │                    │                  │           │    │
-│  │  │ ┌──────────────┐ │                    │ ┌──────────────┐ │           │    │
-│  │  │ │Public Subnet │ │                    │ │Public Subnet │ │           │    │
-│  │  │ │10.0.0.0/24   │ │                    │ │10.0.2.0/24   │ │           │    │
-│  │  │ │              │ │                    │ │              │ │           │    │
-│  │  │ │ Standard ALB │ │                    │ │ Blue/Green   │ │           │    │
-│  │  │ │ NAT Gateway  │ │                    │ │ ALB          │ │           │    │
-│  │  │ └──────────────┘ │                    │ └──────────────┘ │           │    │
-│  │  │                  │                    │                  │           │    │
-│  │  │ ┌──────────────┐ │                    │ ┌──────────────┐ │           │    │
-│  │  │ │Private Subnet│ │                    │ │Private Subnet│ │           │    │
-│  │  │ │10.0.1.0/24   │ │                    │ │10.0.3.0/24   │ │           │    │
-│  │  │ │              │ │                    │ │              │ │           │    │
-│  │  │ │ ECS Tasks    │ │                    │ │ ECS Tasks    │ │           │    │
-│  │  │ │ (Fargate)    │ │                    │ │ (Fargate)    │ │           │    │
-│  │  │ └──────────────┘ │                    │ └──────────────┘ │           │    │
-│  │  └──────────────────┘                    └──────────────────┘           │    │
-│  └─────────────────────────────────────────────────────────────────────────┘    │
-└─────────────────────────────────────────────────────────────────────────────────┘
-┌─────────────────────────────────────────────────────────────────────────────────┐
-│                              CI/CD PIPELINES                                    │
-│                                                                                 │
-│  ┌─────────────────────────────────────────────────────────────────────────┐    │
-│  │                        Standard Pipeline                                │    │
-│  │  GitHub → CodeBuild → ECR → ECS (Rolling Update)                        │    │
-│  └─────────────────────────────────────────────────────────────────────────┘    │
-│                                                                                 │
-│  ┌─────────────────────────────────────────────────────────────────────────┐    │
-│  │                       Blue/Green Pipeline                               │    │
-│  │  GitHub → CodeBuild → ECR → CodeDeploy → ECS (Zero Downtime)            │    │
-│  └─────────────────────────────────────────────────────────────────────────┘    │
-└─────────────────────────────────────────────────────────────────────────────────┘
-```
 ## Architecture Components
 
 ### **Tier 1: Presentation Layer (Web Tier)**
