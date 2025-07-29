@@ -1,6 +1,6 @@
 # Phase 1: Infrastructure Setup via Console
 
-## VPC Setup Video:
+## VPC Setup Video
 
 https://github.com/user-attachments/assets/b90d3b2e-0fc2-403d-b99c-fd46c74e7370
 
