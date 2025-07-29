@@ -1,6 +1,6 @@
 # Phase 2: Container Registry Setup and Image Push to ECR
 
-## ECR Setup Video:
+## ECR Setup Video
 
 https://github.com/user-attachments/assets/f9f92964-9148-4803-8903-46420850df3f
 
@@ -21,7 +21,7 @@ https://github.com/user-attachments/assets/f9f92964-9148-4803-8903-46420850df3f
 
 ---
 
-## Image Push to ECR
+## Image Push to ECR Video
 
 https://github.com/user-attachments/assets/0212d8b1-19fc-445c-9e5c-cb659ceb5474
 
