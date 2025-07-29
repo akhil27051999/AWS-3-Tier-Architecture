@@ -55,7 +55,7 @@ session-manager-plugin
 ```
 ### Step 3.4: Push Your Docker Image to ECR:
 
-1. **Clone the project repository from GitHub to Local** → **Build and push the Docker image to ECR from Local**
+1. **Clone the project repository from GitHub to Local** → **Build and push the Docker image from Local to ECR **
 2. **Follow the 4 commands** in your local terminal:
    ```bash
    # 1. Retrieve authentication token
