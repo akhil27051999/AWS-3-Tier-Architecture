@@ -63,6 +63,19 @@ This project demonstrates a **production-ready, containerized three-tier web arc
 - **Auto Scaling**: Automatically adjust capacity based on demand
 **Use Case**: Run containerized applications, process requests, scale dynamically
 
+## Prerequisites
+- AWS Account with appropriate permissions
+- GitHub repository with application code
+- Docker application with Dockerfile
+- Basic understanding of containerization concepts
+  
+## Getting Started
+1. **Clone Repository**: Get the CloudFormation templates
+2. **Setup GitHub Connection**: Configure CodeStar connection
+3. **Deploy Infrastructure**: Run CloudFormation stacks in sequence
+4. **Test Application**: Verify load balancer endpoints
+5. **Trigger Pipeline**: Push code to test CI/CD automation
+   
 ## Deployment Strategies
 ### **1. Standard Pipeline (Rolling Updates)**
 **Purpose**: Traditional deployment approach for development/staging
@@ -176,17 +189,7 @@ This project demonstrates a **production-ready, containerized three-tier web arc
 - **Deployment Tracking**: Pipeline execution history
 - **Error Alerting**: Failed deployment notifications
   
-## Prerequisites
-- AWS Account with appropriate permissions
-- GitHub repository with application code
-- Docker application with Dockerfile
-- Basic understanding of containerization concepts
-## Getting Started
-1. **Clone Repository**: Get the CloudFormation templates
-2. **Setup GitHub Connection**: Configure CodeStar connection
-3. **Deploy Infrastructure**: Run CloudFormation stacks in sequence
-4. **Test Application**: Verify load balancer endpoints
-5. **Trigger Pipeline**: Push code to test CI/CD automation
+
 ## Best Practices Demonstrated
 1. **Infrastructure as Code**: Repeatable, version-controlled infrastructure
 2. **Immutable Deployments**: Container-based deployments
