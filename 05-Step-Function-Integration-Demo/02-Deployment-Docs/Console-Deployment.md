@@ -26,27 +26,67 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
 
-exports.lambdaHandler = async (event, context) => {
+export const handler = async (event, context) => {
     try {
         console.log('Event:', JSON.stringify(event, null, 2));
         
-        const stock_price = getRandomInt(100);
+        // Create multiple stock data instead of just one price
+        const stockData = [
+            {
+                symbol: 'GOOGL',
+                price: 140 + getRandomInt(30), // Random price between 140-170
+                change: (Math.random() * 10 - 5).toFixed(2), // Random change between -5 to +5
+                volume: 800000 + getRandomInt(500000) // Random volume
+            },
+            {
+                symbol: 'AAPL',
+                price: 170 + getRandomInt(20), // Random price between 170-190
+                change: (Math.random() * 8 - 4).toFixed(2), // Random change between -4 to +4
+                volume: 1500000 + getRandomInt(1000000) // Random volume
+            },
+            {
+                symbol: 'MSFT',
+                price: 370 + getRandomInt(25), // Random price between 370-395
+                change: (Math.random() * 6 - 3).toFixed(2), // Random change between -3 to +3
+                volume: 1200000 + getRandomInt(800000) // Random volume
+            },
+            {
+                symbol: 'TSLA',
+                price: 240 + getRandomInt(40), // Random price between 240-280
+                change: (Math.random() * 12 - 6).toFixed(2), // Random change between -6 to +6
+                volume: 2000000 + getRandomInt(1500000) // Random volume
+            },
+            {
+                symbol: 'AMZN',
+                price: 130 + getRandomInt(20), // Random price between 130-150
+                change: (Math.random() * 7 - 3.5).toFixed(2), // Random change between -3.5 to +3.5
+                volume: 900000 + getRandomInt(600000) // Random volume
+            }
+        ];
         
         return { 
             statusCode: 200,
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+                'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS'
             },
-            body: JSON.stringify({"stock_price": stock_price})
+            body: JSON.stringify(stockData)
         };
     } catch (error) {
         console.error('Error:', error);
         return {
             statusCode: 500,
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
             body: JSON.stringify({ error: 'Internal server error' })
         };
     }
 };
+
 ```
 5. Click **Deploy**
 
@@ -55,43 +95,87 @@ exports.lambdaHandler = async (event, context) => {
 2. **Runtime**: Node.js 18.x
 3. Replace code with:
 ```javascript
-const crypto = require("crypto");
+import crypto from "crypto";
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max)) + 1;
 }
 
-exports.lambdaHandler = async (event, context) => {
+export const handler = async (event, context) => {
     try {
         console.log('Event:', JSON.stringify(event, null, 2));
         
+        // Handle CORS preflight request
+        if (event.httpMethod === 'OPTIONS') {
+            return {
+                statusCode: 200,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+                    'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS'
+                },
+                body: JSON.stringify({ message: 'CORS preflight successful' })
+            };
+        }
+        
+        // Parse the request body
         const body = typeof event.body === 'string' ? JSON.parse(event.body) : event.body;
-        const stock_price = body.stock_price;
-
+        console.log('Parsed body:', body);
+        
+        // Extract data from request
+        const symbol = body.symbol || 'UNKNOWN';
+        const quantity = body.quantity || getRandomInt(10);
+        const action = body.action || 'buy';
+        
+        // Generate a realistic stock price if not provided
+        const stock_price = body.stock_price || (150 + getRandomInt(50));
+        
         const date = new Date();
         const transaction_result = {
             'id': crypto.randomBytes(16).toString("hex"),
-            'price': stock_price.toString(),
-            'type': "buy",
-            'qty': getRandomInt(10).toString(),
+            'symbol': symbol,
+            'price': parseFloat(stock_price).toFixed(2),
+            'type': action,
+            'quantity': parseInt(quantity),
             'timestamp': date.toISOString(),
+            'total_cost': (parseFloat(stock_price) * parseInt(quantity)).toFixed(2),
+            'success': true,
+            'message': `Successfully bought ${quantity} shares of ${symbol} at $${parseFloat(stock_price).toFixed(2)} each`
         };
         
-        return { 
+        console.log('Transaction result:', transaction_result);
+        
+        return {
             statusCode: 200,
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+                'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS'
             },
             body: JSON.stringify(transaction_result)
         };
+        
     } catch (error) {
         console.error('Error:', error);
         return {
             statusCode: 500,
-            body: JSON.stringify({ error: 'Internal server error' })
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+                'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS'
+            },
+            body: JSON.stringify({ 
+                error: 'Internal server error',
+                message: error.message,
+                success: false
+            })
         };
     }
 };
+
 ```
 4. Click **Deploy**
 
@@ -100,43 +184,87 @@ exports.lambdaHandler = async (event, context) => {
 2. **Runtime**: Node.js 18.x
 3. Replace code with:
 ```javascript
-const crypto = require("crypto");
+import crypto from "crypto";
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max)) + 1;
 }
 
-exports.lambdaHandler = async (event, context) => {
+export const handler = async (event, context) => {
     try {
         console.log('Event:', JSON.stringify(event, null, 2));
         
+        // Handle CORS preflight request
+        if (event.httpMethod === 'OPTIONS') {
+            return {
+                statusCode: 200,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+                    'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS'
+                },
+                body: JSON.stringify({ message: 'CORS preflight successful' })
+            };
+        }
+        
+        // Parse the request body
         const body = typeof event.body === 'string' ? JSON.parse(event.body) : event.body;
-        const stock_price = body.stock_price;
-
+        console.log('Parsed body:', body);
+        
+        // Extract data from request
+        const symbol = body.symbol || 'UNKNOWN';
+        const quantity = body.quantity || getRandomInt(10);
+        const action = body.action || 'sell';
+        
+        // Generate a realistic stock price if not provided
+        const stock_price = body.stock_price || (150 + getRandomInt(50));
+        
         const date = new Date();
         const transaction_result = {
             'id': crypto.randomBytes(16).toString("hex"),
-            'price': stock_price.toString(),
-            'type': "sell",
-            'qty': getRandomInt(10).toString(),
+            'symbol': symbol,
+            'price': parseFloat(stock_price).toFixed(2),
+            'type': action,
+            'quantity': parseInt(quantity),
             'timestamp': date.toISOString(),
+            'total_received': (parseFloat(stock_price) * parseInt(quantity)).toFixed(2),
+            'success': true,
+            'message': `Successfully sold ${quantity} shares of ${symbol} at $${parseFloat(stock_price).toFixed(2)} each`
         };
+        
+        console.log('Transaction result:', transaction_result);
         
         return { 
             statusCode: 200,
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+                'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS'
             },
             body: JSON.stringify(transaction_result)
         };
+        
     } catch (error) {
         console.error('Error:', error);
         return {
             statusCode: 500,
-            body: JSON.stringify({ error: 'Internal server error' })
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+                'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS'
+            },
+            body: JSON.stringify({ 
+                error: 'Internal server error',
+                message: error.message,
+                success: false
+            })
         };
     }
 };
+
 ```
 4. Click **Deploy**
 
