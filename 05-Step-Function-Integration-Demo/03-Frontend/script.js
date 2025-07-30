@@ -252,8 +252,8 @@ class StockManager {
                 <p><strong>Change:</strong> ${change !== 'N/A' ? parseFloat(change).toFixed(2) : 'N/A'}%</p>
                 <p><strong>Volume:</strong> ${volume !== 'N/A' ? parseInt(volume).toLocaleString() : 'N/A'}</p>
                 <div class="stock-actions">
-                    <button onclick="this.fillBuyForm('${symbol}')" class="btn-buy">Quick Buy</button>
-                    <button onclick="this.fillSellForm('${symbol}')" class="btn-sell">Quick Sell</button>
+                    <button onclick="fillBuyForm('${symbol}')" class="btn-buy">Quick Buy</button>
+                    <button onclick="fillSellForm('${symbol}')" class="btn-sell">Quick Sell</button>
                 </div>
             </div>
         `;
@@ -475,9 +475,4 @@ style.textContent = `
     .portfolio-item {
         padding: 10px;
         margin: 5px 0;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        background-color: #f8f9fa;
-    }
-    .portfolio-stock {
-        display: flex;
+        border
