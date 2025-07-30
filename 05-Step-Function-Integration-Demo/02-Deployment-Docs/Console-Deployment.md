@@ -432,85 +432,85 @@ echo "API Endpoint: https://$API_ID.execute-api.$(aws configure get region).amaz
 
 ```json
 {
-    "Comment": "A state machine that does mock stock trading.",
-    "StartAt": "Check Stock Value",
-    "States": {
-        "Check Stock Value": {
-            "Type": "Task",
-            "Resource": "arn:aws:states:::apigateway:invoke",
-            "Parameters": {
-                "ApiEndpoint": "YOUR_API_GATEWAY_ID.execute-api.YOUR_REGION.amazonaws.com",
-                "Method": "GET",
-                "Stage": "Prod",
-                "Path": "/check",
-                "RequestBody.$": "$",
-                "AuthType": "NO_AUTH"
-            },
-            "Next": "Buy or Sell?"
-        },
-        "Buy or Sell?": {
-            "Type": "Choice",
-            "Choices": [
-                {
-                    "Variable": "$.ResponseBody.stock_price",
-                    "NumericLessThanEquals": 50,
-                    "Next": "Buy Stock"
-                }
-            ],
-            "Default": "Sell Stock"
-        },
-        "Sell Stock": {
-            "Type": "Task",
-            "Resource": "arn:aws:states:::apigateway:invoke",
-            "Parameters": {
-                "ApiEndpoint": "YOUR_API_GATEWAY_ID.execute-api.YOUR_REGION.amazonaws.com",
-                "Method": "POST",
-                "Stage": "Prod",
-                "Path": "/sell",
-                "RequestBody.$": "$.ResponseBody",
-                "AuthType": "NO_AUTH"
-            },
-            "Next": "Record Transaction"
-        },
-        "Buy Stock": {
-            "Type": "Task",
-            "Resource": "arn:aws:states:::apigateway:invoke",
-            "Parameters": {
-                "ApiEndpoint": "YOUR_API_GATEWAY_ID.execute-api.YOUR_REGION.amazonaws.com",
-                "Method": "POST",
-                "Stage": "Prod",
-                "Path": "/buy",
-                "RequestBody.$": "$.ResponseBody",
-                "AuthType": "NO_AUTH"
-            },
-            "Next": "Record Transaction"
-        },
-        "Record Transaction": {
-            "Type": "Task",
-            "Resource": "arn:aws:states:::dynamodb:putItem",
-            "Parameters": {
-                "TableName": "TransactionTable",
-                "Item": {
-                    "Id": {
-                        "S.$": "$.ResponseBody.id"
-                    },
-                    "Type": {
-                        "S.$": "$.ResponseBody.type"
-                    },
-                    "Price": {
-                        "N.$": "$.ResponseBody.price"
-                    },
-                    "Quantity": {
-                        "N.$": "$.ResponseBody.qty"
-                    },
-                    "Timestamp": {
-                        "S.$": "$.ResponseBody.timestamp"
-                    }
-                }
-            },
-            "End": true
+  "Comment": "A state machine that does mock stock trading.",
+  "StartAt": "Check Stock Value",
+  "States": {
+    "Check Stock Value": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::apigateway:invoke",
+      "Parameters": {
+        "ApiEndpoint": "htq0zqqe74.execute-api.us-east-1.amazonaws.com",
+        "Method": "GET",
+        "Stage": "Prod",
+        "Path": "/check",
+        "RequestBody.$": "$",
+        "AuthType": "NO_AUTH"
+      },
+      "Next": "Buy or Sell?"
+    },
+    "Buy or Sell?": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.ResponseBody.stock_price",
+          "NumericLessThanEquals": 50,
+          "Next": "Buy Stock"
         }
+      ],
+      "Default": "Sell Stock"
+    },
+    "Sell Stock": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::apigateway:invoke",
+      "Parameters": {
+        "ApiEndpoint": "htq0zqqe74.execute-api.us-east-1.amazonaws.com",
+        "Method": "POST",
+        "Stage": "Prod",
+        "Path": "/sell",
+        "RequestBody.$": "$.ResponseBody",
+        "AuthType": "NO_AUTH"
+      },
+      "Next": "Record Transaction"
+    },
+    "Buy Stock": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::apigateway:invoke",
+      "Parameters": {
+        "ApiEndpoint": "htq0zqqe74.execute-api.us-east-1.amazonaws.com",
+        "Method": "POST",
+        "Stage": "Prod",
+        "Path": "/buy",
+        "RequestBody.$": "$.ResponseBody",
+        "AuthType": "NO_AUTH"
+      },
+      "Next": "Record Transaction"
+    },
+    "Record Transaction": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::dynamodb:putItem",
+      "Parameters": {
+        "TableName": "TransactionTable",
+        "Item": {
+          "Id": {
+            "S.$": "$.ResponseBody.id"
+          },
+          "Type": {
+            "S.$": "$.ResponseBody.type"
+          },
+          "Price": {
+            "N.$": "$.ResponseBody.price"
+          },
+          "Quantity": {
+            "N.$": "$.ResponseBody.qty"
+          },
+          "Timestamp": {
+            "S.$": "$.ResponseBody.timestamp"
+          }
+        }
+      },
+      "End": true
     }
+  }
 }
 ```
 
