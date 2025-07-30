@@ -22,10 +22,10 @@ aws dynamodb create-table \
     --billing-mode PAY_PER_REQUEST \
     --region us-east-1
 
-Run in CloudShell
-Step 2: Create Lambda Functions
-A. Stock Checker Lambda (stock-checker.js)
+## Step 2: Create Lambda Functions
+### A. Stock Checker Lambda (stock-checker.js)
 
+```
 const AWS = require('aws-sdk');
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 
@@ -79,9 +79,13 @@ exports.handler = async (event) => {
         };
     }
 };
+```
 
-B. Buy/Sell Order Lambda (order-processor.js)
 
+
+### B. Buy/Sell Order Lambda (order-processor.js)
+
+```
 const AWS = require('aws-sdk');
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 const stepfunctions = new AWS.StepFunctions();
@@ -128,9 +132,10 @@ exports.handler = async (event) => {
         };
     }
 };
+```
 
-C. Transaction History Lambda (get-transactions.js)
-
+### C. Transaction History Lambda (get-transactions.js)
+```
 const AWS = require('aws-sdk');
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 
@@ -167,10 +172,13 @@ exports.handler = async (event) => {
         };
     }
 };
+```
 
-Step 3: Create Step Functions State Machine
+### Step 3: Create Step Functions State Machine
+
 Step Function Definition (stock-trading-workflow.json)
 
+```
 {
   "Comment": "Stock Trading Workflow",
   "StartAt": "ValidateOrder",
@@ -202,10 +210,11 @@ Step Function Definition (stock-trading-workflow.json)
     }
   }
 }
+```
 
 Step 4: Create API Gateway
-API Gateway Setup Commands:
-
+#### API Gateway Setup Commands:
+```
 # Create API Gateway
 aws apigatewayv2 create-api \
     --name stock-management-api \
@@ -228,10 +237,11 @@ aws apigatewayv2 create-route \
 aws apigatewayv2 create-route \
     --api-id YOUR_API_ID \
     --route-key "GET /transactions"
+```
 
-Run in CloudShell
-Phase 2: Frontend Deployment
-Step 5: Create S3 Bucket for Frontend
+## Phase 2: Frontend Deployment
+### Step 5: Create S3 Bucket for Frontend
+```
 # Create S3 bucket
 aws s3 mb s3://your-stock-app-frontend-bucket
 
@@ -242,11 +252,10 @@ aws s3 website s3://your-stock-app-frontend-bucket \
 
 # Upload frontend files
 aws s3 sync ./frontend-files s3://your-stock-app-frontend-bucket
-
-Run in CloudShell
-Step 6: Setup CloudFront Distribution
+```
+### Step 6: Setup CloudFront Distribution
 CloudFront Configuration:
-
+```
 {
     "CallerReference": "stock-app-distribution",
     "Comment": "Stock Management App Distribution",
@@ -279,11 +288,11 @@ CloudFront Configuration:
     },
     "Enabled": true
 }
-
-Phase 3: Configuration and Connection
-Step 7: Update Frontend Configuration
+```
+## Phase 3: Configuration and Connection
+### Step 7: Update Frontend Configuration
 Update script.js with your actual API Gateway URL:
-
+```
 // Replace this with your actual API Gateway URL
 const API_BASE_URL = 'https://your-api-id.execute-api.us-east-1.amazonaws.com';
 
@@ -293,10 +302,10 @@ const ENDPOINTS = {
     sellStock: `${API_BASE_URL}/stock/sell`,
     getTransactions: `${API_BASE_URL}/transactions`
 };
-
-Step 8: Sample Data Setup
+```
+### Step 8: Sample Data Setup
 Add sample stock data to DynamoDB:
-
+```
 // Sample data insertion script
 const AWS = require('aws-sdk');
 const dynamodb = new AWS.DynamoDB.DocumentClient();
@@ -339,11 +348,12 @@ async function insertSampleData() {
 }
 
 insertSampleData();
+```
 
-Phase 4: IAM Permissions Setup
-Step 9: Create IAM Roles
+## Phase 4: IAM Permissions Setup
+### Step 9: Create IAM Roles
 Lambda Execution Role Policy:
-
+```
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -380,10 +390,11 @@ Lambda Execution Role Policy:
         }
     ]
 }
-
-Phase 5: Testing and Deployment
-Step 10: Deploy and Test
+```
+## Phase 5: Testing and Deployment
+### Step 10: Deploy and Test
 Deploy Lambda Functions:
+```
 # Package and deploy each Lambda function
 zip -r stock-checker.zip stock-checker.js node_modules/
 aws lambda create-function \
@@ -392,22 +403,23 @@ aws lambda create-function \
     --role arn:aws:iam::YOUR_ACCOUNT_ID:role/lambda-execution-role \
     --handler stock-checker.handler \
     --zip-file fileb://stock-checker.zip
-
-Run in CloudShell
+```
 Test API Endpoints:
+```
 # Test stock checker
 curl -X POST https://your-api-gateway-url/stock/check \
   -H "Content-Type: application/json" \
   -d '{"stockSymbol": "AAPL"}'
+```
 
-Run in CloudShell
 Access Your Frontend:
-Go to your CloudFront distribution URL
-Test all functionality: stock checking, buying, selling
-Verify data is being stored in DynamoDB
+- Go to your CloudFront distribution URL
+- Test all functionality: stock checking, buying, selling
+- Verify data is being stored in DynamoDB
+
 Quick Setup Script
 Here's a deployment script to automate the setup:
-
+```
 #!/bin/bash
 
 # Set variables
@@ -427,8 +439,8 @@ aws s3 mb s3://$BUCKET_NAME
 aws s3 website s3://$BUCKET_NAME --index-document index.html
 
 echo "Setup complete! Now deploy your Lambda functions and configure API Gateway."
+```            
 
-Run in CloudShell
 This complete setup will give you a fully functional stock management system with frontend UI connected to your backend services and database!
 
 Would you like me to help you with any specific part of this setup process?
