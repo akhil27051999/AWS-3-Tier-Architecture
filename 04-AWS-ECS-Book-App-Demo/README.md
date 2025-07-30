@@ -7,8 +7,6 @@ This project demonstrates a **production-ready, containerized three-tier web arc
 
 <img width="1170" height="801" alt="book-app drawio (1)" src="https://github.com/user-attachments/assets/032f7d13-7b90-4ef1-a3c9-b9dfc5e7cc2c" />
 
-https://github.com/user-attachments/assets/2761b765-570f-409e-8f8b-5df115a76fc4
-
 ## Architecture Components
 
 ### **Tier 1: Presentation Layer (Web Tier)**
