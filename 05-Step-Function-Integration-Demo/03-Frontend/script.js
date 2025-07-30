@@ -260,20 +260,6 @@ class StockManager {
         return div;
     }
 
-    fillBuyForm(symbol) {
-        const buySymbolInput = document.getElementById('buySymbol');
-        if (buySymbolInput) {
-            buySymbolInput.value = symbol;
-        }
-    }
-
-    fillSellForm(symbol) {
-        const sellSymbolInput = document.getElementById('sellSymbol');
-        if (sellSymbolInput) {
-            sellSymbolInput.value = symbol;
-        }
-    }
-
     updatePortfolio(symbol, quantity, action) {
         const existingStock = this.portfolio.find(stock => stock.symbol === symbol);
         
@@ -475,4 +461,21 @@ style.textContent = `
     .portfolio-item {
         padding: 10px;
         margin: 5px 0;
-        border
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background-color: #f8f9fa;
+    }
+    .portfolio-stock {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .portfolio-symbol {
+        font-weight: bold;
+        color: #333;
+    }
+    .portfolio-quantity {
+        color: #666;
+    }
+`;
+document.head.appendChild(style);
