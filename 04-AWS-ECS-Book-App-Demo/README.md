@@ -5,7 +5,7 @@ This project demonstrates a **production-ready, containerized three-tier web arc
 
 ## Architecture Diagram
 
-<img width="1170" height="801" alt="book-app drawio (1)" src="https://github.com/user-attachments/assets/032f7d13-7b90-4ef1-a3c9-b9dfc5e7cc2c" />
+<img width="1170" height="801" alt="Book-App drawio (2)" src="https://github.com/user-attachments/assets/96bb9247-60f0-4fea-bf51-a92693a8712e" />
 
 ## Architecture Components
 
