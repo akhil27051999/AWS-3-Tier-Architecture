@@ -1,236 +1,303 @@
-// script.js - Final version with your exact API paths
-const API_CONFIG = {
-    BASE_API: 'https://htq0zqqe74.execute-api.us-east-1.amazonaws.com/Prod',
-    REGION: 'us-east-1'
-};
-
-const ENDPOINTS = {
-    checkStock: `${API_CONFIG.BASE_API}/check`,
-    buyStock: `${API_CONFIG.BASE_API}/buy`,
-    sellStock: `${API_CONFIG.BASE_API}/sell`
-};
-
 class StockManager {
     constructor() {
-        this.initializeEventListeners();
-        console.log('Stock Manager initialized with endpoints:', ENDPOINTS);
+        this.apiBaseUrl = 'https://htq0zqqe74.execute-api.us-east-1.amazonaws.com/Prod';
+        this.portfolio = [];
+        this.balance = 10000;
+        this.init();
     }
 
-    initializeEventListeners() {
-        document.getElementById('stockCheckerForm').addEventListener('submit', (e) => this.handleStockCheck(e));
-        document.getElementById('buyerForm').addEventListener('submit', (e) => this.handleBuyOrder(e));
-        document.getElementById('sellerForm').addEventListener('submit', (e) => this.handleSellOrder(e));
+    init() {
+        this.loadPortfolio();
+        this.setupEventListeners();
+        this.loadStockData();
     }
 
-    async handleStockCheck(event) {
-        event.preventDefault();
+    setupEventListeners() {
+        const buyForm = document.getElementById('buyForm');
+        const sellForm = document.getElementById('sellForm');
         
-        const stockSymbol = document.getElementById('stockSymbol').value.toUpperCase();
-        const resultDiv = document.getElementById('stockResult');
+        if (buyForm) {
+            buyForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                this.handleBuyOrder();
+            });
+        }
         
-        this.showLoading();
-        console.log(`Checking stock: ${stockSymbol}`);
-        
+        if (sellForm) {
+            sellForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                this.handleSellOrder();
+            });
+        }
+    }
+
+    async loadStockData() {
         try {
-            const response = await fetch(ENDPOINTS.checkStock, {
+            console.log('Loading stock data...');
+            const response = await fetch(`${this.apiBaseUrl}/check`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const stocks = await response.json();
+            console.log('Stock data loaded:', stocks);
+            this.displayStocks(stocks);
+            
+        } catch (error) {
+            console.error('Error loading stock data:', error);
+            this.showError('Failed to load stock data. Please try again.');
+        }
+    }
+
+    async handleBuyOrder() {
+        try {
+            const symbol = document.getElementById('buySymbol')?.value;
+            const quantity = parseInt(document.getElementById('buyQuantity')?.value);
+            
+            if (!symbol || !quantity || quantity <= 0) {
+                this.showError('Please enter valid stock symbol and quantity');
+                return;
+            }
+
+            console.log('Placing buy order:', { symbol, quantity });
+            
+            const response = await fetch(`${this.apiBaseUrl}/buy`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 },
                 body: JSON.stringify({
-                    stockSymbol: stockSymbol
+                    symbol: symbol.toUpperCase(),
+                    quantity: quantity,
+                    timestamp: new Date().toISOString()
                 })
             });
-            
-            console.log('Stock check response status:', response.status);
-            const data = await response.json();
-            console.log('Stock check response data:', data);
-            
-            if (response.ok) {
-                this.displayStockResult(resultDiv, data);
-                // Auto-populate buy/sell forms
-                document.getElementById('buyStockSymbol').value = stockSymbol;
-                document.getElementById('sellStockSymbol').value = stockSymbol;
-                if (data.currentPrice) {
-                    document.getElementById('buyPrice').value = data.currentPrice;
-                    document.getElementById('sellPrice').value = data.currentPrice;
-                }
-            } else {
-                this.displayError(resultDiv, data.message || data.errorMessage || 'Stock not found');
-            }
-        } catch (error) {
-            this.displayError(resultDiv, 'Network error: Unable to check stock');
-            console.error('Stock check error:', error);
-        } finally {
-            this.hideLoading();
-        }
-    }
 
-    async handleBuyOrder(event) {
-        event.preventDefault();
-        
-        const formData = {
-            stockSymbol: document.getElementById('buyStockSymbol').value.toUpperCase(),
-            quantity: parseInt(document.getElementById('buyQuantity').value),
-            maxPrice: parseFloat(document.getElementById('buyPrice').value),
-            buyerName: document.getElementById('buyerName').value,
-            orderType: 'BUY',
-            timestamp: new Date().toISOString()
-        };
-        
-        const resultDiv = document.getElementById('buyResult');
-        this.showLoading();
-        console.log('Placing buy order:', formData);
-        
-        try {
-            const response = await fetch(ENDPOINTS.buyStock, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify(formData)
-            });
-            
-            console.log('Buy order response status:', response.status);
-            const data = await response.json();
-            console.log('Buy order response data:', data);
-            
-            if (response.ok) {
-                this.displayOrderResult(resultDiv, data, 'success');
-                document.getElementById('buyerForm').reset();
-                this.showSuccessToast('Buy order placed successfully!');
-            } else {
-                this.displayError(resultDiv, data.message || data.errorMessage || 'Failed to place buy order');
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(`HTTP ${response.status}: ${errorText}`);
             }
+
+            const result = await response.json();
+            console.log('Buy order successful:', result);
+            
+            this.showSuccess(`Successfully bought ${quantity} shares of ${symbol}`);
+            this.updatePortfolio(symbol, quantity, 'buy');
+            this.clearForm('buyForm');
+            
         } catch (error) {
-            this.displayError(resultDiv, 'Network error: Unable to place order');
             console.error('Buy order error:', error);
-        } finally {
-            this.hideLoading();
+            this.showError(`Failed to place buy order: ${error.message}`);
         }
     }
 
-    async handleSellOrder(event) {
-        event.preventDefault();
-        
-        const formData = {
-            stockSymbol: document.getElementById('sellStockSymbol').value.toUpperCase(),
-            quantity: parseInt(document.getElementById('sellQuantity').value),
-            minPrice: parseFloat(document.getElementById('sellPrice').value),
-            sellerName: document.getElementById('sellerName').value,
-            orderType: 'SELL',
-            timestamp: new Date().toISOString()
-        };
-        
-        const resultDiv = document.getElementById('sellResult');
-        this.showLoading();
-        console.log('Placing sell order:', formData);
-        
+    async handleSellOrder() {
         try {
-            const response = await fetch(ENDPOINTS.sellStock, {
+            const symbol = document.getElementById('sellSymbol')?.value;
+            const quantity = parseInt(document.getElementById('sellQuantity')?.value);
+            
+            if (!symbol || !quantity || quantity <= 0) {
+                this.showError('Please enter valid stock symbol and quantity');
+                return;
+            }
+
+            console.log('Placing sell order:', { symbol, quantity });
+            
+            const response = await fetch(`${this.apiBaseUrl}/sell`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 },
-                body: JSON.stringify(formData)
+                body: JSON.stringify({
+                    symbol: symbol.toUpperCase(),
+                    quantity: quantity,
+                    timestamp: new Date().toISOString()
+                })
             });
-            
-            console.log('Sell order response status:', response.status);
-            const data = await response.json();
-            console.log('Sell order response data:', data);
-            
-            if (response.ok) {
-                this.displayOrderResult(resultDiv, data, 'success');
-                document.getElementById('sellerForm').reset();
-                this.showSuccessToast('Sell order placed successfully!');
-            } else {
-                this.displayError(resultDiv, data.message || data.errorMessage || 'Failed to place sell order');
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(`HTTP ${response.status}: ${errorText}`);
             }
+
+            const result = await response.json();
+            console.log('Sell order successful:', result);
+            
+            this.showSuccess(`Successfully sold ${quantity} shares of ${symbol}`);
+            this.updatePortfolio(symbol, quantity, 'sell');
+            this.clearForm('sellForm');
+            
         } catch (error) {
-            this.displayError(resultDiv, 'Network error: Unable to place order');
             console.error('Sell order error:', error);
-        } finally {
-            this.hideLoading();
+            this.showError(`Failed to place sell order: ${error.message}`);
         }
     }
 
-    displayStockResult(container, data) {
-        container.innerHTML = `
-            <div class="alert alert-info">
-                <div class="d-flex justify-content-between align-items-center">
-                    <div>
-                        <h6 class="mb-1"><strong>${data.stockSymbol || 'N/A'}</strong></h6>
-                        <p class="mb-1">Current Price: <strong>$${data.currentPrice || data.price || 'N/A'}</strong></p>
-                        <p class="mb-1">Available Shares: <strong>${data.availableShares || data.quantity || 'N/A'}</strong></p>
-                        ${data.companyName ? `<p class="mb-1">Company: <strong>${data.companyName}</strong></p>` : ''}
-                    </div>
-                    <div class="text-end">
-                        <small class="text-muted">Updated: ${new Date().toLocaleTimeString()}</small>
-                    </div>
-                </div>
+    displayStocks(stocks) {
+        const container = document.getElementById('stockList');
+        if (!container) return;
+
+        container.innerHTML = '';
+        
+        if (Array.isArray(stocks)) {
+            stocks.forEach(stock => {
+                const stockElement = this.createStockElement(stock);
+                container.appendChild(stockElement);
+            });
+        } else {
+            console.log('Stocks data is not an array:', stocks);
+        }
+    }
+
+    createStockElement(stock) {
+        const div = document.createElement('div');
+        div.className = 'stock-item';
+        div.innerHTML = `
+            <div class="stock-info">
+                <h3>${stock.symbol || 'N/A'}</h3>
+                <p>Price: $${stock.price || '0.00'}</p>
+                <p>Change: ${stock.change || '0.00'}%</p>
             </div>
         `;
+        return div;
     }
 
-    displayOrderResult(container, data, type) {
-        const alertClass = type === 'success' ? 'alert-success' : 'alert-danger';
-        container.innerHTML = `
-            <div class="alert ${alertClass}">
-                <h6><i class="fas fa-check-circle me-2"></i>Order Submitted Successfully!</h6>
-                <p class="mb-1">Order ID: <strong>${data.orderId || data.executionArn || data.transactionId || 'Generated'}</strong></p>
-                <p class="mb-1">Status: <strong>${data.status || 'PROCESSING'}</strong></p>
-                ${data.executionArn ? `<p class="mb-1">Execution: <small>${data.executionArn}</small></p>` : ''}
-                <small class="text-muted">Submitted: ${new Date().toLocaleString()}</small>
-            </div>
-        `;
+    updatePortfolio(symbol, quantity, action) {
+        const existingStock = this.portfolio.find(stock => stock.symbol === symbol);
+        
+        if (action === 'buy') {
+            if (existingStock) {
+                existingStock.quantity += quantity;
+            } else {
+                this.portfolio.push({ symbol, quantity });
+            }
+        } else if (action === 'sell') {
+            if (existingStock) {
+                existingStock.quantity -= quantity;
+                if (existingStock.quantity <= 0) {
+                    this.portfolio = this.portfolio.filter(stock => stock.symbol !== symbol);
+                }
+            }
+        }
+        
+        this.savePortfolio();
+        this.displayPortfolio();
     }
 
-    displayError(container, message) {
-        container.innerHTML = `
-            <div class="alert alert-danger">
-                <h6><i class="fas fa-exclamation-triangle me-2"></i>Error</h6>
-                <p class="mb-0">${message}</p>
-            </div>
-        `;
+    displayPortfolio() {
+        const container = document.getElementById('portfolio');
+        if (!container) return;
+
+        container.innerHTML = '';
+        
+        this.portfolio.forEach(stock => {
+            const div = document.createElement('div');
+            div.className = 'portfolio-item';
+            div.innerHTML = `
+                <span>${stock.symbol}: ${stock.quantity} shares</span>
+            `;
+            container.appendChild(div);
+        });
     }
 
-    showLoading() {
-        const modal = new bootstrap.Modal(document.getElementById('loadingModal'));
-        modal.show();
+    loadPortfolio() {
+        try {
+            const saved = localStorage.getItem('stockPortfolio');
+            if (saved) {
+                this.portfolio = JSON.parse(saved);
+                this.displayPortfolio();
+            }
+        } catch (error) {
+            console.error('Error loading portfolio:', error);
+        }
     }
 
-    hideLoading() {
-        const modal = bootstrap.Modal.getInstance(document.getElementById('loadingModal'));
-        if (modal) modal.hide();
+    savePortfolio() {
+        try {
+            localStorage.setItem('stockPortfolio', JSON.stringify(this.portfolio));
+        } catch (error) {
+            console.error('Error saving portfolio:', error);
+        }
     }
 
-    showSuccessToast(message) {
-        // Create a simple toast notification
-        const toast = document.createElement('div');
-        toast.className = 'toast-notification';
-        toast.innerHTML = `
-            <div class="alert alert-success alert-dismissible fade show position-fixed" 
-                 style="top: 20px; right: 20px; z-index: 9999;">
-                <i class="fas fa-check-circle me-2"></i>${message}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        `;
-        document.body.appendChild(toast);
+    clearForm(formId) {
+        const form = document.getElementById(formId);
+        if (form) {
+            form.reset();
+        }
+    }
+
+    showSuccess(message) {
+        this.showMessage(message, 'success');
+    }
+
+    showError(message) {
+        this.showMessage(message, 'error');
+    }
+
+    showMessage(message, type) {
+        // Remove existing messages
+        const existing = document.querySelector('.message');
+        if (existing) {
+            existing.remove();
+        }
+
+        // Create new message
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${type}`;
+        messageDiv.textContent = message;
+        
+        // Add to page
+        document.body.insertBefore(messageDiv, document.body.firstChild);
         
         // Auto remove after 5 seconds
         setTimeout(() => {
-            if (toast.parentNode) {
-                toast.parentNode.removeChild(toast);
+            if (messageDiv.parentNode) {
+                messageDiv.remove();
             }
         }, 5000);
     }
 }
 
-// Initialize the application
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM loaded, initializing Stock Manager...');
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('Initializing Stock Manager...');
     new StockManager();
 });
+
+// Add CSS for messages
+const style = document.createElement('style');
+style.textContent = `
+    .message {
+        padding: 10px;
+        margin: 10px;
+        border-radius: 4px;
+        font-weight: bold;
+    }
+    .message.success {
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+    }
+    .message.error {
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+    }
+    .stock-item, .portfolio-item {
+        padding: 10px;
+        margin: 5px 0;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+`;
+document.head.appendChild(style);
