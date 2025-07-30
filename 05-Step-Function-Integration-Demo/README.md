@@ -2,24 +2,24 @@
 A complete serverless stock trading application built on AWS using Lambda, API Gateway, S3, and CloudFront. This project demonstrates modern cloud architecture with real-time stock data simulation, buy/sell functionality, and a responsive web interface.
 
 ## 📋 Table of Contents
-Project Overview 
-Architecture 
-Features 
-Prerequisites 
-AWS Services Used 
-Project Structure 
-Step-by-Step Setup Guide 
-Lambda Functions 
-API Gateway Configuration 
-Frontend Implementation 
-Deployment 
-Testing 
-Troubleshooting 
-Cost Optimization 
-Security Best Practices 
-Future Enhancements 
-Contributing 
-License 
+- Project Overview
+- Architecture
+- Features
+- Prerequisites
+- AWS Services Used
+- Project Structure
+- Step-by-Step Setup Guide
+- Lambda Functions
+- API Gateway Configuration
+- Frontend Implementation
+- Deployment
+- Testing
+- Troubleshooting
+- Cost Optimization
+- Security Best Practices
+- Future Enhancements
+- Contributing
+- License 
 
 ## 🎯 Project Overview
 This serverless stock trading platform allows users to:
