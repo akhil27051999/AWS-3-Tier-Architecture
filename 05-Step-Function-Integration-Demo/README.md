@@ -4,7 +4,6 @@ The new Step Functions integration with API Gateway provides an additional resou
 
 See this [AWS compute blog](https://aws.amazon.com/blogs/compute/introducing-amazon-api-gateway-service-integration-for-aws-step-functions/) for more information on the Step Functions service integration with API Gateway.
 
-![API Gateway Step Fcuntions service integration](/repoResources/stateMachine.png)
  
 This project contains source code and supporting files for a serverless application that you can deploy with the SAM CLI. It includes the following files and folders:
 
