@@ -67,15 +67,16 @@ session-manager-plugin
 
 1. **Clone the project repository from GitHub to Local** → **Build and push the Docker image from Local to ECR**
 2. **Follow the 4 commands** in your local terminal:
-   ```bash
-   # 1. Retrieve authentication token
-   aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin [account-id].dkr.ecr.us-east-1.amazonaws.com
+```bash
+ # 1. Retrieve authentication token
+ aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin [account-id].dkr.ecr.us-east-1.amazonaws.com
+  
+ # 2. Build your Docker image
+ docker build -t book-app .
    
-   # 2. Build your Docker image
-   docker build -t book-app .
+ # 3. Tag your image
+ docker tag book-app:latest [account-id].dkr.ecr.us-east-1.amazonaws.com/book-app:latest
    
-   # 3. Tag your image
-   docker tag book-app:latest [account-id].dkr.ecr.us-east-1.amazonaws.com/book-app:latest
-   
-   # 4. Push image to repository
-   docker push [account-id].dkr.ecr.us-east-1.amazonaws.com/book-app:latest
+ # 4. Push image to repository
+ docker push [account-id].dkr.ecr.us-east-1.amazonaws.com/book-app:latest
+```
