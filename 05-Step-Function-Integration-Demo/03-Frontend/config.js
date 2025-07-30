@@ -1,13 +1,12 @@
-// config.js - Replace with your actual API Gateway URLs
+// config.js - Single API with multiple endpoints
 const API_CONFIG = {
-    // Replace these URLs with your actual API Gateway invoke URLs
-    STOCK_CHECKER_API: 'https://your-stock-checker-api.execute-api.us-east-1.amazonaws.com/prod',
-    BUYER_API: 'https://your-buyer-api.execute-api.us-east-1.amazonaws.com/prod', 
-    SELLER_API: 'https://your-seller-api.execute-api.us-east-1.amazonaws.com/prod',
+    BASE_API: 'https://htq0zqqe74.execute-api.us-east-1.amazonaws.com/Prod',
     REGION: 'us-east-1'
 };
 
-// Export for use in other files
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = API_CONFIG;
-}
+const ENDPOINTS = {
+    checkStock: `${API_CONFIG.BASE_API}/stock/check`,
+    buyStock: `${API_CONFIG.BASE_API}/stock/buy`, 
+    sellStock: `${API_CONFIG.BASE_API}/stock/sell`,
+    getTransactions: `${API_CONFIG.BASE_API}/transactions`
+};
