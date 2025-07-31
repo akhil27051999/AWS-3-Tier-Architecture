@@ -260,8 +260,6 @@ aws-stock-trading-platform/
      - Copy the Invoke URL (e.g., https://abc123.execute-api.us-east-1.amazonaws.com/Prod)
      - You'll need this for the frontend configuration
 
----
-
 ## Phase 3:  DynamoDB Integration
 
 ### 3.1 Table: `Stockitems`
