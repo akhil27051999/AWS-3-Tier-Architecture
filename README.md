@@ -65,17 +65,14 @@
 |                           | **Internet Gateway, NAT Gateway** | Enables internet access for public and private subnets            |
 |                           | **Route Tables**          | Manages traffic routing across the network                             |
 |                           | **Security Groups**       | Controls access to ECS tasks, ALB, and other components                 |
-
 | 📦 Container & Deployment | **Amazon ECS (Fargate)**   | Runs containers without managing servers                                |
 |                           | **Amazon ECR**            | Stores container images securely                                        |
 |                           | **Application Load Balancer (ALB)** | Distributes incoming traffic to ECS services                   |
 |                           | **ECS Task Definitions & Services** | Defines how containers run and scale                                |
-
 | 🔁 CI/CD & Automation     | **AWS CodeCommit**        | Git-based code repository for storing application source code           |
 |                           | **AWS CodeBuild**         | Builds and packages container images automatically                      |
 |                           | **AWS CodeDeploy**        | Manages ECS deployment and blue-green deployments                       |
 |                           | **AWS CodePipeline**      | Automates the end-to-end CI/CD pipeline                                 |
-
 | 🔐 Security               | **AWS IAM**               | Controls access via roles and policies across all AWS services          |
 
 
