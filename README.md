@@ -86,34 +86,22 @@
 ## Project 5 : AWS Serverless Stock Trading Platform
 The AWS Serverless Stock Trading Platform is a fully cloud-native, serverless application designed to simulate real-time stock trading. It is built using AWS Lambda, API Gateway, Amazon S3, and CloudFront, offering users a fast, scalable, and cost-effective trading interface accessible through a responsive web UI.
 
-### 🎯 Purpose
-To demonstrate modern serverless architecture on AWS by implementing a full-stack stock trading simulation that includes real-time pricing, transaction processing (buy/sell), and portfolio tracking—all without managing servers.
+**Goal**:
+Combine Infrastructure as Code (IaC) with manual provisioning to enable a flexible deployment strategy for a Three-Tier Web Application on AWS.
 
-### 🏗️ Architecture Overview
+**Implementation**:
+- CloudFormation templates used to deploy core infrastructure:
+- VPC with public/private subnets
+- Route tables, internet/NAT gateways
+- Security groups for controlled access
+- Aurora MySQL cluster provisioned using CloudFormation for the data tier
+- Manual provisioning of EC2 instances for the web and app tiers within the pre-created VPC
+- Frontend and backend applications deployed and configured on EC2 instances
+- Database connectivity tested and verified between backend EC2 and Aurora MySQL
+- Environment variables and security groups configured to allow seamless integration
 
-- Frontend: Hosted on Amazon S3, distributed globally via CloudFront, and deployed with AWS Amplify for easy management.
-- Backend: Built using three AWS Lambda functions (stock checker, buy, sell) orchestrated via AWS Step Functions, and exposed through a REST API using API Gateway.
-- Infrastructure: Defined using CloudFormation templates for consistent, repeatable deployments.
-- Documentation & Assets: Includes Swagger API definition, architecture diagrams, and detailed setup instructions.
-
-### ✨ Key Features
-
-- Simulated real-time stock pricing for major companies (AAPL, GOOGL, MSFT, etc.)
-- Fully functional buy/sell transactions with portfolio tracking
-- Responsive UI with interactive forms and real-time updates
-- Serverless scalability with auto-scaling Lambda functions
-- CORS-enabled REST API for frontend-backend communication
-- Comprehensive error handling and CloudWatch monitoring
-- Built-in support for CI/CD, security best practices, and cost optimization
-
-### 🔐 Security & Cost
-
-- Implements least-privilege IAM roles, environment variable handling, and input validation
-- Takes advantage of AWS Free Tier to ensure near-zero cost under light usage
-- Follows Well-Architected Framework and serverless best practices
-
-### 🚀 Outcome
-This project serves as a production-ready demo of a modern serverless application. It showcases the full lifecycle from infrastructure as code to frontend deployment, highlighting AWS’s capability to build resilient, low-maintenance, and scalable applications.
+**Outcome**
+A hybrid deployment model that combines the reliability and repeatability of Infrastructure as Code with the flexibility of manual provisioning, showcasing real-world deployment workflows for a traditional three-tier architecture on AWS.
 
 <img width="1893" height="1021" alt="Screenshot 2025-07-31 024047" src="https://github.com/user-attachments/assets/a9bd5e59-19e4-4891-97aa-74e8510625c6" />
 
