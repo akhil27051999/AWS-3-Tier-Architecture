@@ -18,7 +18,6 @@ A complete serverless stock trading application built on AWS using Lambda, API G
 - [📊 Monitoring and Observability](#-monitoring-and-observability)
 - [🧪 Advanced Testing](#-advanced-testing)
 - [📚 Learning Resources](#-learning-resources)
-- [📄 License](#-license)
 - [🎯 Project Milestones](#-project-milestones)
 - [🏆 Achievements](#-achievements)
 - [🎉 Conclusion](#-conclusion)
