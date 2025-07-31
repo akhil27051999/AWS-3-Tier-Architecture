@@ -22,8 +22,6 @@ Using Step Functions:
 - Makes the workflow easier to visualize and debug
 - Automatically retries failed tasks where configured
 
----
-
 ### How It's Used in This Project
 
 We created a **Step Function state machine** to orchestrate the execution of three Lambda functions in the following order:
@@ -36,8 +34,6 @@ We created a **Step Function state machine** to orchestrate the execution of thr
 
 3. **RecordTransactionFunction**  
    Stores the trade transaction in DynamoDB for history and portfolio tracking.
-
----
 
 ### Triggering the State Machine
 
