@@ -132,6 +132,11 @@ aws-stock-trading-platform/
 # Step-by-Step Setup Guide
 
 ## Phase 1: Lambda Functions Setup
+
+### Lambda Function Setup
+
+https://github.com/user-attachments/assets/991f4984-cc5d-4209-af24-c8c560058a0c
+
 ### 1.1 Create Stock Checker Function
 
 1. Navigate to AWS Lambda Console
@@ -178,6 +183,11 @@ aws-stock-trading-platform/
    - Test the function using the Test tab  
 
 ## Phase 2: API Gateway Setup
+
+### API Gateway Setup
+
+https://github.com/user-attachments/assets/e80c1204-6b2a-4b1c-b644-e0bfb436a980
+
 
 ### 2.1 Create REST API
 
@@ -261,6 +271,11 @@ aws-stock-trading-platform/
      - You'll need this for the frontend configuration
 
 ## Phase 3:  DynamoDB Integration
+
+DynamoDB SetUp and API Integration to Frontend
+
+https://github.com/user-attachments/assets/8195fdb6-1777-4a12-9235-ab1627559680
+
 
 ### 3.1 Table: `Stockitems`
 
@@ -404,6 +419,10 @@ const API_BASE_URL = 'https://YOUR-API-ID.execute-api.YOUR-REGION.amazonaws.com/
    - Re-upload script.js to S3
      
 6.3 Final Testing
+
+Application Testing
+
+https://github.com/user-attachments/assets/74e18426-5c84-48e9-b3a5-6e1132bf03dd
 
 1. Test All Endpoints
    - Visit your website
