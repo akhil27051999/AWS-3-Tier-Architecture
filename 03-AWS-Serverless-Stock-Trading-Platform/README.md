@@ -42,7 +42,7 @@ https://github.com/user-attachments/assets/991f4984-cc5d-4209-af24-c8c560058a0c
 
 https://github.com/user-attachments/assets/e80c1204-6b2a-4b1c-b644-e0bfb436a980
 
-### 3. Statemachine Video
+### 3. State Machine Setup
 
 https://github.com/user-attachments/assets/6d8b872e-dc6a-4765-abf4-78ee073e3efc
 
