@@ -16,7 +16,7 @@ Build a highly available, secure 3-tier web application with:
 - **High Availability**: Deployed across two Availability Zones
 - **Security**: Controlled routing and communication between tiers
 
-## 🛠️ AWS Services Used
+## AWS Services Used
 
 This project implements a classic high-availability three-tier web application architecture using a combination of EC2, load balancing, and managed database services. Below is the categorized list of AWS services utilized:
 
