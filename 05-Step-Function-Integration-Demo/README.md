@@ -681,10 +681,6 @@ artillery run load-test.yml
 - **Best Practices**: Well-Architected Framework, Serverless Lens, Security
 - **Community**: AWS Samples, Serverless Framework, AWS CDK
 
-## 📄 License
-
-MIT License © 2024 AWS Stock Trading Platform
-
 ## 🎯 Project Milestones
 
 ### ✅ Completed
@@ -706,9 +702,3 @@ This project demonstrates:
 - Modern serverless stack
 - Secure & scalable AWS design
 - Real-world cloud development skills
-
-Project Repository: https://github.com/your-username/aws-stock-trading-platform  
-Live Demo: https://your-cloudfront-domain.cloudfront.net  
-Author: Your Name  
-Version: 1.0.0  
-Date: 2024
