@@ -129,8 +129,6 @@ aws-stock-trading-platform/
 
 1. Navigate to AWS Lambda Console
 
-https://console.aws.amazon.com/lambda/
-
 2. Create Function
   - Click "Create function"
   - Choose "Author from scratch"
@@ -177,7 +175,7 @@ https://console.aws.amazon.com/lambda/
 ### 2.1 Create REST API
 
 1. Navigate to API Gateway Console
-   - https://console.aws.amazon.com/apigateway/
+
 2. Create API
    - Choose "REST API" (not private)
    - Click "Build"
@@ -260,7 +258,6 @@ https://console.aws.amazon.com/lambda/
 
 ### 3.1 Create S3 Bucket
 1. Navigate to S3 Console
-   - https://console.aws.amazon.com/s3/
 2. Create Bucket
    - Bucket name: stock-trading-platform-[your-unique-id]
    - Region: Same as your Lambda functions
