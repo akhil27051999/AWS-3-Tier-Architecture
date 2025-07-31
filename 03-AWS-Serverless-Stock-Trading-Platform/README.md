@@ -4,18 +4,24 @@ A complete serverless stock trading application built on AWS using Lambda, API G
 ## Table of Contents
 
 1. [Project Overview](#project-overview)  
-2. [Architecture Diagram](#architecture-diagram)  
-3. [Architecture Components](#architecture-components)  
+2. [Architecture](#architecture)  
+3. [Features](#features)  
 4. [Prerequisites](#prerequisites)  
 5. [AWS Services Used](#aws-services-used)  
-6. [Getting Started](#getting-started)  
-7. [Deployment Strategies](#deployment-strategies)  
-8. [Traffic Flow Journey](#traffic-flow-journey)  
-9. [Project Components](#project-components)  
-10. [Key Features & Benefits](#key-features--benefits)  
-11. [Use Cases](#use-cases)  
-12. [Monitoring & Observability](#monitoring--observability)  
-13. [Best Practices Demonstrated](#best-practices-demonstrated)
+6. [Project Structure](#project-structure)  
+7. [Step-by-Step Setup Guide](#step-by-step-setup-guide)  
+8. [Testing](#testing)  
+9. [Troubleshooting](#troubleshooting)  
+10. [Cost Optimization](#cost-optimization)  
+11. [Security Best Practices](#security-best-practices)  
+12. [Future Enhancements](#future-enhancements)  
+13. [Monitoring and Observability](#monitoring-and-observability)  
+14. [Advanced Testing](#advanced-testing)  
+15. [Learning Resources](#learning-resources)  
+16. [Project Milestones](#project-milestones)  
+17. [Achievements](#achievements)  
+18. [Conclusion](#conclusion)
+
 
 
 
