@@ -420,7 +420,7 @@ const API_BASE_URL = 'https://YOUR-API-ID.execute-api.YOUR-REGION.amazonaws.com/
    - Test sell functionality
    - Check portfolio updates
      
-## 7. Testing
+## Testing
 ### Manual Testing Checklist
 
 1. Stock Data Loading
