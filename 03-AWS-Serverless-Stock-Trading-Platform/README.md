@@ -262,9 +262,9 @@ aws-stock-trading-platform/
 
 ---
 
-### 2.5 DynamoDB Integration
+## Phase 3:  DynamoDB Integration
 
-#### Table: `Stockitems`
+### 3.1 Table: `Stockitems`
 
 This table maintains **current stock holdings per user**.
 
@@ -291,7 +291,7 @@ This table maintains **current stock holdings per user**.
   }
 }
 ```
-### 2.6 Backend Integration with DynamoDB
+### 3.2 Backend Integration with DynamoDB
 
 #### Lambda Handler
 The transaction data is written into DynamoDB via the AWS.DynamoDB.DocumentClient in the Lambda function (executeOrder.js or equivalent):
@@ -312,7 +312,7 @@ await dynamodb.put({
 - transaction is a JSON object constructed using the request input and enriched with metadata like:
   - id, timestamp, symbol, price, quantity, type, etc.
 
-### 2.7 IAM Permissions 
+### 3.3 IAM Permissions 
 - To allow Lambda to write to DynamoDB, attach the following IAM policy to its execution role:
 
 ```json
@@ -333,9 +333,9 @@ await dynamodb.put({
   - Every time a user performs a buy or sell, the transaction is automatically recorded.
   - You can verify it by scanning the table in the DynamoDB console.
        
-## Phase 3: S3 Static Website Setup
+## Phase 4: S3 Static Website Setup
 
-### 3.1 Create S3 Bucket
+### 4.1 Create S3 Bucket
 1. Navigate to S3 Console
 2. Create Bucket
    - Bucket name: stock-trading-platform-[your-unique-id]
@@ -344,7 +344,7 @@ await dynamodb.put({
    - Acknowledge the warning
    - Click "Create bucket"
 
-### 3.2 Configure Static Website Hosting
+### 4.2 Configure Static Website Hosting
 1. Enable Static Website Hosting
    - Select your bucket
    - Go to "Properties" tab
@@ -373,7 +373,7 @@ await dynamodb.put({
 }
 ```
 
-## Phase 4: Frontend Implementation
+## Phase 5: Frontend Implementation
 
 1. Create index.html
 2. Create script.js
@@ -386,9 +386,9 @@ await dynamodb.put({
 const API_BASE_URL = 'https://YOUR-API-ID.execute-api.YOUR-REGION.amazonaws.com/Prod';
 ```
 
-## Phase 5: Deployment
+## Phase 6: Deployment
 
-### 5.1 Upload Files to S3
+### 6.1 Upload Files to S3
 
 1. Upload Frontend Files
    - Upload index.html to your S3 bucket
@@ -401,7 +401,7 @@ const API_BASE_URL = 'https://YOUR-API-ID.execute-api.YOUR-REGION.amazonaws.com/
    - Click the website endpoint URL
    - Verify the site loads (may show API errors until configured)
      
-5.2 Update API Configuration
+6.2 Update API Configuration
 
 1. Get Your API Gateway URL
    - Go to API Gateway console
@@ -411,7 +411,7 @@ const API_BASE_URL = 'https://YOUR-API-ID.execute-api.YOUR-REGION.amazonaws.com/
    - Replace YOUR-API-ID and YOUR-REGION in the API_BASE_URL
    - Re-upload script.js to S3
      
-5.3 Final Testing
+6.3 Final Testing
 
 1. Test All Endpoints
    - Visit your website
@@ -420,7 +420,7 @@ const API_BASE_URL = 'https://YOUR-API-ID.execute-api.YOUR-REGION.amazonaws.com/
    - Test sell functionality
    - Check portfolio updates
      
-## 6. Testing
+## 7. Testing
 ### Manual Testing Checklist
 
 1. Stock Data Loading
