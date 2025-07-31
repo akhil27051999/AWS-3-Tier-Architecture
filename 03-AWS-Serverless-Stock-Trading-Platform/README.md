@@ -270,9 +270,9 @@ https://github.com/user-attachments/assets/e80c1204-6b2a-4b1c-b644-e0bfb436a980
      - Copy the Invoke URL (e.g., https://abc123.execute-api.us-east-1.amazonaws.com/Prod)
      - You'll need this for the frontend configuration
 
-## Phase 3:  DynamoDB Integration
+## Phase 3:  DynamoDB Integration for Data Storage
 
-### DynamoDB SetUp and API Integration to Frontend
+### DynamoDB SetUp and Backend API Integration with Frontend
 
 https://github.com/user-attachments/assets/8195fdb6-1777-4a12-9235-ab1627559680
 
