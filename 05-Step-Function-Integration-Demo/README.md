@@ -2,24 +2,29 @@
 A complete serverless stock trading application built on AWS using Lambda, API Gateway, S3, and CloudFront. This project demonstrates modern cloud architecture with real-time stock data simulation, buy/sell functionality, and a responsive web interface.
 
 ## 📋 Table of Contents
-- [🎯Project Overview](#Project-Overview)
-- [🏗️ Architecture](#Architecture)
-- [✨ Features](#Features)
-- [Prerequisites](#Prerequisites)
-- AWS Services Used
-- Project Structure
-- Step-by-Step Setup Guide
-- Lambda Functions
-- API Gateway Configuration
-- Frontend Implementation
-- Deployment
-- Testing
-- Troubleshooting
-- Cost Optimization
-- Security Best Practices
-- Future Enhancements
-- Contributing
-- License 
+
+- [🎯 Project Overview](#-project-overview)
+- [🏗️ Architecture](#-architecture)
+- [✨ Features](#-features)
+- [📋 Prerequisites](#-prerequisites)
+- [🛠️ AWS Services Used](#-aws-services-used)
+- [📁 Project Structure](#-project-structure)
+- [🚀 Step-by-Step Setup Guide](#-step-by-step-setup-guide)
+- [🧪 Testing](#-testing)
+- [🔧 Troubleshooting](#-troubleshooting)
+- [💰 Cost Optimization](#-cost-optimization)
+- [🔒 Security Best Practices](#-security-best-practices)
+- [🚀 Future Enhancements](#-future-enhancements)
+- [📊 Monitoring and Observability](#-monitoring-and-observability)
+- [🧪 Advanced Testing](#-advanced-testing)
+- [📚 Learning Resources](#-learning-resources)
+- [🤝 Contributing](#-contributing)
+- [📄 License](#-license)
+- [📞 Support](#-support)
+- [🎯 Project Milestones](#-project-milestones)
+- [🏆 Achievements](#-achievements)
+- [🎉 Conclusion](#-conclusion)
+
 
 ## 🎯 Project Overview
 This serverless stock trading platform allows users to:
