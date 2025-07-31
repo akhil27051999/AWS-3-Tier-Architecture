@@ -1,29 +1,29 @@
-# 🚀 AWS Serverless Stock Trading Platform
+# AWS Serverless Stock Trading Platform
 A complete serverless stock trading application built on AWS using Lambda, API Gateway, S3, and CloudFront. This project demonstrates modern cloud architecture with real-time stock data simulation, buy/sell functionality, and a responsive web interface.
 
-## 📋 Table of Contents
+## Table of Contents
 
-- [🎯 Project Overview](#-project-overview)
-- [🏗️ Architecture](#-architecture)
-- [✨ Features](#-features)
-- [📋 Prerequisites](#-prerequisites)
-- [🛠️ AWS Services Used](#-aws-services-used)
-- [📁 Project Structure](#-project-structure)
-- [🚀 Step-by-Step Setup Guide](#-step-by-step-setup-guide)
-- [🧪 Testing](#-testing)
-- [🔧 Troubleshooting](#-troubleshooting)
-- [💰 Cost Optimization](#-cost-optimization)
-- [🔒 Security Best Practices](#-security-best-practices)
-- [🚀 Future Enhancements](#-future-enhancements)
-- [📊 Monitoring and Observability](#-monitoring-and-observability)
-- [🧪 Advanced Testing](#-advanced-testing)
-- [📚 Learning Resources](#-learning-resources)
-- [🎯 Project Milestones](#-project-milestones)
-- [🏆 Achievements](#-achievements)
-- [🎉 Conclusion](#-conclusion)
+- [Project Overview](#-project-overview)
+- [Architecture](#-architecture)
+- [Features](#-features)
+- [Prerequisites](#-prerequisites)
+- [AWS Services Used](#-aws-services-used)
+- [Project Structure](#-project-structure)
+- [Step-by-Step Setup Guide](#-step-by-step-setup-guide)
+- [Testing](#-testing)
+- [Troubleshooting](#-troubleshooting)
+- [Cost Optimization](#-cost-optimization)
+- [Security Best Practices](#-security-best-practices)
+- [Future Enhancements](#-future-enhancements)
+- [Monitoring and Observability](#-monitoring-and-observability)
+- [Advanced Testing](#-advanced-testing)
+- [Learning Resources](#-learning-resources)
+- [Project Milestones](#-project-milestones)
+- [Achievements](#-achievements)
+- [Conclusion](#-conclusion)
 
 
-## 🎯 Project Overview
+## Project Overview
 This serverless stock trading platform allows users to:
 
 View real-time stock prices for major companies (GOOGL, AAPL, MSFT, TSLA, AMZN)
@@ -32,10 +32,10 @@ Maintain a portfolio view
 Experience a responsive, modern web interface
 The application is built entirely on AWS serverless services, ensuring high availability, scalability, and cost-effectiveness.
 
-## 🏗️ Architecture
+## Architecture
 <img width="1604" height="654" alt="diagram-export-7-31-2025-4_29_16-AM" src="https://github.com/user-attachments/assets/884085db-6df9-4f7e-82f9-ba40c539afb4" />
 
-## ✨ Features
+## Features
 
 ### Core Functionality
 - Real-time Stock Data: Dynamic price generation with realistic market simulation
@@ -50,7 +50,7 @@ The application is built entirely on AWS serverless services, ensuring high avai
 - CORS Support: Secure cross-origin resource sharing
 - Error Handling: Comprehensive error management and user feedback
 
-## 📋 Prerequisites
+## Prerequisites
 - AWS Account Requirements
 - Active AWS account with appropriate permissions
 - AWS CLI installed and configured (optional but recommended)
@@ -86,7 +86,7 @@ The application is built entirely on AWS serverless services, ensuring high avai
 }
 ```
 
-## 🛠️ AWS Services Used
+## AWS Services Used
 
 | Category               | AWS Service             | Purpose                                                                 |
 |------------------------|-------------------------|-------------------------------------------------------------------------|
@@ -102,7 +102,7 @@ The application is built entirely on AWS serverless services, ensuring high avai
 | Secrets Management     | **AWS Secrets Manager** | (Optional) Manages sensitive data like API keys and credentials        |
 
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 aws-stock-trading-platform/
@@ -127,7 +127,7 @@ aws-stock-trading-platform/
     └── api-documentation.md
 ```
 
-# 🚀 Step-by-Step Setup Guide
+# Step-by-Step Setup Guide
 
 ## Phase 1: Lambda Functions Setup
 ### 1.1 Create Stock Checker Function
@@ -346,7 +346,7 @@ const API_BASE_URL = 'https://YOUR-API-ID.execute-api.YOUR-REGION.amazonaws.com/
    - Test sell functionality
    - Check portfolio updates
      
-## 6. 🧪 Testing
+## 6. Testing
 ### Manual Testing Checklist
 
 1. Stock Data Loading
@@ -391,7 +391,7 @@ curl -X POST "https://YOUR-API-ID.execute-api.YOUR-REGION.amazonaws.com/Prod/sel
   -d '{"symbol":"AAPL","quantity":3,"stock_price":175}'
 ```
 
-## 🔧 Troubleshooting
+## Troubleshooting
 
 ### Common Issues and Solutions
 
@@ -442,7 +442,7 @@ Problem: Bucket policy not configured Solution: Ensure bucket policy allows publ
    - API Gateway access logs
    - Error patterns and stack traces
      
-## 💰 Cost Optimization
+## Cost Optimization
 
 | **Service**     | **Free Tier Limit**           | **Estimated Monthly Cost** |
 | --------------- | ----------------------------- | -------------------------- |
@@ -471,7 +471,7 @@ Problem: Bucket policy not configured Solution: Ensure bucket policy allows publ
    - S3: Use lifecycle policies for log files if storing them
    - CloudFront: Configure appropriate cache behaviors to reduce origin requests
 
-## 🔒 Security Best Practices
+## Security Best Practices
 
 ### Lambda Security
 
@@ -562,7 +562,7 @@ function sanitizeInput(input) {
 }
 ```
 
-## 🚀 Future Enhancements
+## Future Enhancements
 
 ### Phase 1: Data Persistence
 - Add DynamoDB for portfolios & history
@@ -586,7 +586,7 @@ function sanitizeInput(input) {
 - Push notifications
 - Offline support
 
-## 📊 Monitoring and Observability
+## Monitoring and Observability
 
 ### CloudWatch Dashboards
 
@@ -619,7 +619,7 @@ fields @timestamp, @message
 | limit 20
 ```
 
-## 🧪 Advanced Testing
+## Advanced Testing
 
 ### Unit Testing (Jest)
 ```bash
@@ -676,28 +676,28 @@ npm install -g artillery
 artillery run load-test.yml
 ```
 
-## 📚 Learning Resources
+## Learning Resources
 
 - **AWS Docs**: Lambda, API Gateway, S3, CloudFront
 - **Best Practices**: Well-Architected Framework, Serverless Lens, Security
 - **Community**: AWS Samples, Serverless Framework, AWS CDK
 
-## 🎯 Project Milestones
+## Project Milestones
 
-### ✅ Completed
+### Completed
 - Serverless backend
 - API Gateway config
 - S3 hosting + CloudFront
 - Frontend + CORS + UI
 - Portfolio features
 
-## 🏆 Achievements
+## Achievements
 
 - ✅ Built production-grade serverless app
 - ✅ Full-stack cloud-native architecture
 - ✅ Implemented best practices for AWS
 
-## 🎉 Conclusion
+## Conclusion
 
 This project demonstrates:
 - Modern serverless stack
