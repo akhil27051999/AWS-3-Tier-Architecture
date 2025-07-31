@@ -56,27 +56,28 @@
 
 ### AWS Services Used
 
-#### Infrastructure & Networking
-- Amazon VPC
-- Subnets (public/private)
-- Internet Gateway, NAT Gateway
-- Route Tables
-- Security Groups
+## 🛠️ AWS Services Used
 
-#### Container & Deployment
-- Amazon ECS (Fargate)
-- Amazon ECR
-- Application Load Balancer (ALB)
-- ECS Task Definitions & Services
+| Category                  | AWS Service               | Purpose                                                                 |
+|---------------------------|---------------------------|-------------------------------------------------------------------------|
+| 🧱 Infrastructure & Networking | **Amazon VPC**            | Provides isolated network environment for ECS and ALB                   |
+|                           | **Subnets (Public/Private)** | Separates access control and network segmentation                     |
+|                           | **Internet Gateway, NAT Gateway** | Enables internet access for public and private subnets            |
+|                           | **Route Tables**          | Manages traffic routing across the network                             |
+|                           | **Security Groups**       | Controls access to ECS tasks, ALB, and other components                 |
 
-#### CI/CD & Automation
-- AWS CodeCommit
-- AWS CodeBuild
-- AWS CodeDeploy
-- AWS CodePipeline
+| 📦 Container & Deployment | **Amazon ECS (Fargate)**   | Runs containers without managing servers                                |
+|                           | **Amazon ECR**            | Stores container images securely                                        |
+|                           | **Application Load Balancer (ALB)** | Distributes incoming traffic to ECS services                   |
+|                           | **ECS Task Definitions & Services** | Defines how containers run and scale                                |
 
-#### Security
-- AWS IAM (roles, policies)
+| 🔁 CI/CD & Automation     | **AWS CodeCommit**        | Git-based code repository for storing application source code           |
+|                           | **AWS CodeBuild**         | Builds and packages container images automatically                      |
+|                           | **AWS CodeDeploy**        | Manages ECS deployment and blue-green deployments                       |
+|                           | **AWS CodePipeline**      | Automates the end-to-end CI/CD pipeline                                 |
+
+| 🔐 Security               | **AWS IAM**               | Controls access via roles and policies across all AWS services          |
+
 
 ### Implementation:
 
