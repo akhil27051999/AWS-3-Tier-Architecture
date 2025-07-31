@@ -54,33 +54,33 @@
 
 **Goal**: Deploy containerized Book App using manual setup and CloudFormation-based CI/CD pipelines
 
-## AWS Services Used
+### AWS Services Used
 
-### Infrastructure & Networking
+#### Infrastructure & Networking
 - Amazon VPC
 - Subnets (public/private)
 - Internet Gateway, NAT Gateway
 - Route Tables
 - Security Groups
 
-### Container & Deployment
+#### Container & Deployment
 - Amazon ECS (Fargate)
 - Amazon ECR
 - Application Load Balancer (ALB)
 - ECS Task Definitions & Services
 
-### CI/CD & Automation
+#### CI/CD & Automation
 - AWS CodeCommit
 - AWS CodeBuild
 - AWS CodeDeploy
 - AWS CodePipeline
 
-### Security
+#### Security
 - AWS IAM (roles, policies)
 
-**Implementation**:
+### Implementation:
 
-### Manual Deployment
+#### Manual Deployment
 - Manual creation of VPC components (subnets, security groups, NAT gateway)
 - ECR repository setup for container image storage
 - ECS Fargate cluster and service configuration through AWS Console
@@ -89,13 +89,13 @@
 - Local Docker image build and push to ECR using AWS CLI
 - Book App deployed and accessible via ALB DNS name
 
-### Standard CI/CD Pipeline
+#### Standard CI/CD Pipeline
 - CloudFormation templates for automated CodePipeline setup
 - CodeCommit, CodeBuild, and CodeDeploy integration
 - Automated rolling updates to existing ECS service
 - Pipeline triggers on code commits for continuous deployment
 
-### Blue-Green Deployment
+#### Blue-Green Deployment
 - CloudFormation templates for blue-green deployment pipeline
 - Separate load balancer configuration for zero-downtime deployments
 - Automated traffic shifting between blue and green environments
