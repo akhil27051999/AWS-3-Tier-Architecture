@@ -88,14 +88,19 @@ The application is built entirely on AWS serverless services, ensuring high avai
 
 ## 🛠️ AWS Services Used
 
-| **Service**     | **Purpose**              | **Configuration**          |
-| --------------- | ------------------------ | -------------------------- |
-| **AWS Lambda**  | Backend logic execution  | 3 functions (Node.js 18.x) |
-| **API Gateway** | REST API management      | CORS enabled, 3 endpoints  |
-| **Amazon S3**   | Static website hosting   | Public read access         |
-| **CloudFront**  | Content delivery network | Global distribution        |
-| **IAM**         | Security and permissions | Lambda execution roles     |
-| **CloudWatch**  | Monitoring and logging   | Automatic log collection   |
+| Category               | AWS Service             | Purpose                                                                 |
+|------------------------|-------------------------|-------------------------------------------------------------------------|
+| Compute                | **AWS Lambda**          | Executes backend trading logic (buy, sell, stock check)                |
+| API & Integration      | **Amazon API Gateway**  | Exposes Lambda functions as RESTful APIs                               |
+| Orchestration          | **AWS Step Functions**  | Manages the flow between multiple Lambda functions                     |
+| Storage & Hosting      | **Amazon S3**           | Hosts static frontend files (HTML, CSS, JS)                            |
+| Content Delivery       | **Amazon CloudFront**   | Caches and delivers the frontend globally with low latency             |
+| DevOps & Deployment    | **AWS CloudFormation**  | Automates deployment of infrastructure components                      |
+| Web Hosting (Optional) | **AWS Amplify**         | Simplifies hosting and CI/CD for the frontend                          |
+| Networking             | **Amazon VPC**          | Used in hybrid or advanced setups for secure communication             |
+| Security               | **AWS IAM**             | Manages permissions for Lambda, API Gateway, and Step Functions        |
+| Secrets Management     | **AWS Secrets Manager** | (Optional) Manages sensitive data like API keys and credentials        |
+
 
 ## 📁 Project Structure
 
