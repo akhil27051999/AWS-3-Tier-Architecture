@@ -81,6 +81,49 @@
 
 <img width="1911" height="1046" alt="Screenshot 2025-07-29 164220" src="https://github.com/user-attachments/assets/6371e465-3c0b-497d-b8e5-e3489413c98d" />
 
+---
 
+## Project 5 : AWS Serverless Stock Trading Platform
+The AWS Serverless Stock Trading Platform is a fully cloud-native, serverless application designed to simulate real-time stock trading. It is built using AWS Lambda, API Gateway, Amazon S3, and CloudFront, offering users a fast, scalable, and cost-effective trading interface accessible through a responsive web UI.
+
+### 🎯 Purpose
+To demonstrate modern serverless architecture on AWS by implementing a full-stack stock trading simulation that includes real-time pricing, transaction processing (buy/sell), and portfolio tracking—all without managing servers.
+
+### 🏗️ Architecture Overview
+
+- Frontend: Hosted on Amazon S3, distributed globally via CloudFront, and deployed with AWS Amplify for easy management.
+- Backend: Built using three AWS Lambda functions (stock checker, buy, sell) orchestrated via AWS Step Functions, and exposed through a REST API using API Gateway.
+- Infrastructure: Defined using CloudFormation templates for consistent, repeatable deployments.
+- Documentation & Assets: Includes Swagger API definition, architecture diagrams, and detailed setup instructions.
+
+### ✨ Key Features
+
+- Simulated real-time stock pricing for major companies (AAPL, GOOGL, MSFT, etc.)
+- Fully functional buy/sell transactions with portfolio tracking
+- Responsive UI with interactive forms and real-time updates
+- Serverless scalability with auto-scaling Lambda functions
+- CORS-enabled REST API for frontend-backend communication
+- Comprehensive error handling and CloudWatch monitoring
+- Built-in support for CI/CD, security best practices, and cost optimization
+
+### 🔐 Security & Cost
+
+- Implements least-privilege IAM roles, environment variable handling, and input validation
+- Takes advantage of AWS Free Tier to ensure near-zero cost under light usage
+- Follows Well-Architected Framework and serverless best practices
+
+### 📈 Future Enhancements
+
+- Add DynamoDB for persistent user portfolios
+- Integrate AWS Cognito for user authentication
+- Support real-time updates with WebSockets
+- Build a mobile app using React Native
+- Add automated tests, CD pipelines, and monitoring dashboards
+
+### 🚀 Outcome
+This project serves as a production-ready demo of a modern serverless application. It showcases the full lifecycle from infrastructure as code to frontend deployment, highlighting AWS’s capability to build resilient, low-maintenance, and scalable applications.
+
+<img width="1893" height="1021" alt="Screenshot 2025-07-31 024047" src="https://github.com/user-attachments/assets/a9bd5e59-19e4-4891-97aa-74e8510625c6" />
 
 *Each project includes detailed implementation guides, troubleshooting tips, and cleanup procedures. Explore individual project folders for complete documentation and video tutorials.*
+
