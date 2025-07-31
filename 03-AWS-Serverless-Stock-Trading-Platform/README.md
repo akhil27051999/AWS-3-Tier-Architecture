@@ -3,24 +3,20 @@ A complete serverless stock trading application built on AWS using Lambda, API G
 
 ## Table of Contents
 
-- [ Project Overview](#-project-overview)
-- [ Architecture](#-architecture)
-- [ Features](#-features)
-- [ Prerequisites](#-prerequisites)
-- [ AWS Services Used](#-aws-services-used)
-- [ Project Structure](#-project-structure)
-- [ Step-by-Step Setup Guide](#-step-by-step-setup-guide)
-- [ Testing](#-testing)
-- [ Troubleshooting](#-troubleshooting)
-- [ Cost Optimization](#-cost-optimization)
-- [ Security Best Practices](#-security-best-practices)
-- [ Future Enhancements](#-future-enhancements)
-- [ Monitoring and Observability](#-monitoring-and-observability)
-- [ Advanced Testing](#-advanced-testing)
-- [ Learning Resources](#-learning-resources)
-- [ Project Milestones](#-project-milestones)
-- [ Achievements](#-achievements)
-- [ Conclusion](#-conclusion)
+1. [Project Overview](#project-overview)  
+2. [Architecture Diagram](#architecture-diagram)  
+3. [Architecture Components](#architecture-components)  
+4. [Prerequisites](#prerequisites)  
+5. [AWS Services Used](#aws-services-used)  
+6. [Getting Started](#getting-started)  
+7. [Deployment Strategies](#deployment-strategies)  
+8. [Traffic Flow Journey](#traffic-flow-journey)  
+9. [Project Components](#project-components)  
+10. [Key Features & Benefits](#key-features--benefits)  
+11. [Use Cases](#use-cases)  
+12. [Monitoring & Observability](#monitoring--observability)  
+13. [Best Practices Demonstrated](#best-practices-demonstrated)
+
 
 
 ## Project Overview
