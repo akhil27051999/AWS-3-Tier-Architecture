@@ -1,39 +1,6 @@
 # AWS Projects Portfolio
 
-## Project 1: AWS Static Website Hosting
-
-**Goal**: Deploy a static website using AWS Amplify for simplified hosting
-
-**Implementation**: 
-- Upload static website files (HTML, CSS, JS) directly to S3 bucket
-- Deploy website using AWS Amplify console
-- Amplify automatically generates DNS name for public access
-- Built-in CDN and SSL certificate provisioning
-
-**Outcome**: Live static website accessible via Amplify-generated URL with automatic HTTPS
-
-![Static Website](https://github.com/user-attachments/assets/b8f5903e-525e-4b3e-ba1a-3082600a7ea3)
-
----
-
-## Project 2: Designing Secure AWS Infrastructure for Internet-Exposed Backend Services
-
-**Goal**: Host Grafana application in a secure private subnet with internet access
-
-**Implementation**:
-- Custom VPC with public and private subnets
-- NAT Gateway in public subnet for outbound internet access
-- Grafana deployed on EC2 instance in private subnet (app-tier)
-- Security groups configured for secure access
-- Internet access via NAT Gateway for downloading applications and updates
-
-**Outcome**: Secure Grafana deployment accessible from private subnet with controlled internet connectivity
-
-![Manual Deployment](https://github.com/user-attachments/assets/dd9bef27-0db5-4852-a40f-92103664182c)
-
----
-
-## Project 3: AWS Three-Tier Web Application Demo
+## Project 1: AWS Three-Tier Web Application Demo
 
 **Goal**: Combine Infrastructure as Code with manual provisioning for flexible deployment of Three-Tier Application.
 
@@ -72,7 +39,7 @@
 
 ---
 
-## Project 4: Fully Automated ECS Deployment Pipeline for Book App on AWS
+## Project 2: Fully Automated ECS Deployment Pipeline for Book App on AWS
 
 **Goal**: Deploy containerized Book App using manual setup and CloudFormation-based CI/CD pipelines
 
@@ -125,7 +92,7 @@
 
 ---
 
-## Project 5 : AWS Serverless Stock Trading Platform
+## Project 3: AWS Serverless Stock Trading Platform
 The AWS Serverless Stock Trading Platform is a fully cloud-native, serverless application designed to simulate real-time stock trading. It is built using AWS Lambda, API Gateway, Amazon S3, and CloudFront, offering users a fast, scalable, and cost-effective trading interface accessible through a responsive web UI.
 
 **Goal**:
