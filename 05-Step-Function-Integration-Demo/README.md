@@ -4,8 +4,8 @@ A complete serverless stock trading application built on AWS using Lambda, API G
 ## 📋 Table of Contents
 - [Project Overview](#Project-Overview)
 - [Architecture](#Architecture)
-- Features
-- Prerequisites
+- [Features](#Features)
+- [Prerequisites](#Prerequisites)
 - AWS Services Used
 - Project Structure
 - Step-by-Step Setup Guide
@@ -30,7 +30,7 @@ Maintain a portfolio view
 Experience a responsive, modern web interface
 The application is built entirely on AWS serverless services, ensuring high availability, scalability, and cost-effectiveness.
 
-##🏗️ Architecture
+## 🏗️ Architecture
 <img width="1604" height="654" alt="diagram-export-7-31-2025-4_29_16-AM" src="https://github.com/user-attachments/assets/884085db-6df9-4f7e-82f9-ba40c539afb4" />
 
 ## ✨ Features
