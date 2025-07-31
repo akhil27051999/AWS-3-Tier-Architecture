@@ -272,7 +272,7 @@ https://github.com/user-attachments/assets/e80c1204-6b2a-4b1c-b644-e0bfb436a980
 
 ## Phase 3:  DynamoDB Integration
 
-DynamoDB SetUp and API Integration to Frontend
+### DynamoDB SetUp and API Integration to Frontend
 
 https://github.com/user-attachments/assets/8195fdb6-1777-4a12-9235-ab1627559680
 
@@ -420,10 +420,6 @@ const API_BASE_URL = 'https://YOUR-API-ID.execute-api.YOUR-REGION.amazonaws.com/
      
 6.3 Final Testing
 
-Application Testing
-
-https://github.com/user-attachments/assets/74e18426-5c84-48e9-b3a5-6e1132bf03dd
-
 1. Test All Endpoints
    - Visit your website
    - Verify stock data loads
@@ -432,6 +428,11 @@ https://github.com/user-attachments/assets/74e18426-5c84-48e9-b3a5-6e1132bf03dd
    - Check portfolio updates
      
 ## Testing
+
+### Application Testing
+
+https://github.com/user-attachments/assets/74e18426-5c84-48e9-b3a5-6e1132bf03dd
+
 ### Manual Testing Checklist
 
 1. Stock Data Loading
