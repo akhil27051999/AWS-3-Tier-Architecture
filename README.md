@@ -101,7 +101,7 @@ Combine Infrastructure as Code (IaC) with manual provisioning to enable a flexib
 - Environment variables and security groups configured to allow seamless integration
 
 **Outcome**:
-- A hybrid deployment model that combines the reliability and repeatability of Infrastructure as Code with the flexibility of manual provisioning, showcasing real-world deployment workflows for a traditional three-tier architecture on AWS.
+A hybrid deployment model that combines the reliability and repeatability of Infrastructure as Code with the flexibility of manual provisioning, showcasing real-world deployment workflows for a traditional three-tier architecture on AWS.
 
 <img width="1893" height="1021" alt="Screenshot 2025-07-31 024047" src="https://github.com/user-attachments/assets/a9bd5e59-19e4-4891-97aa-74e8510625c6" />
 
