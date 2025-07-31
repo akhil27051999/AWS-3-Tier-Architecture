@@ -1,6 +1,6 @@
 // config.js - Your exact API configuration
 const API_CONFIG = {
-    BASE_API: 'https://htq0zqqe74.execute-api.us-east-1.amazonaws.com/Prod',
+    BASE_API: 'https://dmkxlju409.execute-api.us-east-1.amazonaws.com/prod',
     REGION: 'us-east-1'
 };
 
