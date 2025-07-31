@@ -112,14 +112,6 @@ To demonstrate modern serverless architecture on AWS by implementing a full-stac
 - Takes advantage of AWS Free Tier to ensure near-zero cost under light usage
 - Follows Well-Architected Framework and serverless best practices
 
-### 📈 Future Enhancements
-
-- Add DynamoDB for persistent user portfolios
-- Integrate AWS Cognito for user authentication
-- Support real-time updates with WebSockets
-- Build a mobile app using React Native
-- Add automated tests, CD pipelines, and monitoring dashboards
-
 ### 🚀 Outcome
 This project serves as a production-ready demo of a modern serverless application. It showcases the full lifecycle from infrastructure as code to frontend deployment, highlighting AWS’s capability to build resilient, low-maintenance, and scalable applications.
 
