@@ -7,6 +7,43 @@ This project demonstrates a **production-ready, containerized three-tier web arc
 
 <img width="1170" height="801" alt="Book-App drawio (2)" src="https://github.com/user-attachments/assets/96bb9247-60f0-4fea-bf51-a92693a8712e" />
 
+## 📚 Table of Contents
+
+- [Project Overview](#project-overview)
+- [Architecture Diagram](#architecture-diagram)
+- [Architecture Components](#architecture-components)
+  - [Tier 1: Presentation Layer (Web Tier)](#tier-1-presentation-layer-web-tier)
+  - [Tier 2: Application Layer (Logic Tier)](#tier-2-application-layer-logic-tier)
+- [Prerequisites](#prerequisites)
+- [AWS Services Used](#aws-services-used)
+  - [Infrastructure & Networking](#infrastructure--networking)
+  - [Container & Deployment](#container--deployment)
+  - [CI/CD & Automation](#cicd--automation)
+  - [Security](#security)
+- [Getting Started](#getting-started)
+- [Deployment Strategies](#deployment-strategies)
+  - [1. Standard Pipeline (Rolling Updates)](#1-standard-pipeline-rolling-updates)
+  - [2. Blue/Green Pipeline (Zero Downtime)](#2-bluegreen-pipeline-zero-downtime)
+- [Traffic Flow Journey](#traffic-flow-journey)
+  - [End-to-End Request Path](#end-to-end-request-path)
+  - [Security Flow](#security-flow)
+- [Project Components](#project-components)
+  - [Infrastructure Templates](#infrastructure-templates)
+  - [CI/CD Templates](#cicd-templates)
+- [Key Features & Benefits](#key-features--benefits)
+  - [High Availability](#high-availability)
+  - [Security](#security-1)
+  - [Cost Optimization](#cost-optimization)
+  - [Operational Excellence](#operational-excellence)
+- [Use Cases](#use-cases)
+  - [Development Teams](#development-teams)
+  - [Production Applications](#production-applications)
+  - [Enterprise Applications](#enterprise-applications)
+- [Monitoring & Observability](#monitoring--observability)
+  - [Application Monitoring](#application-monitoring)
+  - [Pipeline Monitoring](#pipeline-monitoring)
+- [Best Practices Demonstrated](#best-practices-demonstrated)
+
 ## Architecture Components
 
 ### **Tier 1: Presentation Layer (Web Tier)**
