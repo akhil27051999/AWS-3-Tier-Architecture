@@ -54,6 +54,30 @@
 
 **Goal**: Deploy containerized Book App using manual setup and CloudFormation-based CI/CD pipelines
 
+## AWS Services Used
+
+### Infrastructure & Networking
+- Amazon VPC
+- Subnets (public/private)
+- Internet Gateway, NAT Gateway
+- Route Tables
+- Security Groups
+
+### Container & Deployment
+- Amazon ECS (Fargate)
+- Amazon ECR
+- Application Load Balancer (ALB)
+- ECS Task Definitions & Services
+
+### CI/CD & Automation
+- AWS CodeCommit
+- AWS CodeBuild
+- AWS CodeDeploy
+- AWS CodePipeline
+
+### Security
+- AWS IAM (roles, policies)
+
 **Implementation**:
 
 ### Manual Deployment
