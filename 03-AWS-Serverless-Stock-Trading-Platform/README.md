@@ -345,10 +345,47 @@ const dynamodb = new AWS.DynamoDB.DocumentClient();
   - Show a list of available stocks to users.
   - Reference stock details during buy/sell transactions.
   - Display stock name, symbol, and price on the portfolio and trading pages.
-       
-## Phase 4: S3 Static Website Setup
 
-### 4.1 Create S3 Bucket
+## Phase 4: State Machine Setup (AWS Step Functions)
+
+### What is a State Machine?
+
+- In this project, a **State Machine** refers to an **AWS Step Function**—a serverless orchestration service that allows you to coordinate multiple AWS Lambda functions into a defined workflow.
+- Each state in the state machine represents a step (or task), and transitions define the execution path. This allows for powerful error handling, retries, parallel execution, and more.
+
+### Why Use Step Functions?
+
+In the context of a stock trading platform, multiple steps may need to occur in sequence or conditionally. For example:
+- Validating trade inputs
+- Executing the trade logic (buy/sell)
+- Recording the transaction to the database
+- Sending a response back to the user
+
+Using Step Functions:
+- Increases reliability and fault tolerance
+- Makes the workflow easier to visualize and debug
+- Automatically retries failed tasks where configured
+
+### How It's Used in This Project
+
+We created a **Step Function state machine** to orchestrate the execution of three Lambda functions in the following order:
+
+1. **ValidateTradeFunction**  
+   Validates the incoming trade request (e.g., check stock symbol, quantity, balance).
+
+2. **ExecuteTradeFunction**  
+   Performs the business logic for buy/sell, updates user balance and stock holdings.
+
+3. **RecordTransactionFunction**  
+   Stores the trade transaction in DynamoDB for history and portfolio tracking.
+
+### Triggering the State Machine
+
+The State Machine is invoked via **API Gateway** using a `/trade` endpoint. When a user places a trade from the frontend UI, the request triggers the Step Function which runs all three Lambda functions in sequence.
+
+## Phase 5: S3 Static Website Setup
+
+### 5.1 Create S3 Bucket
 1. Navigate to S3 Console
 2. Create Bucket
    - Bucket name: stock-trading-platform-[your-unique-id]
@@ -357,7 +394,7 @@ const dynamodb = new AWS.DynamoDB.DocumentClient();
    - Acknowledge the warning
    - Click "Create bucket"
 
-### 4.2 Configure Static Website Hosting
+### 5.2 Configure Static Website Hosting
 1. Enable Static Website Hosting
    - Select your bucket
    - Go to "Properties" tab
@@ -386,7 +423,7 @@ const dynamodb = new AWS.DynamoDB.DocumentClient();
 }
 ```
 
-## Phase 5: Frontend Implementation
+## Phase 6: Frontend Implementation
 
 1. Create index.html
 2. Create script.js
@@ -399,9 +436,9 @@ const dynamodb = new AWS.DynamoDB.DocumentClient();
 const API_BASE_URL = 'https://YOUR-API-ID.execute-api.YOUR-REGION.amazonaws.com/Prod';
 ```
 
-## Phase 6: Deployment
+## Phase 7: Deployment
 
-### 6.1 Upload Files to S3
+### 7.1 Upload Files to S3
 
 1. Upload Frontend Files
    - Upload index.html to your S3 bucket
@@ -414,7 +451,7 @@ const API_BASE_URL = 'https://YOUR-API-ID.execute-api.YOUR-REGION.amazonaws.com/
    - Click the website endpoint URL
    - Verify the site loads (may show API errors until configured)
      
-6.2 Update API Configuration
+7.2 Update API Configuration
 
 1. Get Your API Gateway URL
    - Go to API Gateway console
@@ -424,7 +461,7 @@ const API_BASE_URL = 'https://YOUR-API-ID.execute-api.YOUR-REGION.amazonaws.com/
    - Replace YOUR-API-ID and YOUR-REGION in the API_BASE_URL
    - Re-upload script.js to S3
      
-6.3 Final Testing
+7.3 Final Testing
 
 1. Test All Endpoints
    - Visit your website
