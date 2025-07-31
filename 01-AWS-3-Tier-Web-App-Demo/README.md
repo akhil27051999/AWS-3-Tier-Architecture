@@ -6,6 +6,32 @@ This document provides a comprehensive overview of the AWS three-tier web archit
 
 <img width="1160" height="810" alt="Three-Tier-WebApp-Demo drawio" src="https://github.com/user-attachments/assets/09a67a51-81d3-4184-bfdc-f5633ae1135e" />
 
+## Table of Contents
+
+- [Architecture Diagram](#architecture-diagram)
+- [Architecture Goal](#architecture-goal)
+- [AWS Services Used](#aws-services-used)
+- [Network Architecture](#network-architecture)
+  - [VPC Configuration](#vpc-configuration)
+  - [Subnet Layout (6 Total)](#subnet-layout-6-total)
+  - [Internet Connectivity](#internet-connectivity)
+  - [Routing Configuration](#routing-configuration)
+- [Security Groups](#security-groups)
+- [Traffic Flow](#traffic-flow)
+- [Resource Summary](#resource-summary)
+- [Deployment Components](#deployment-components)
+  - [Minimum EC2 Setup](#minimum-ec2-setup)
+  - [Load Balancers](#load-balancers)
+  - [High Availability Features](#high-availability-features)
+- [Security Implementation](#security-implementation)
+  - [Network Isolation](#network-isolation)
+  - [Access Control](#access-control)
+  - [Secrets Management](#secrets-management)
+- [Deployment Order](#deployment-order)
+- [Monitoring and Logging](#monitoring-and-logging)
+- [Cost Optimization](#cost-optimization)
+- [Best Practices Implemented](#best-practices-implemented)
+
 
 ## Architecture Goal
 
