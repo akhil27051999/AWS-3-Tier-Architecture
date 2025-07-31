@@ -124,7 +124,7 @@ Combine Infrastructure as Code (IaC) with manual provisioning to enable a flexib
 | Security               | **AWS IAM**             | Manages permissions for Lambda, API Gateway, and Step Functions        |
 | Secrets Management     | **AWS Secrets Manager** | (Optional) Manages sensitive data like API keys and credentials        |
 
-**Implementation**:
+#### Implementation:
 - CloudFormation templates used to deploy core infrastructure:
 - VPC with public/private subnets
 - Route tables, internet/NAT gateways
