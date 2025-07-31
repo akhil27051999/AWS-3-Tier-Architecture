@@ -18,9 +18,7 @@ A complete serverless stock trading application built on AWS using Lambda, API G
 - [📊 Monitoring and Observability](#-monitoring-and-observability)
 - [🧪 Advanced Testing](#-advanced-testing)
 - [📚 Learning Resources](#-learning-resources)
-- [🤝 Contributing](#-contributing)
 - [📄 License](#-license)
-- [📞 Support](#-support)
 - [🎯 Project Milestones](#-project-milestones)
 - [🏆 Achievements](#-achievements)
 - [🎉 Conclusion](#-conclusion)
@@ -683,54 +681,9 @@ artillery run load-test.yml
 - **Best Practices**: Well-Architected Framework, Serverless Lens, Security
 - **Community**: AWS Samples, Serverless Framework, AWS CDK
 
-## 🤝 Contributing
-
-### Setup
-```bash
-git clone https://github.com/your-username/aws-stock-trading-platform.git
-cd aws-stock-trading-platform
-npm install
-cp .env.example .env
-```
-
-### Guidelines
-- Fork and branch
-- Follow code style and add tests
-- Lint and test with:
-```bash
-npm test
-npm run lint
-```
-
-- Submit PR with clear description
-
-### Code Style
-- ES6+ features
-- Error handling & logging
-- Descriptive commit messages
-
 ## 📄 License
 
 MIT License © 2024 AWS Stock Trading Platform
-
-## 📞 Support
-
-- Check documentation
-- Review GitHub issues
-- Create issue with bug template
-
-### Bug Report Template
-```markdown
-**Describe the bug**
-**To Reproduce**
-**Expected behavior**
-**Screenshots**
-**Environment:**
-- AWS Region:
-- Browser:
-- Node.js version:
-**Additional context**
-```
 
 ## 🎯 Project Milestones
 
@@ -740,12 +693,6 @@ MIT License © 2024 AWS Stock Trading Platform
 - S3 hosting + CloudFront
 - Frontend + CORS + UI
 - Portfolio features
-
-### 🚧 In Progress
-- Testing, security, documentation
-
-### 📋 Planned
-- Cognito, DynamoDB, Real-time updates, Mobile app, CI/CD
 
 ## 🏆 Achievements
 
