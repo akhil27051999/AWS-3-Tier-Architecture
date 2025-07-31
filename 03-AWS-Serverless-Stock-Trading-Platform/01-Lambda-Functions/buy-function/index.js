@@ -1,80 +1,54 @@
-import crypto from "crypto";
+const { SecretsManagerClient, GetSecretValueCommand } = require("@aws-sdk/client-secrets-manager");
+const mysql = require("mysql2/promise");
 
-function getRandomInt(max) {
-    return Math.floor(Math.random() * Math.floor(max)) + 1;
-}
+const client = new SecretsManagerClient();
 
-export const handler = async (event, context) => {
-    try {
-        console.log('Event:', JSON.stringify(event, null, 2));
-        
-        // Handle CORS preflight request
-        if (event.httpMethod === 'OPTIONS') {
-            return {
-                statusCode: 200,
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
-                    'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS'
-                },
-                body: JSON.stringify({ message: 'CORS preflight successful' })
-            };
-        }
-        
-        // Parse the request body
-        const body = typeof event.body === 'string' ? JSON.parse(event.body) : event.body;
-        console.log('Parsed body:', body);
-        
-        // Extract data from request
-        const symbol = body.symbol || 'UNKNOWN';
-        const quantity = body.quantity || getRandomInt(10);
-        const action = body.action || 'buy';
-        
-        // Generate a realistic stock price if not provided
-        const stock_price = body.stock_price || (150 + getRandomInt(50));
-        
-        const date = new Date();
-        const transaction_result = {
-            'id': crypto.randomBytes(16).toString("hex"),
-            'symbol': symbol,
-            'price': parseFloat(stock_price).toFixed(2),
-            'type': action,
-            'quantity': parseInt(quantity),
-            'timestamp': date.toISOString(),
-            'total_cost': (parseFloat(stock_price) * parseInt(quantity)).toFixed(2),
-            'success': true,
-            'message': `Successfully bought ${quantity} shares of ${symbol} at $${parseFloat(stock_price).toFixed(2)} each`
-        };
-        
-        console.log('Transaction result:', transaction_result);
-        
-        return {
-            statusCode: 200,
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
-                'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS'
-            },
-            body: JSON.stringify(transaction_result)
-        };
-        
-    } catch (error) {
-        console.error('Error:', error);
-        return {
-            statusCode: 500,
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
-                'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS'
-            },
-            body: JSON.stringify({ 
-                error: 'Internal server error',
-                message: error.message,
-                success: false
-            })
-        };
+exports.handler = async (event) => {
+  try {
+    const body = JSON.parse(event.body);
+    const { symbol, quantity } = body;
+
+    if (!symbol || !quantity) {
+      return {
+        statusCode: 400,
+        headers: { 'Access-Control-Allow-Origin': '*' },
+        body: JSON.stringify({ message: 'Missing symbol or quantity' }),
+      };
     }
+
+    const secretName = process.env.SECRET_NAME;
+    const command = new GetSecretValueCommand({ SecretId: secretName });
+    const secretResponse = await client.send(command);
+
+    const creds = JSON.parse(secretResponse.SecretString);
+
+    const connection = await mysql.createConnection({
+      host: creds.host,
+      user: creds.username,
+      password: creds.password,
+      database: creds.dbname,
+    });
+
+    const insertQuery = `
+      INSERT INTO transactions (symbol, quantity, transaction_type, transaction_time)
+      VALUES (?, ?, 'BUY', NOW())
+    `;
+
+    await connection.execute(insertQuery, [symbol, quantity]);
+    await connection.end();
+
+    return {
+      statusCode: 200,
+      headers: { 'Access-Control-Allow-Origin': '*' },
+      body: JSON.stringify({ message: `Buy order placed for ${quantity} shares of ${symbol}` }),
+    };
+
+  } catch (error) {
+    console.error('Error placing buy order:', error);
+    return {
+      statusCode: 500,
+      headers: { 'Access-Control-Allow-Origin': '*' },
+      body: JSON.stringify({ message: 'Internal server error', error: error.message }),
+    };
+  }
 };
