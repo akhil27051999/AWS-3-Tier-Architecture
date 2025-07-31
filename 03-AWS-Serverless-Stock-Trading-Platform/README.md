@@ -22,7 +22,6 @@ A complete serverless stock trading application built on AWS using Lambda, API G
 - [Monitoring and Observability](#monitoring-and-observability)
 - [Advanced Testing](#advanced-testing)
 - [Learning Resources](#learning-resources)
-- [Project Milestones](#project-milestones)
 - [Achievements](#achievements)
 - [Conclusion](#conclusion)
 
@@ -807,14 +806,6 @@ artillery run load-test.yml
 - **Best Practices**: Well-Architected Framework, Serverless Lens, Security
 - **Community**: AWS Samples, Serverless Framework, AWS CDK
 
-## Project Milestones
-
-### Completed
-- Serverless backend
-- API Gateway config
-- S3 hosting + CloudFront
-- Frontend + CORS + UI
-- Portfolio features
 
 ## Achievements
 
