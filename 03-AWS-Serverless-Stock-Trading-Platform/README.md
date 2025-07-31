@@ -259,7 +259,79 @@ aws-stock-trading-platform/
    - Note Your API URL
      - Copy the Invoke URL (e.g., https://abc123.execute-api.us-east-1.amazonaws.com/Prod)
      - You'll need this for the frontend configuration
-    
+
+---
+
+### 2.5 DynamoDB Integration
+
+#### Table: `Stockitems`
+
+This table maintains **current stock holdings per user**.
+
+#### Schema
+
+| Attribute Name   | Type     | Description                                |
+|------------------|----------|--------------------------------------------|
+| `symbol`         | String (PK) | Identifier for the user                 |
+| `name `          | String (SK) | company name of the stock               |
+| `price`          | Number   | Current price of the shares                |          
+
+### JSON format for adding stock items in DynamoDB
+
+``` Json 
+{
+  "symbol": {
+    "S": "NVDA"
+  },
+  "name": {
+    "S": "NVIDIA Corporation"
+  },
+  "price": {
+    "N": "904.7"
+  }
+}
+```
+### 2.6 Backend Integration with DynamoDB
+
+#### Lambda Handler
+The transaction data is written into DynamoDB via the AWS.DynamoDB.DocumentClient in the Lambda function (executeOrder.js or equivalent):
+
+```js
+import AWS from 'aws-sdk';
+
+const dynamodb = new AWS.DynamoDB.DocumentClient();
+```
+#### Writing to DynamoDB
+
+```js
+await dynamodb.put({
+  TableName: "TransactionsTable",
+  Item: transaction
+}).promise();
+```
+- transaction is a JSON object constructed using the request input and enriched with metadata like:
+  - id, timestamp, symbol, price, quantity, type, etc.
+
+### 2.7 IAM Permissions 
+- To allow Lambda to write to DynamoDB, attach the following IAM policy to its execution role:
+
+```json
+{
+  "Effect": "Allow",
+  "Action": [
+    "dynamodb:PutItem"
+  ],
+  "Resource": "arn:aws:dynamodb:<region>:<account-id>:table/TransactionsTable" 
+}
+```
+- Make sure to replace <region> and <account-id> with actual values for Inline policy
+- or else use AmazonDynamoDBReadOnlyAccess for Testing purpose
+
+#### Successful Integration
+
+- Once the integration is complete:
+  - Every time a user performs a buy or sell, the transaction is automatically recorded.
+  - You can verify it by scanning the table in the DynamoDB console.
        
 ## Phase 3: S3 Static Website Setup
 
