@@ -30,6 +30,30 @@ This project demonstrates a **production-ready, containerized three-tier web arc
 - GitHub repository with application code
 - Docker application with Dockerfile
 - Basic understanding of containerization concepts
+
+## AWS Services Used
+
+### Infrastructure & Networking
+- Amazon VPC
+- Subnets (public/private)
+- Internet Gateway, NAT Gateway
+- Route Tables
+- Security Groups
+
+### Container & Deployment
+- Amazon ECS (Fargate)
+- Amazon ECR
+- Application Load Balancer (ALB)
+- ECS Task Definitions & Services
+
+### CI/CD & Automation
+- AWS CodeCommit
+- AWS CodeBuild
+- AWS CodeDeploy
+- AWS CodePipeline
+
+### Security
+- AWS IAM (roles, policies)
   
 ## Getting Started
 1. **Clone Repository**: Get the CloudFormation templates
