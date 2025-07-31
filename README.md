@@ -37,7 +37,29 @@
 
 **Goal**: Combine Infrastructure as Code with manual provisioning for flexible deployment of Three-Tier Application.
 
-**Implementation**:
+#### AWS Services Used
+
+| Category                  | AWS Service                   | Purpose                                                                 |
+|---------------------------|-------------------------------|-------------------------------------------------------------------------|
+| Infrastructure & Networking | **Amazon VPC**                | Isolated network environment for all tiers                            |
+|                           | **Subnets (Public & Private)** | Separates Web, App, and DB tiers across multiple AZs                   |
+|                           | **Internet Gateway**          | Provides internet access to public subnets                              |
+|                           | **NAT Gateways**              | Enables private subnets to access the internet                          |
+|                           | **Elastic IPs**              | Used with NAT Gateways for static outbound IPs                           |
+|                           | **Route Tables**              | Controls traffic routing within the VPC                                 |
+|                           | **Security Groups**           | Manages access control between tiers and from internet                  |
+|                           | **DB Subnet Group**           | Required for multi-AZ Aurora deployments                                |
+| Compute & Hosting         | **Amazon EC2**                | Hosts Web (React + Nginx) and App (Node.js) tiers                       |
+|                           | **Auto Scaling Groups**       | Automatically adjusts EC2 instances based on traffic                    |
+| Load Balancing            | **Application Load Balancer (ALB)** | External ALB for web tier, internal ALB for app tier              |
+| Database                  | **Amazon Aurora MySQL**       | Managed, scalable MySQL-compatible relational database                  |
+|                           | **Aurora Read Replica**        | Provides high availability and performance for read operations         |
+| Security & Secrets        | **AWS IAM**                   | Defines access permissions for EC2 and Secrets Manager                  |
+|                           | **AWS Secrets Manager**        | Stores Aurora credentials securely                                     |
+| Orchestration & Automation | **AWS CloudFormation**         | Automates provisioning of all infrastructure components               |
+
+
+#### Implementation:
 - CloudFormation templates deployed for network infrastructure (VPC, subnets, security groups)
 - CloudFormation template for Aurora MySQL database setup
 - Manual EC2 instance provisioning within the CloudFormation-created VPC
