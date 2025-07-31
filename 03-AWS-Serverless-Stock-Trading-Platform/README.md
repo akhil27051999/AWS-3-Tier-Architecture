@@ -294,23 +294,16 @@ This table maintains **current stock holdings per user**.
 ### 3.2 Backend Integration with DynamoDB
 
 #### Lambda Handler
-The transaction data is written into DynamoDB via the AWS.DynamoDB.DocumentClient in the Lambda function (executeOrder.js or equivalent):
+The Stockitems data is written into DynamoDB via the AWS.DynamoDB.DocumentClient in the Lambda function (executeOrder.js or equivalent):
 
 ```js
 import AWS from 'aws-sdk';
 
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 ```
-#### Writing to DynamoDB
 
-```js
-await dynamodb.put({
-  TableName: "TransactionsTable",
-  Item: transaction
-}).promise();
-```
-- transaction is a JSON object constructed using the request input and enriched with metadata like:
-  - id, timestamp, symbol, price, quantity, type, etc.
+- The backend uses an AWS Lambda function (e.g., getStocks) to read data from the StockItems table using the ScanCommand from AWS SDK.
+- This Lambda function is exposed via API Gateway, allowing the frontend to fetch stock data using an HTTP GET request.
 
 ### 3.3 IAM Permissions 
 - To allow Lambda to write to DynamoDB, attach the following IAM policy to its execution role:
@@ -330,8 +323,9 @@ await dynamodb.put({
 #### Successful Integration
 
 - Once the integration is complete:
-  - Every time a user performs a buy or sell, the transaction is automatically recorded.
-  - You can verify it by scanning the table in the DynamoDB console.
+  - Show a list of available stocks to users.
+  - Reference stock details during buy/sell transactions.
+  - Display stock name, symbol, and price on the portfolio and trading pages.
        
 ## Phase 4: S3 Static Website Setup
 
