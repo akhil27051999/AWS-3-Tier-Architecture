@@ -54,26 +54,24 @@
 
 **Goal**: Deploy containerized Book App using manual setup and CloudFormation-based CI/CD pipelines
 
-### AWS Services Used
-
-## 🛠️ AWS Services Used
+#### AWS Services Used
 
 | Category                  | AWS Service               | Purpose                                                                 |
 |---------------------------|---------------------------|-------------------------------------------------------------------------|
-| 🧱 Infrastructure & Networking | **Amazon VPC**            | Provides isolated network environment for ECS and ALB                   |
-|                           | **Subnets (Public/Private)** | Separates access control and network segmentation                     |
-|                           | **Internet Gateway, NAT Gateway** | Enables internet access for public and private subnets            |
-|                           | **Route Tables**          | Manages traffic routing across the network                             |
+| Infrastructure & Networking | **Amazon VPC**            | Provides isolated network environment for ECS and ALB                 |
+|                           | **Subnets (Public/Private)** | Separates access control and network segmentation                    |
+|                           | **Internet Gateway, NAT Gateway** | Enables internet access for public and private subnets          |
+|                           | **Route Tables**          | Manages traffic routing across the network                              |
 |                           | **Security Groups**       | Controls access to ECS tasks, ALB, and other components                 |
-| 📦 Container & Deployment | **Amazon ECS (Fargate)**   | Runs containers without managing servers                                |
+| Container & Deployment    | **Amazon ECS (Fargate)**   | Runs containers without managing servers                               |
 |                           | **Amazon ECR**            | Stores container images securely                                        |
-|                           | **Application Load Balancer (ALB)** | Distributes incoming traffic to ECS services                   |
-|                           | **ECS Task Definitions & Services** | Defines how containers run and scale                                |
-| 🔁 CI/CD & Automation     | **AWS CodeCommit**        | Git-based code repository for storing application source code           |
+|                           | **Application Load Balancer (ALB)** | Distributes incoming traffic to ECS services                  |
+|                           | **ECS Task Definitions & Services** | Defines how containers run and scale                          |
+| CI/CD & Automation        | **AWS CodeCommit**        | Git-based code repository for storing application source code           |
 |                           | **AWS CodeBuild**         | Builds and packages container images automatically                      |
 |                           | **AWS CodeDeploy**        | Manages ECS deployment and blue-green deployments                       |
 |                           | **AWS CodePipeline**      | Automates the end-to-end CI/CD pipeline                                 |
-| 🔐 Security               | **AWS IAM**               | Controls access via roles and policies across all AWS services          |
+| Security                  | **AWS IAM**               | Controls access via roles and policies across all AWS services          |
 
 
 ### Implementation:
@@ -110,6 +108,21 @@ The AWS Serverless Stock Trading Platform is a fully cloud-native, serverless ap
 
 **Goal**:
 Combine Infrastructure as Code (IaC) with manual provisioning to enable a flexible deployment strategy for a Three-Tier Web Application on AWS.
+
+#### AWS Services Used
+
+| Category               | AWS Service             | Purpose                                                                 |
+|------------------------|-------------------------|-------------------------------------------------------------------------|
+| Compute                | **AWS Lambda**          | Executes backend trading logic (buy, sell, stock check)                |
+| API & Integration      | **Amazon API Gateway**  | Exposes Lambda functions as RESTful APIs                               |
+| Orchestration          | **AWS Step Functions**  | Manages the flow between multiple Lambda functions                     |
+| Storage & Hosting      | **Amazon S3**           | Hosts static frontend files (HTML, CSS, JS)                            |
+| Content Delivery       | **Amazon CloudFront**   | Caches and delivers the frontend globally with low latency             |
+| DevOps & Deployment    | **AWS CloudFormation**  | Automates deployment of infrastructure components                      |
+| Web Hosting (Optional) | **AWS Amplify**         | Simplifies hosting and CI/CD for the frontend                          |
+| Networking             | **Amazon VPC**          | Used in hybrid or advanced setups for secure communication             |
+| Security               | **AWS IAM**             | Manages permissions for Lambda, API Gateway, and Step Functions        |
+| Secrets Management     | **AWS Secrets Manager** | (Optional) Manages sensitive data like API keys and credentials        |
 
 **Implementation**:
 - CloudFormation templates used to deploy core infrastructure:
