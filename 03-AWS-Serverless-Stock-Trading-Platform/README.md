@@ -128,6 +128,7 @@ https://github.com/user-attachments/assets/74e18426-5c84-48e9-b3a5-6e1132bf03dd
 ```
 aws-stock-trading-platform/
 ├── README.md
+├── LICENSE
 ├── lambda-functions/
 │   ├── stock-checker/
 │   │   └── index.js
@@ -139,13 +140,11 @@ aws-stock-trading-platform/
 │   ├── index.html
 │   ├── script.js
 │   └── styles.css
-├── api-gateway/
-│   └── swagger.yaml
-├── cloudformation/
-│   └── template.yaml
-└── docs/
-    ├── architecture-diagram.png
-    └── api-documentation.md
+├── state-machine/
+│   └── stock-trader.asl.json
+└── cloudformation/
+    └── template.yaml
+
 ```
 
 # Step-by-Step Setup Guide
