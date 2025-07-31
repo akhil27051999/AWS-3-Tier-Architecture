@@ -97,6 +97,7 @@ The application is built entirely on AWS serverless services, ensuring high avai
 
 ## 📁 Project Structure
 
+```
 aws-stock-trading-platform/
 ├── README.md
 ├── lambda-functions/
@@ -117,6 +118,7 @@ aws-stock-trading-platform/
 └── docs/
     ├── architecture-diagram.png
     └── api-documentation.md
+```
 
 # 🚀 Step-by-Step Setup Guide
 
