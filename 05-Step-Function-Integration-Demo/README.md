@@ -390,7 +390,7 @@ curl -X POST "https://YOUR-API-ID.execute-api.YOUR-REGION.amazonaws.com/Prod/sel
 
 ### Common Issues and Solutions
 
-1. "exports is not defined" Error
+#### 1. "exports is not defined" Error
 Problem: Lambda function uses CommonJS syntax Solution: Use ES6 modules:
 ```
 // Wrong
@@ -399,7 +399,7 @@ exports.handler = async (event) => { ... }
 // Correct
 export const handler = async (event) => { ... }
 ```
-2. CORS Errors
+#### 2. CORS Errors
 Problem: Browser blocks API requests Solution: Ensure CORS headers in Lambda responses:
 ```
 headers: {
@@ -408,17 +408,17 @@ headers: {
     'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS'
 }
 ```
-3. API Gateway 502 Errors
+#### 3. API Gateway 502 Errors
 Problem: Lambda function errors Solution: Check CloudWatch logs:
   - Go to CloudWatch Console
   - Navigate to Log Groups
   - Find /aws/lambda/[FunctionName]
   - Check recent log streams for errors
     
-4. Stock Data Not Loading
+#### 4. Stock Data Not Loading
 Problem: API URL misconfiguration Solution: Verify API_BASE_URL in script.js matches your API Gateway URL
 
-5. S3 Access Denied
+#### 5. S3 Access Denied
 Problem: Bucket policy not configured Solution: Ensure bucket policy allows public read access
 
 **Debugging Steps**
