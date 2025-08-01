@@ -2,7 +2,7 @@
 A complete serverless stock trading application built on AWS using Lambda, API Gateway, S3, and CloudFront. This project demonstrates modern cloud architecture with real-time stock data simulation, buy/sell functionality, and a responsive web interface.
 
 ## Architecture Diagram
-<img width="1604" height="654" alt="diagram-export-7-31-2025-4_29_16-AM" src="https://github.com/user-attachments/assets/884085db-6df9-4f7e-82f9-ba40c539afb4" />
+<img width="1604" height="545" alt="diagram-export-7-31-2025-4_29_16-AM" src="https://github.com/user-attachments/assets/08beda9a-df91-4c11-998c-95494a58742e" />
 
 ## Table of Contents
 
