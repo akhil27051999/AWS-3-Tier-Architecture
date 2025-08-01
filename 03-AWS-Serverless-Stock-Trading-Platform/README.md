@@ -3,6 +3,8 @@ A complete serverless stock trading application built on AWS using Lambda, API G
 
 ## Architecture Diagram
 <img width="1604" height="654" alt="diagram-export-7-31-2025-4_29_16-AM" src="https://github.com/user-attachments/assets/884085db-6df9-4f7e-82f9-ba40c539afb4" />
+[Uploading stock-trading.drawio.html…]()
+
 
 ## Table of Contents
 
