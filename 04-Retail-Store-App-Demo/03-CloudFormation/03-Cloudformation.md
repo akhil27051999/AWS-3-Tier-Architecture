@@ -5,10 +5,10 @@ This directory contains CloudFormation templates to deploy a complete AWS infras
 
 ## Templates Included
 
-### 1. VPC Infrastructure (`vpc-template.yaml`)
+### 1. VPC Infrastructure (`VPC-Templete.yaml`)
 Multi-tier VPC architecture with proper network segmentation
 
-### 2. EKS Management Server (`ec2-instance-template.yaml`)
+### 2. EKS Management Server (`Management-Instance-Temp.yaml`)
 EC2 instance configured for EKS cluster management
 
 ---
