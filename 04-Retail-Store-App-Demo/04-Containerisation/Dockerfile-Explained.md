@@ -342,3 +342,105 @@ COPY --chown=node:node --from=build /usr/src/app/dist ./dist
 ```dockerfile
 ENTRYPOINT [ "node", "dist/main.js" ]
 ```
+
+---
+
+# Orders Service - Dockerfile
+- This service provides an API for storing orders. Data is stored in MySQL.
+
+## Dockerfile Explained
+
+### 🔨 Stage 1: Build Stage
+
+```dockerfile
+FROM public.ecr.aws/amazonlinux/amazonlinux:2023 as build-env
+```
+- Installs necessary tools for building:
+  - Installs Maven, Amazon Corretto 21, and other essential utilities, while avoiding unnecessary packages.
+
+```dockerfile
+RUN dnf --setopt=install_weak_deps=False install -q -y \
+    maven \
+    java-21-amazon-corretto-headless \
+    which \
+    tar \
+    gzip \
+    && dnf clean all
+```
+
+- Prepares project for offline build:
+  - This ensures all Maven dependencies are cached before copying source files — a best practice to optimize Docker caching.
+
+```dockerfile
+COPY .mvn .mvn
+COPY mvnw .
+COPY pom.xml .
+RUN ./mvnw dependency:go-offline -B -q
+```
+
+- Adds source and compiles the project:
+  - Builds the Spring Boot JAR while skipping tests to speed up the build.
+
+```dockerfile
+
+COPY ./src ./src
+RUN ./mvnw -DskipTests package -q
+```
+
+- Moves the final artifact:
+  The compiled application is now ready for the final image.
+
+```dockerfile
+
+mv /target/orders-0.0.1-SNAPSHOT.jar /app.jar
+```
+
+### 📦 Stage 2: Package (Runtime) Stage
+```dockerfile
+FROM public.ecr.aws/amazonlinux/amazonlinux:2023
+```
+- Installs Java 21 and creates non-root user:
+```dockerfile
+
+RUN dnf --setopt=install_weak_deps=False install -q -y \
+    java-21-amazon-corretto-headless \
+    shadow-utils \
+    && dnf clean all
+```
+- Swaps curl-minimal with full version (for telnet/diagnostics if needed):
+```dockerfile
+
+RUN dnf -q -y swap libcurl-minimal libcurl-full \
+    && dnf -q -y swap curl-minimal curl-full
+```
+- Configures non-root runtime environment:
+```dockerfile
+
+ENV APPUSER=appuser
+ENV APPUID=1000
+ENV APPGID=1000
+
+RUN useradd --home "/app" --create-home --user-group \
+    --uid "$APPUID" "$APPUSER"
+```
+- Sets environment and permissions:
+```dockerfile
+
+ENV JAVA_TOOL_OPTIONS=
+ENV SPRING_PROFILES_ACTIVE=prod
+
+WORKDIR /app
+USER appuser
+```
+- Adds license info and app JAR:
+```dockerfile
+
+COPY ./ATTRIBUTION.md ./LICENSES.md
+COPY --chown=appuser:appuser --from=build-env /app.jar .
+```
+- Exposes port and starts the Spring Boot app:
+```dockerfile
+
+EXPOSE 8080
+ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar /app/app.jar"]
+```
