@@ -1,9 +1,9 @@
+#### GitHub Dockerfile Repo:
+https://github.com/akhil27051999/retail-store-sample-app.git
+
 # Cart Service -Dockerfile
 
 This service provides an API for storing customer shopping carts. Data is stored in Amazon DynamoDB.
-
-#### GitHub:
-https://github.com/akhil27051999/retail-store-sample-app/src/cart/Dockerfile
 
 ## Dockerfile Explaination
 
@@ -137,8 +137,6 @@ ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar /app/app.jar"]
 
 This service provides an API for retrieving product catalog information. Data is stored in a MySQL database.
 
-#### GitHub: https://github.com/akhil27051999/retail-store-sample-app/src/catalog/Dockerfile
-
 ## Dockerfile Explained
 
 ### 🔨 Stage 1: Build Stage
@@ -233,8 +231,6 @@ ENTRYPOINT ["/app/main"]
 # Checkout Service - Dockerfile
 
 This project uses a **multi-stage Docker build** to build and run a Node.js 20 application using a secure, minimal, and production-ready Amazon Linux 2023 runtime container.
-
-#### GitHub: https://github.com/akhil27051999/retail-store-sample-app/src/Checkout/Dockerfile
 
 ## Dockerfile Explained
 
@@ -347,8 +343,6 @@ ENTRYPOINT [ "node", "dist/main.js" ]
 # Orders Service - Dockerfile
 - This service provides an API for storing orders. Data is stored in MySQL.
 
-#### GitHub: https://github.com/akhil27051999/retail-store-sample-app/src/orders/Dockerfile
-
 ## Dockerfile Explained
 
 ### 🔨 Stage 1: Build Stage
@@ -449,8 +443,6 @@ ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar /app/app.jar"]
 
 # UI Service - Dockerfile
 - This service provides the frontend for the retail store, serving the HTML UI and aggregating calls to the backend API components.
-
-#### GitHub: https://github.com/akhil27051999/retail-store-sample-app/src/ui/Dockerfile
 
 ## Dockerfile Explained
 
