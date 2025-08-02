@@ -3,6 +3,9 @@
 ## Overview
 This directory contains CloudFormation templates to deploy a complete AWS infrastructure for the retail store application, including VPC networking and EKS management server.
 
+## Project Files Repo:
+https://github.com/akhil27051999/retail-store-sample-app.git/Cloudformation
+
 ## Templates Included
 
 ### 1. VPC Infrastructure (`VPC-Templete.yaml`)
