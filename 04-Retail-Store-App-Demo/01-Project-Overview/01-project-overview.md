@@ -30,14 +30,14 @@ It provides:
 See the [features documentation](./docs/features.md) for more information.
 
 **This project is intended for educational purposes only and not for production use**
+<img width="906" height="473" alt="screenshot" src="https://github.com/user-attachments/assets/b60b32aa-d6a6-47b5-a6c6-2d3eb41e17b8" />
 
-![Screenshot](/docs/images/screenshot.png)
 
 ## Application Architecture
 
 The application has been deliberately over-engineered to generate multiple de-coupled components. These components generally have different infrastructure dependencies, and may support multiple "backends" (example: Carts service supports MongoDB or DynamoDB).
 
-![Architecture](/docs/images/architecture.png)
+<img width="524" height="543" alt="architecture" src="https://github.com/user-attachments/assets/45d672eb-b8fc-44f8-8eba-401b38cb9bf9" />
 
 | Component                  | Language | Container Image                                                             | Helm Chart                                                                        | Description                             |
 | -------------------------- | -------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------- |
