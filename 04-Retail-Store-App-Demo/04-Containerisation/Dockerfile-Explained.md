@@ -4,10 +4,9 @@ This service provides an API for storing customer shopping carts. Data is stored
 
 #### GitHub: https://github.com/akhil27051999/retail-store-sample-app/src/cart/Dockerfile
 
-
 ### Dockerfile Explaination
 
-🔧 Stage 1: Build Stage
+#### 🔧 Stage 1: Build Stage
 
 ```dockerfile
 FROM public.ecr.aws/amazonlinux/amazonlinux:2023 as build-env
@@ -67,7 +66,7 @@ RUN ./mvnw -DskipTests package -q && \
 - Compiles and packages the app into a JAR file, skipping tests.
 - Moves the JAR to /app.jar.
 
-### 📦 Stage 2: Package Stage (Runtime Image)
+#### 📦 Stage 2: Package Stage (Runtime Image)
 
 ```dockerfile
 FROM public.ecr.aws/amazonlinux/amazonlinux:2023
@@ -138,16 +137,18 @@ ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar /app/app.jar"]
 
 This service provides an API for retrieving product catalog information. Data is stored in a MySQL database.
 
-## 📦 Dockerfile Structure Overview
+### 📦 Dockerfile Structure Overview
 
 This Dockerfile uses **two stages**:
 
 1. **Build Stage**: Compiles the Go binary using Golang and Git.
 2. **Final Stage**: Runs the binary inside a stripped-down Amazon Linux environment as a non-root user.
 
----
+#### GitHub: https://github.com/akhil27051999/retail-store-sample-app/src/catalog/Dockerfile
 
-## 🔨 Stage 1: Build Stage
+### Dockerfile Explained
+
+#### 🔨 Stage 1: Build Stage
 
 - Uses Amazon Linux 2023 as the base image for building:
 
@@ -187,7 +188,7 @@ RUN go mod download
 COPY . .
 RUN go build -o main main.go
 ```
-### 🏃 Stage 2: Final Runtime Stage
+#### 🏃 Stage 2: Final Runtime Stage
 
 - Starts a clean, minimal Amazon Linux 2023 image:
 ```dockerfile
