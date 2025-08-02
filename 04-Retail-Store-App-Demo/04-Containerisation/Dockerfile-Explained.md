@@ -130,7 +130,6 @@ ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar /app/app.jar"]
 - Runs the app using the Java command.
 - Allows passing extra options via $JAVA_OPTS.
 
----
 
 
 # Catalog Service - Dockerfile
@@ -229,7 +228,6 @@ ENV GIN_MODE=release
 ENTRYPOINT ["/app/main"]
 ```
 
----
 
 # Checkout Service - Dockerfile
 
@@ -343,7 +341,7 @@ COPY --chown=node:node --from=build /usr/src/app/dist ./dist
 ENTRYPOINT [ "node", "dist/main.js" ]
 ```
 
----
+
 
 # Orders Service - Dockerfile
 - This service provides an API for storing orders. Data is stored in MySQL.
@@ -446,7 +444,7 @@ COPY --chown=appuser:appuser --from=build-env /app.jar .
 EXPOSE 8080
 ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar /app/app.jar"]
 ```
----
+
 
 # UI Service - Dockerfile
 - This service provides the frontend for the retail store, serving the HTML UI and aggregating calls to the backend API components.
