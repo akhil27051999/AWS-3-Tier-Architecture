@@ -263,10 +263,11 @@ COPY --chown=node:node . .
 ```
 
 - Installs dependencies with Yarn (lockfile respected):
+  - Ensures reproducible builds by using the lockfile.
+
 ```dockerfile
 RUN yarn install --frozen-lockfile
 ```
-  - Ensures reproducible builds by using the lockfile.
 
 - Builds the application:
   - Builds the production-ready files (typically compiles TypeScript, bundles assets, etc.).
@@ -334,7 +335,6 @@ USER appuser
 COPY --chown=node:node --from=build /usr/src/app/node_modules ./node_modules
 COPY --chown=node:node --from=build /usr/src/app/dist ./dist
 ```
-  - Only production-ready files and modules are moved to the final image.
 
 - Defines the entry point of the application:
   - Starts the application from the built JS file.
