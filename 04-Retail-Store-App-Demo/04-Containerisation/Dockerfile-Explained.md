@@ -348,6 +348,8 @@ ENTRYPOINT [ "node", "dist/main.js" ]
 # Orders Service - Dockerfile
 - This service provides an API for storing orders. Data is stored in MySQL.
 
+#### GitHub: https://github.com/akhil27051999/retail-store-sample-app/src/orders/Dockerfile
+
 ## Dockerfile Explained
 
 ### 🔨 Stage 1: Build Stage
@@ -439,6 +441,126 @@ COPY ./ATTRIBUTION.md ./LICENSES.md
 COPY --chown=appuser:appuser --from=build-env /app.jar .
 ```
 - Exposes port and starts the Spring Boot app:
+```dockerfile
+
+EXPOSE 8080
+ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar /app/app.jar"]
+```
+---
+
+# UI Service - Dockerfile
+- This service provides the frontend for the retail store, serving the HTML UI and aggregating calls to the backend API components.
+
+#### GitHub: https://github.com/akhil27051999/retail-store-sample-app/src/ui/Dockerfile
+
+## Dockerfile Explained
+
+### 🔨 Stage 1: Build Environment
+
+```dockerfile
+FROM public.ecr.aws/amazonlinux/amazonlinux:2023 AS build-env
+```
+-  Install minimal required packages:
+  - Uses --setopt=install_weak_deps=False to minimize image size.
+  - Installs Maven, Java 21, and essential tools.
+
+
+```dockerfile
+
+RUN dnf --setopt=install_weak_deps=False install -q -y \
+    maven \
+    java-21-amazon-corretto-headless \
+    which \
+    tar \
+    gzip \
+    && dnf clean all
+```
+
+
+- Copy and prepare Maven build:
+  - Prepares Maven dependencies offline to optimize caching and avoid rebuilding unchanged dependencies.
+
+```dockerfile
+
+COPY .mvn .mvn
+COPY mvnw .
+COPY pom.xml .
+RUN ./mvnw dependency:go-offline -B -q
+```
+
+- Copy source and build application:
+  - Builds the Spring Boot application.
+  - Skips tests for faster builds.
+  - Outputs a JAR file named ui-0.0.1-SNAPSHOT.jar.
+
+```dockerfile
+
+COPY ./src ./src
+RUN ./mvnw -DskipTests package -q && \
+    mv /target/ui-0.0.1-SNAPSHOT.jar /app.jar
+
+```
+
+
+### 📦 Stage 2: Runtime Environment
+```dockerfile
+
+FROM public.ecr.aws/amazonlinux/amazonlinux:2023
+```
+- Install only runtime dependencies:
+  - Keeps runtime lightweight and minimal.
+
+```dockerfile
+
+RUN dnf --setopt=install_weak_deps=False install -q -y \
+    java-21-amazon-corretto-headless \
+    shadow-utils \
+    && dnf clean all
+```
+
+- Swap full cURL:
+  - Required if you use telnet:// in health checks or diagnostics.
+
+```dockerfile
+
+RUN dnf -q -y swap libcurl-minimal libcurl-full \
+    && dnf -q -y swap curl-minimal curl-full
+
+```
+
+- Create non-root user:
+  - Enhances security by running the app as a non-root user.
+
+```dockerfile
+
+ENV APPUSER=appuser
+ENV APPUID=1000
+ENV APPGID=1000
+RUN useradd --home "/app" --create-home --user-group \
+    --uid "$APPUID" "$APPUSER"
+```
+
+- Configure environment:
+  - Accepts JVM flags via JAVA_OPTS.
+
+```dockerfile
+
+ENV JAVA_TOOL_OPTIONS=
+ENV SPRING_PROFILES_ACTIVE=prod
+Enables production profile by default.
+
+```
+
+- Copy final JAR and attribution files:
+```dockerfile
+
+WORKDIR /app
+USER appuser
+COPY ./ATTRIBUTION.md ./LICENSES.md
+COPY --chown=appuser:appuser --from=build-env /app.jar .
+```
+
+- Application startup:
 ```dockerfile
 
 EXPOSE 8080
