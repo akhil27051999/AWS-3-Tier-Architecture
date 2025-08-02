@@ -1,4 +1,4 @@
-#### GitHub Dockerfile Repo:
+# GitHub Dockerfile Repo:
 https://github.com/akhil27051999/retail-store-sample-app.git
 
 # Cart Service -Dockerfile
