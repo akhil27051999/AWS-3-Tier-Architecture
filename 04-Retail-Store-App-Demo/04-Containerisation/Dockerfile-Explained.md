@@ -2,7 +2,8 @@
 
 This service provides an API for storing customer shopping carts. Data is stored in Amazon DynamoDB.
 
-#### GitHub: https://github.com/akhil27051999/retail-store-sample-app/src/cart/Dockerfile
+#### GitHub:
+https://github.com/akhil27051999/retail-store-sample-app/src/cart/Dockerfile
 
 ## Dockerfile Explaination
 
