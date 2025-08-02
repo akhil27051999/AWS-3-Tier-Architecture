@@ -133,16 +133,10 @@ ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar /app/app.jar"]
 
 ---
 
-# Go Application Docker Image (Multi-Stage Build)
 
-This Dockerfile builds and packages a **Go (Golang)** application using **Amazon Linux 2023** with a **multi-stage build**, ensuring a minimal, secure, and production-ready container.
+# Catalog Service - Dockerfile
 
-
-# 🚀 Go Application Containerized with Amazon Linux (Multi-Stage Dockerfile)
-
-This project uses a **multi-stage Docker build** to compile and run a Go application in a clean, secure, and minimal Amazon Linux 2023 container.
-
----
+This service provides an API for retrieving product catalog information. Data is stored in a MySQL database.
 
 ## 📦 Dockerfile Structure Overview
 
