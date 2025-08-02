@@ -48,7 +48,7 @@ https://github.com/user-attachments/assets/e80c1204-6b2a-4b1c-b644-e0bfb436a980
 
 https://github.com/user-attachments/assets/6d8b872e-dc6a-4765-abf4-78ee073e3efc
 
-## 4. DynamoDB Setup, Backend API Integration with Frontend and Frontend Deployment
+### 4. DynamoDB Setup, Backend API Integration with Frontend and Frontend Deployment
 
 https://github.com/user-attachments/assets/8195fdb6-1777-4a12-9235-ab1627559680
 
