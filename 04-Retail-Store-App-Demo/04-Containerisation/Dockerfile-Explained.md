@@ -1,559 +1,464 @@
-## GitHub Dockerfile Repo:
+# Retail Store Application - Dockerfiles Guide
+
+Complete guide to the Docker containerization strategy for all microservices in the retail store application.
+
+## GitHub Repository
 https://github.com/akhil27051999/retail-store-sample-app.git
 
-# Cart Service -Dockerfile
+## Overview
 
-This service provides an API for storing customer shopping carts. Data is stored in Amazon DynamoDB.
+All services use **multi-stage Docker builds** with Amazon Linux 2023 base images for optimal security, performance, and consistency across the AWS ecosystem.
 
-## Dockerfile Explaination
+## Common Docker Patterns
 
-### 🔧 Stage 1: Build Stage
+### **Multi-Stage Build Strategy**
+- **Stage 1 (Build)**: Contains build tools and dependencies
+- **Stage 2 (Runtime)**: Minimal runtime environment with only necessary components
 
+### **Security Best Practices**
+- **Non-root user**: All containers run as `appuser` (UID 1000)
+- **Minimal packages**: Only essential runtime dependencies installed
+- **Clean package cache**: Reduces image size and attack surface
+
+### **Base Image Choice**
+- **Amazon Linux 2023**: Optimized for AWS, security-focused, minimal footprint
+
+---
+
+## Service Dockerfiles
+
+### 1. **Cart Service** - Java/Spring Boot + DynamoDB
+
+#### **Build Stage**
 ```dockerfile
 FROM public.ecr.aws/amazonlinux/amazonlinux:2023 as build-env
-```
-- Uses Amazon Linux 2023 base image for building the app.
-- Labels this stage as build-env.
 
-```dockerfile
+# Install build tools
 RUN dnf --setopt=install_weak_deps=False install -q -y \
     maven \
     java-21-amazon-corretto-headless \
-    which \
-    tar \
-    gzip \
+    which tar gzip \
     && dnf clean all
-```
-**Installs only essential build tools:**
-- maven: for building Java projects.
-- java-21-amazon-corretto-headless: Amazon’s Java 21 distribution.
-- Other utilities (tar, gzip, etc.).
-- Skips installing weak dependencies to keep the image lean.
-- Cleans up package cache to reduce image size.
 
-```dockerfile
-ARG JAR_PATH
-```
-- Allows a JAR_PATH argument to be passed during build (although it's not used directly here).
-
-```dockerfile
-VOLUME /tmp
-WORKDIR /
-```
-- Defines /tmp as a volume (Spring Boot uses it for temp files).
-- Sets working directory to root (/).
-
-```dockerfile
+# Optimize Maven caching
 COPY .mvn .mvn
-COPY mvnw .
-COPY pom.xml .
-```
-- Copies Maven wrapper files and pom.xml (needed for dependency resolution).
-
-```dockerfile
+COPY mvnw pom.xml ./
 RUN ./mvnw dependency:go-offline -B -q
-```
-- Pre-downloads all Maven dependencies in offline mode to speed up future builds.
 
-```dockerfile
+# Build application
 COPY ./src ./src
-```
-- Copies application source code.
-
-```dockerfile
 RUN ./mvnw -DskipTests package -q && \
     mv /target/carts-0.0.1-SNAPSHOT.jar /app.jar
 ```
-- Compiles and packages the app into a JAR file, skipping tests.
-- Moves the JAR to /app.jar.
 
-### 📦 Stage 2: Package Stage (Runtime Image)
-
+#### **Runtime Stage**
 ```dockerfile
 FROM public.ecr.aws/amazonlinux/amazonlinux:2023
-```
-- Starts a new Amazon Linux 2023 base image (clean, no build tools).
 
-```dockerfile
+# Install runtime Java only
 RUN dnf --setopt=install_weak_deps=False install -q -y \
     java-21-amazon-corretto-headless \
     shadow-utils \
     && dnf clean all
-```
-- Installs only Java runtime and user/group management tools (shadow-utils).
-- Minimal runtime environment.
 
-```dockerfile
-ENV APPUSER=appuser
-ENV APPUID=1000
-ENV APPGID=1000
-```
-- Declares environment variables for creating a secure app user.
+# Create non-root user
+ENV APPUSER=appuser APPUID=1000 APPGID=1000
+RUN useradd --home "/app" --create-home --user-group \
+    --uid "$APPUID" "$APPUSER"
 
-```dockerfile
-RUN useradd \
-    --home "/app" \
-    --create-home \
-    --user-group \
-    --uid "$APPUID" \
-    "$APPUSER"
-```
-- Creates a non-root user (appuser) with UID 1000.
-
-```dockerfile
-ENV JAVA_TOOL_OPTIONS=
+# Configure Spring Boot
 ENV SPRING_PROFILES_ACTIVE=prod
-```
-- Environment variables to configure JVM and Spring Boot.
-- SPRING_PROFILES_ACTIVE=prod enables the production config.
-
-```dockerfile
 WORKDIR /app
 USER appuser
-```
-- Switches to working directory /app.
-- Runs the rest of the container as the non-root appuser.
 
-```dockerfile
-COPY ./ATTRIBUTION.md ./LICENSES.md
+# Copy JAR from build stage
 COPY --chown=appuser:appuser --from=build-env /app.jar .
-```
-- Copies attribution/license files and the JAR file from build stage.
-
-```dockerfile
 EXPOSE 8080
-```
-- Documents that the app listens on port 8080 (Spring Boot default).
-
-```dockerfile
 ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar /app/app.jar"]
 ```
-- Runs the app using the Java command.
-- Allows passing extra options via $JAVA_OPTS.
 
+**Key Features:**
+- **Maven dependency caching** for faster rebuilds
+- **Spring Boot production profile** enabled
+- **JVM options** configurable via `$JAVA_OPTS`
 
+---
 
-# Catalog Service - Dockerfile
+### 2. **Catalog Service** - Go + MySQL
 
-This service provides an API for retrieving product catalog information. Data is stored in a MySQL database.
-
-## Dockerfile Explained
-
-### 🔨 Stage 1: Build Stage
-
-- Uses Amazon Linux 2023 as the base image for building:
-
+#### **Build Stage**
 ```dockerfile
 FROM public.ecr.aws/amazonlinux/amazonlinux:2023 AS build-env
-```
-- Aims to keep the build image lightweight by disabling weak dependencies:
 
-```dockerfile
+# Install Go and Git
 RUN dnf --setopt=install_weak_deps=False install -q -y \
-    git \
-    golang \
-    && \
-    dnf clean all
-```
-- Installs only the required packages: Golang for building Go code and Git for module fetching.
+    git golang && dnf clean all
 
-- Sets up Go workspace directories and working directory:
-```dockerfile
+# Setup Go workspace
 RUN mkdir -p "${GOPATH}/src" "${GOPATH}/bin" /appsrc
 WORKDIR /appsrc
-```
 
-- Configures Go module proxy to improve module resolution:
-```dockerfile
+# Configure Go proxy for better module resolution
 ENV GOPROXY=https://goproxy.io,direct
-```
 
-- Copies Go modules and downloads dependencies:
-```dockerfile
+# Download dependencies first (caching optimization)
 COPY go.mod go.sum ./
 RUN go mod download
-```
 
-- Copies app code and builds the Go binary:
-```dockerfile
+# Build Go binary
 COPY . .
 RUN go build -o main main.go
 ```
-### 🏃 Stage 2: Final Runtime Stage
 
-- Starts a clean, minimal Amazon Linux 2023 image:
+#### **Runtime Stage**
 ```dockerfile
 FROM public.ecr.aws/amazonlinux/amazonlinux:2023
-```
 
-- Declares environment variables for creating a secure non-root user:
-```dockerfile
-ENV APPUSER=appuser
-ENV APPUID=1000
-ENV APPGID=1000
-```
-- Installs shadow-utils to enable user and group creation:
-```dockerfile
+# Create non-root user
+ENV APPUSER=appuser APPUID=1000 APPGID=1000
 RUN dnf --setopt=install_weak_deps=False install -q -y \
-    shadow-utils \
-    && \
-    dnf clean all
-```
-- Creates a dedicated non-root user:
-```dockerfile
-RUN useradd \
-    --home "/app" \
-    --create-home \
-    --user-group \
-    --uid "$APPUID" \
-    "$APPUSER"
-```
--  Sets working directory and switches to appuser:
-```dockerfile
+    shadow-utils && dnf clean all
+
+RUN useradd --home "/app" --create-home --user-group \
+    --uid "$APPUID" "$APPUSER"
+
+# Setup runtime environment
 WORKDIR /app
 USER appuser
-```
-- Copies the built Go binary and license files into the final image:
-```dockerfile
-COPY --chown=appuser:appuser --from=build-env /appsrc/main /app/
-COPY ./ATTRIBUTION.md ./LICENSES.md
-```
--  Sets Gin framework to production mode (optional):
-```dockerfile
 ENV GIN_MODE=release
-```
-- Defines the entry point for the container:
-```dockerfile
+
+# Copy binary from build stage
+COPY --chown=appuser:appuser --from=build-env /appsrc/main /app/
+COPY ./ATTRIBUTION.md ./LICENSES.md ./
+
 ENTRYPOINT ["/app/main"]
 ```
 
+**Key Features:**
+- **Go module proxy** for reliable dependency resolution
+- **Gin framework** in release mode for production
+- **Static binary** - no runtime dependencies needed
 
-# Checkout Service - Dockerfile
+---
 
-This project uses a **multi-stage Docker build** to build and run a Node.js 20 application using a secure, minimal, and production-ready Amazon Linux 2023 runtime container.
+### 3. **Checkout Service** - Node.js + Redis
 
-## Dockerfile Explained
-
-### 🔨 Stage 1: Build Stage
-
-- Uses Node.js 20 Alpine image as the base for building:
-  - A small and fast image for installing dependencies and building the app.
-
-
+#### **Build Stage**
 ```dockerfile
 FROM node:20-alpine AS build
-```
 
-- Sets up working directory:
-```dockerfile
 WORKDIR /usr/src/app
-```
 
-- Copies dependency and source files with proper ownership:
-  - Ensures that the node user owns the project files, improving security and compatibility.
-
-```dockerfile
+# Copy package files with proper ownership
 COPY --chown=node:node package*.json ./
 COPY --chown=node:node . .
-```
 
-- Installs dependencies with Yarn (lockfile respected):
-  - Ensures reproducible builds by using the lockfile.
-
-```dockerfile
+# Install dependencies and build
 RUN yarn install --frozen-lockfile
-```
-
-- Builds the application:
-  - Builds the production-ready files (typically compiles TypeScript, bundles assets, etc.).
-
-```dockerfile
 RUN yarn build
-```
 
-- Switches to non-root node user:
-```dockerfile
 USER node
 ```
 
-### 🏃 Stage 2: Final Runtime Stage
-
-- Starts with Amazon Linux 2023 for a stable runtime environment:
+#### **Runtime Stage**
 ```dockerfile
 FROM public.ecr.aws/amazonlinux/amazonlinux:2023
-```
 
--  Installs Node.js 20 and essential packages:
-
-```dockerfile
+# Install Node.js 20
 RUN dnf --setopt=install_weak_deps=False install -q -y \
-    nodejs20 \
-    shadow-utils \
-    && \
-    dnf clean all
-```
+    nodejs20 shadow-utils && dnf clean all
 
-- Registers Node.js 20 as the system's default:
-  - Ensures the node command points to Node.js 20.
-
-```dockerfile
+# Set Node.js 20 as default
 RUN alternatives --install /usr/bin/node node /usr/bin/node-20 90
-```
 
-- Declares environment variables for user creation:
-```dockerfile
-ENV APPUSER=appuser
-ENV APPUID=1000
-ENV APPGID=1000
-```
-- Creates a dedicated non-root user:
-  - Improves container security by avoiding running as root.
-
-```dockerfile
-RUN useradd \
-    --home "/app" \
-    --create-home \
-    --user-group \
-    --uid "$APPUID" \
-    "$APPUSER"
-```
-
-- Sets working directory and switches to the app user:
-```dockerfile
-WORKDIR /app
-USER appuser
-```
-- Copies built assets and dependencies from the build stage:
-  - Only production-ready files and modules are moved to the final image.
-
-```dockerfile
-COPY --chown=node:node --from=build /usr/src/app/node_modules ./node_modules
-COPY --chown=node:node --from=build /usr/src/app/dist ./dist
-```
-
-- Defines the entry point of the application:
-  - Starts the application from the built JS file.
-
-```dockerfile
-ENTRYPOINT [ "node", "dist/main.js" ]
-```
-
-
-
-# Orders Service - Dockerfile
-- This service provides an API for storing orders. Data is stored in MySQL.
-
-## Dockerfile Explained
-
-### 🔨 Stage 1: Build Stage
-
-```dockerfile
-FROM public.ecr.aws/amazonlinux/amazonlinux:2023 as build-env
-```
-- Installs necessary tools for building:
-  - Installs Maven, Amazon Corretto 21, and other essential utilities, while avoiding unnecessary packages.
-
-```dockerfile
-RUN dnf --setopt=install_weak_deps=False install -q -y \
-    maven \
-    java-21-amazon-corretto-headless \
-    which \
-    tar \
-    gzip \
-    && dnf clean all
-```
-
-- Prepares project for offline build:
-  - This ensures all Maven dependencies are cached before copying source files — a best practice to optimize Docker caching.
-
-```dockerfile
-COPY .mvn .mvn
-COPY mvnw .
-COPY pom.xml .
-RUN ./mvnw dependency:go-offline -B -q
-```
-
-- Adds source and compiles the project:
-  - Builds the Spring Boot JAR while skipping tests to speed up the build.
-
-```dockerfile
-
-COPY ./src ./src
-RUN ./mvnw -DskipTests package -q
-```
-
-- Moves the final artifact:
-  The compiled application is now ready for the final image.
-
-```dockerfile
-
-mv /target/orders-0.0.1-SNAPSHOT.jar /app.jar
-```
-
-### 📦 Stage 2: Package (Runtime) Stage
-```dockerfile
-FROM public.ecr.aws/amazonlinux/amazonlinux:2023
-```
-- Installs Java 21 and creates non-root user:
-```dockerfile
-
-RUN dnf --setopt=install_weak_deps=False install -q -y \
-    java-21-amazon-corretto-headless \
-    shadow-utils \
-    && dnf clean all
-```
-- Swaps curl-minimal with full version (for telnet/diagnostics if needed):
-```dockerfile
-
-RUN dnf -q -y swap libcurl-minimal libcurl-full \
-    && dnf -q -y swap curl-minimal curl-full
-```
-- Configures non-root runtime environment:
-```dockerfile
-
-ENV APPUSER=appuser
-ENV APPUID=1000
-ENV APPGID=1000
-
+# Create non-root user
+ENV APPUSER=appuser APPUID=1000 APPGID=1000
 RUN useradd --home "/app" --create-home --user-group \
     --uid "$APPUID" "$APPUSER"
-```
-- Sets environment and permissions:
-```dockerfile
 
-ENV JAVA_TOOL_OPTIONS=
-ENV SPRING_PROFILES_ACTIVE=prod
-
+# Setup runtime
 WORKDIR /app
 USER appuser
-```
-- Adds license info and app JAR:
-```dockerfile
 
-COPY ./ATTRIBUTION.md ./LICENSES.md
+# Copy built application from build stage
+COPY --chown=node:node --from=build /usr/src/app/node_modules ./node_modules
+COPY --chown=node:node --from=build /usr/src/app/dist ./dist
+
+ENTRYPOINT ["node", "dist/main.js"]
+```
+
+**Key Features:**
+- **Yarn frozen lockfile** for reproducible builds
+- **Node.js 20** with alternatives system for version management
+- **Built assets only** - source code not included in runtime image
+
+---
+
+### 4. **Orders Service** - Java/Spring Boot + PostgreSQL + RabbitMQ
+
+#### **Build Stage**
+```dockerfile
+FROM public.ecr.aws/amazonlinux/amazonlinux:2023 as build-env
+
+# Install build tools
+RUN dnf --setopt=install_weak_deps=False install -q -y \
+    maven java-21-amazon-corretto-headless \
+    which tar gzip && dnf clean all
+
+# Maven dependency optimization
+COPY .mvn .mvn
+COPY mvnw pom.xml ./
+RUN ./mvnw dependency:go-offline -B -q
+
+# Build application
+COPY ./src ./src
+RUN ./mvnw -DskipTests package -q && \
+    mv /target/orders-0.0.1-SNAPSHOT.jar /app.jar
+```
+
+#### **Runtime Stage**
+```dockerfile
+FROM public.ecr.aws/amazonlinux/amazonlinux:2023
+
+# Install runtime and full curl (for health checks)
+RUN dnf --setopt=install_weak_deps=False install -q -y \
+    java-21-amazon-corretto-headless shadow-utils && dnf clean all
+
+# Upgrade to full curl for telnet health checks
+RUN dnf -q -y swap libcurl-minimal libcurl-full && \
+    dnf -q -y swap curl-minimal curl-full
+
+# Create non-root user
+ENV APPUSER=appuser APPUID=1000 APPGID=1000
+RUN useradd --home "/app" --create-home --user-group \
+    --uid "$APPUID" "$APPUSER"
+
+# Configure Spring Boot
+ENV SPRING_PROFILES_ACTIVE=prod
+WORKDIR /app
+USER appuser
+
+# Copy application
 COPY --chown=appuser:appuser --from=build-env /app.jar .
-```
-- Exposes port and starts the Spring Boot app:
-```dockerfile
-
 EXPOSE 8080
 ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar /app/app.jar"]
 ```
 
+**Key Features:**
+- **Full curl package** for advanced health check capabilities
+- **PostgreSQL and RabbitMQ connectivity** support
+- **Production Spring profile** enabled
 
-# UI Service - Dockerfile
-- This service provides the frontend for the retail store, serving the HTML UI and aggregating calls to the backend API components.
+---
 
-## Dockerfile Explained
+### 5. **UI Service** - Java/Spring Boot Frontend
 
-### 🔨 Stage 1: Build Environment
-
+#### **Build Stage**
 ```dockerfile
 FROM public.ecr.aws/amazonlinux/amazonlinux:2023 AS build-env
-```
--  Install minimal required packages:
-  - Uses --setopt=install_weak_deps=False to minimize image size.
-  - Installs Maven, Java 21, and essential tools.
 
-
-```dockerfile
-
+# Install build tools
 RUN dnf --setopt=install_weak_deps=False install -q -y \
-    maven \
-    java-21-amazon-corretto-headless \
-    which \
-    tar \
-    gzip \
-    && dnf clean all
-```
+    maven java-21-amazon-corretto-headless \
+    which tar gzip && dnf clean all
 
-
-- Copy and prepare Maven build:
-  - Prepares Maven dependencies offline to optimize caching and avoid rebuilding unchanged dependencies.
-
-```dockerfile
-
+# Maven optimization
 COPY .mvn .mvn
-COPY mvnw .
-COPY pom.xml .
+COPY mvnw pom.xml ./
 RUN ./mvnw dependency:go-offline -B -q
-```
 
-- Copy source and build application:
-  - Builds the Spring Boot application.
-  - Skips tests for faster builds.
-  - Outputs a JAR file named ui-0.0.1-SNAPSHOT.jar.
-
-```dockerfile
-
+# Build UI application
 COPY ./src ./src
 RUN ./mvnw -DskipTests package -q && \
     mv /target/ui-0.0.1-SNAPSHOT.jar /app.jar
-
 ```
 
-
-### 📦 Stage 2: Runtime Environment
+#### **Runtime Stage**
 ```dockerfile
-
 FROM public.ecr.aws/amazonlinux/amazonlinux:2023
-```
-- Install only runtime dependencies:
-  - Keeps runtime lightweight and minimal.
 
-```dockerfile
-
+# Install runtime with full curl
 RUN dnf --setopt=install_weak_deps=False install -q -y \
-    java-21-amazon-corretto-headless \
-    shadow-utils \
-    && dnf clean all
-```
+    java-21-amazon-corretto-headless shadow-utils && dnf clean all
 
-- Swap full cURL:
-  - Required if you use telnet:// in health checks or diagnostics.
+RUN dnf -q -y swap libcurl-minimal libcurl-full && \
+    dnf -q -y swap curl-minimal curl-full
 
-```dockerfile
-
-RUN dnf -q -y swap libcurl-minimal libcurl-full \
-    && dnf -q -y swap curl-minimal curl-full
-
-```
-
-- Create non-root user:
-  - Enhances security by running the app as a non-root user.
-
-```dockerfile
-
-ENV APPUSER=appuser
-ENV APPUID=1000
-ENV APPGID=1000
+# Create non-root user
+ENV APPUSER=appuser APPUID=1000 APPGID=1000
 RUN useradd --home "/app" --create-home --user-group \
     --uid "$APPUID" "$APPUSER"
-```
 
-- Configure environment:
-  - Accepts JVM flags via JAVA_OPTS.
-
-```dockerfile
-
-ENV JAVA_TOOL_OPTIONS=
+# Configure environment
 ENV SPRING_PROFILES_ACTIVE=prod
-Enables production profile by default.
-
-```
-
-- Copy final JAR and attribution files:
-```dockerfile
-
 WORKDIR /app
 USER appuser
-COPY ./ATTRIBUTION.md ./LICENSES.md
-COPY --chown=appuser:appuser --from=build-env /app.jar .
-```
 
-- Application startup:
-```dockerfile
+# Copy application and licenses
+COPY ./ATTRIBUTION.md ./LICENSES.md ./
+COPY --chown=appuser:appuser --from=build-env /app.jar .
 
 EXPOSE 8080
 ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar /app/app.jar"]
 ```
+
+**Key Features:**
+- **Frontend aggregation** - serves UI and coordinates backend calls
+- **Full curl support** for backend service health checks
+- **License attribution** files included
+
+---
+
+## Docker Build Optimization Strategies
+
+### **1. Layer Caching Optimization**
+```dockerfile
+# Copy dependency files first
+COPY package*.json ./          # Node.js
+COPY pom.xml .mvn ./           # Java/Maven  
+COPY go.mod go.sum ./          # Go
+
+# Download dependencies (cached layer)
+RUN npm install               # Node.js
+RUN ./mvnw dependency:go-offline  # Java
+RUN go mod download           # Go
+
+# Copy source code last (changes frequently)
+COPY ./src ./src
+```
+
+### **2. Multi-Architecture Support**
+All images support both `amd64` and `arm64` architectures for AWS Graviton instances.
+
+### **3. Security Hardening**
+```dockerfile
+# Minimal package installation
+RUN dnf --setopt=install_weak_deps=False install -q -y
+
+# Non-root user creation
+ENV APPUSER=appuser APPUID=1000 APPGID=1000
+RUN useradd --home "/app" --create-home --user-group \
+    --uid "$APPUID" "$APPUSER"
+
+# Clean package cache
+RUN dnf clean all
+```
+
+## Build Commands
+
+### **Individual Service Build**
+```bash
+# Cart Service
+docker build -t retail-cart:latest ./src/cart
+
+# Catalog Service  
+docker build -t retail-catalog:latest ./src/catalog
+
+# Checkout Service
+docker build -t retail-checkout:latest ./src/checkout
+
+# Orders Service
+docker build -t retail-orders:latest ./src/orders
+
+# UI Service
+docker build -t retail-ui:latest ./src/ui
+```
+
+### **Multi-Architecture Build**
+```bash
+# Enable buildx for multi-arch
+docker buildx create --use
+
+# Build for multiple architectures
+docker buildx build --platform linux/amd64,linux/arm64 \
+  -t retail-cart:latest ./src/cart --push
+```
+
+### **Build All Services**
+```bash
+#!/bin/bash
+services=("cart" "catalog" "checkout" "orders" "ui")
+
+for service in "${services[@]}"; do
+  echo "Building $service..."
+  docker build -t retail-$service:latest ./src/$service
+done
+```
+
+## Runtime Configuration
+
+### **Environment Variables**
+Each service accepts configuration via environment variables:
+
+```bash
+# Cart Service
+RETAIL_CART_PERSISTENCE_PROVIDER=dynamodb
+RETAIL_CART_PERSISTENCE_DYNAMODB_ENDPOINT=http://dynamodb:8000
+
+# Catalog Service  
+RETAIL_CATALOG_PERSISTENCE_PROVIDER=mysql
+RETAIL_CATALOG_PERSISTENCE_ENDPOINT=mysql:3306
+
+# Checkout Service
+RETAIL_CHECKOUT_PERSISTENCE_PROVIDER=redis
+RETAIL_CHECKOUT_PERSISTENCE_REDIS_URL=redis://redis:6379
+
+# Orders Service
+RETAIL_ORDERS_PERSISTENCE_PROVIDER=postgres
+RETAIL_ORDERS_MESSAGING_PROVIDER=rabbitmq
+
+# UI Service
+RETAIL_UI_ENDPOINTS_CATALOG=http://catalog:8080
+RETAIL_UI_ENDPOINTS_CARTS=http://carts:8080
+```
+
+### **JVM Tuning (Java Services)**
+```bash
+# Memory optimization
+JAVA_OPTS="-Xmx512m -Xms256m"
+
+# Garbage collection tuning
+JAVA_OPTS="-XX:+UseG1GC -XX:MaxGCPauseMillis=200"
+
+# Container-aware settings
+JAVA_OPTS="-XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0"
+```
+
+## Image Size Comparison
+
+| Service | Language | Build Stage | Runtime Stage | Final Size |
+|---------|----------|-------------|---------------|------------|
+| **Cart** | Java | ~800MB | ~200MB | ~200MB |
+| **Catalog** | Go | ~600MB | ~150MB | ~150MB |
+| **Checkout** | Node.js | ~400MB | ~180MB | ~180MB |
+| **Orders** | Java | ~800MB | ~220MB | ~220MB |
+| **UI** | Java | ~800MB | ~210MB | ~210MB |
+
+## Production Considerations
+
+### **Health Checks**
+```dockerfile
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+  CMD curl -f http://localhost:8080/health || exit 1
+```
+
+### **Resource Limits**
+```yaml
+# Kubernetes deployment
+resources:
+  requests:
+    memory: "256Mi"
+    cpu: "250m"
+  limits:
+    memory: "512Mi" 
+    cpu: "500m"
+```
+
+### **Security Scanning**
+```bash
+# Scan images for vulnerabilities
+docker scout cves retail-cart:latest
+docker scout recommendations retail-cart:latest
+```
+
+This Docker strategy provides secure, efficient, and maintainable containers optimized for AWS environments while following cloud-native best practices.
