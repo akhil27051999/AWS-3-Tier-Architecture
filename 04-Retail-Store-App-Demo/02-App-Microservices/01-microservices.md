@@ -7,7 +7,7 @@ A complete e-commerce application built with microservices architecture, featuri
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                        User Interface                           │
-│                     (Java - Port 8080)                         │
+│                     (Java - Port 8080)                          │
 └─────────────────────┬───────────────────────────────────────────┘
                       │
         ┌─────────────┼─────────────┐
@@ -15,7 +15,7 @@ A complete e-commerce application built with microservices architecture, featuri
         ▼             ▼             ▼
 ┌─────────────┐ ┌─────────────┐ ┌─────────────┐
 │   Catalog   │ │    Cart     │ │   Orders    │
-│ (Go-MySQL)  │ │(Java-Dynamo)│ │(Java-Postgres)│
+│ (Go-MySQL)  │ │(Java-Dynamo)│ │(Jv-Postgres)│
 └─────────────┘ └─────────────┘ └─────────────┘
                                         │
                                         ▼
