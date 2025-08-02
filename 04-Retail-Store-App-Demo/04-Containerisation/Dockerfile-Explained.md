@@ -231,18 +231,22 @@ ENTRYPOINT ["/app/main"]
 
 ---
 
-# 🚀 Node.js 20 Application Containerized with Amazon Linux (Multi-Stage Dockerfile)
+# Checkout Service - Dockerfile
 
 This project uses a **multi-stage Docker build** to build and run a Node.js 20 application using a secure, minimal, and production-ready Amazon Linux 2023 runtime container.
 
-## 🔨 Stage 1: Build Stage
+#### GitHub: https://github.com/akhil27051999/retail-store-sample-app/src/Checkout/Dockerfile
+
+## Dockerfile Explained
+
+### 🔨 Stage 1: Build Stage
 
 - Uses Node.js 20 Alpine image as the base for building:
 
 ```dockerfile
 FROM node:20-alpine AS build
 ```
-- A small and fast image for installing dependencies and building the app.
+  - A small and fast image for installing dependencies and building the app.
 
 - Sets up working directory:
 ```dockerfile
@@ -254,19 +258,19 @@ WORKDIR /usr/src/app
 COPY --chown=node:node package*.json ./
 COPY --chown=node:node . .
 ```
-- Ensures that the node user owns the project files, improving security and compatibility.
+  - Ensures that the node user owns the project files, improving security and compatibility.
 
 - Installs dependencies with Yarn (lockfile respected):
 ```dockerfile
 RUN yarn install --frozen-lockfile
 ```
-- Ensures reproducible builds by using the lockfile.
+  - Ensures reproducible builds by using the lockfile.
 
 - Builds the application:
 ```dockerfile
 RUN yarn build
 ```
-- Builds the production-ready files (typically compiles TypeScript, bundles assets, etc.).
+  - Builds the production-ready files (typically compiles TypeScript, bundles assets, etc.).
 
 - Switches to non-root node user:
 ```dockerfile
@@ -287,13 +291,13 @@ RUN dnf --setopt=install_weak_deps=False install -q -y \
     && \
     dnf clean all
 ```
-- Installs only the required runtime packages. shadow-utils is needed to create a non-root user.
+  - Installs only the required runtime packages. shadow-utils is needed to create a non-root user.
 
 - Registers Node.js 20 as the system's default:
 ```dockerfile
 RUN alternatives --install /usr/bin/node node /usr/bin/node-20 90
 ```
-Ensures the node command points to Node.js 20.
+  - Ensures the node command points to Node.js 20.
 
 - Declares environment variables for user creation:
 ```dockerfile
@@ -310,7 +314,7 @@ RUN useradd \
     --uid "$APPUID" \
     "$APPUSER"
 ```
-- Improves container security by avoiding running as root.
+  - Improves container security by avoiding running as root.
 
 - Sets working directory and switches to the app user:
 ```dockerfile
@@ -322,10 +326,10 @@ USER appuser
 COPY --chown=node:node --from=build /usr/src/app/node_modules ./node_modules
 COPY --chown=node:node --from=build /usr/src/app/dist ./dist
 ```
-Only production-ready files and modules are moved to the final image.
+  - Only production-ready files and modules are moved to the final image.
 
 - Defines the entry point of the application:
 ```dockerfile
 ENTRYPOINT [ "node", "dist/main.js" ]
 ```
-- Starts the application from the built JS file.
+  - Starts the application from the built JS file.
