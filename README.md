@@ -33,9 +33,7 @@
 - Frontend and backend services deployed and tested on EC2 instances
 - Database connectivity verified between application and Aurora cluster
 
-**Outcome**: Hybrid approach demonstrating both automated infrastructure and manual application deployment
 
-![CloudFormation Architecture](https://github.com/user-attachments/assets/01a5a360-e550-4b76-82c7-8a27800ec777)
 
 ---
 
